@@ -52,7 +52,7 @@
         <p>Vos informations de santé centralisées et sécurisées</p>
       </div>
 
-      <form action="traitement.php" method="post">
+      <form action="../php/sauvgarder_profile.php" method="post">
 
         <!-- Identité -->
         <p class="form-section-title"><span>1</span> Identité personnelle</p>
@@ -91,6 +91,17 @@
           </div>
         </div>
 
+        <div class="field-row">
+          <div class="field-group">
+            <label for="telephone">Téléphone</label>
+            <input type="text" name="telephone" id="telephone" placeholder="0x xx xx xx xx">
+          </div>
+          <div class="field-group">
+            <label for="wilaya">Wilaya</label>
+            <input type="text" name="wilaya" id="wilaya" placeholder="ex: Tizi-Ouzou">
+          </div>
+        </div>
+
         <!-- Sécurité -->
         <p class="form-section-title"><span>2</span> Sécurité du compte</p>
 
@@ -113,17 +124,17 @@
         <div class="field-row">
           <div class="field-group">
             <label for="taille">Taille (cm)</label>
-            <input type="number" id="taille" min="50" max="250" placeholder="ex : 170">
+            <input type="number" name="taille" id="taille" min="50" max="250" placeholder="ex : 170">
           </div>
           <div class="field-group">
             <label for="poids">Poids (kg)</label>
-            <input type="number" id="poids" min="2" max="300" placeholder="ex : 65">
+            <input type="number" name="poids" id="poids" min="2" max="300" placeholder="ex : 65">
           </div>
         </div>
 
         <div class="field-group">
           <label for="groupe_sanguin">Groupe sanguin <span class="required">*</span></label>
-          <select id="groupe_sanguin" required>
+          <select name="groupe" id="groupe_sanguin" required>
             <option value="">-- Sélectionner --</option>
             <option value="A+">A+</option>
             <option value="A-">A−</option>
@@ -204,5 +215,6 @@
   </div>
 
   <script src="../JavaScript/index.js"></script>
+  <script src="../JavaScript/Yprofile.js"></script>
 </body>
 </html>
