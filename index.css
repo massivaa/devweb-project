@@ -340,6 +340,22 @@ body.dark-mode .newsletter-form button {
     cursor: pointer;
   }
 
+  .menu-close {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .nav-liens.active .menu-close {
+    display: block;
+  }
+
   .nav-liens {
     position: fixed;
     top: 0;
