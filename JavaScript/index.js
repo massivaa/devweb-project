@@ -1,4 +1,9 @@
 //fonction pour le mode nuit
+function toggleMenu(){
+    document.getElementById('nav-liens').classList.toggle('active');
+    document.getElementById('nav-overlay').classList.toggle('active');
+}
+
 function setContactIconsForMode() {
     const emailIcon = document.querySelector('.icon-contact a[href^="mailto"] img');
     const phoneIcon = document.querySelector('.icon-contact a[href^="https://wa.me"] img');
