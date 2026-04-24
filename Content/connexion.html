@@ -15,12 +15,30 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-gauche">Santé<span>Click</span></div>
+
     <div class="nav-droite">
-      <a href="../index.html">Accueil</a>
-      <a href="inscription.html" class="nav-cta">Créer un compte</a>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+    
+    <div class="nav-liens" id="nav-liens">
+      <button class="menu-close" onclick="toggleMenu()">×</button>
+      <div id="nav-guest">
+        <a href="../index.html">Accueil</a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+      <div id="nav-user">
+        <span id="nav-nom"></span>
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html">Docteurs</a>
+        <a href="patient.html" class="active">Profil</a>
+        <a href="../php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
       <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
     </div>
   </nav>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
+
 
   <!-- Page -->
   <div class="form-page">

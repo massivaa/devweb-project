@@ -21,9 +21,10 @@
     </div>
     
     <div class="nav-liens" id="nav-liens">
+      <button class="menu-close" onclick="toggleMenu()">×</button>
       <div id="nav-guest">
-        <a href="connexion.html">Connexion</a>
-        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+        <a href="../index.html">Accueil</a>
+        <a href="connexion.html" class="nav-cta">Connexion</a>
       </div>
       <div id="nav-user">
         <span id="nav-nom"></span>
@@ -36,6 +37,7 @@
       <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
     </div>
   </nav>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
   <!-- Page -->
   <div class="form-page">
