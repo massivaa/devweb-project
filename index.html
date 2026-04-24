@@ -12,29 +12,32 @@
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="nav-gauche">Santé<span>Click</span></div>
-    <div class="nav-droite">
+ <!--Navbar-->
+ <nav class="navbar">
+  <div class="nav-gauche">Santé<span>Click</span></div>
 
-      <!-- Non connecté -->
-      <div id="nav-guest">
-        <a href="./Content/connexion.html">Connexion</a>
-        <a href="./Content/inscription.html" class="nav-cta">S'inscrire gratuitement</a>
-      </div>
-
-      <!-- Connecté -->
-      <div id="nav-user">
-        <span id="nav-nom"></span>
-        <a href="index.html" class="active">Accueil</a>
-        <a href="./Content/medicament.html">Médicaments</a>
-        <a href="./Content/Mdocteur.html">Docteurs</a>
-        <a href="./Content/patient.html">Profil</a>
-        <a href="./php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
-      </div>
-
-      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+  <div class="nav-droite">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+  
+  <!--liens -->
+  <div class="nav-liens" id="nav-liens">
+    <div id="nav-guest">
+      <a href="./Content/connexion.html">Connexion</a>
+      <a href="./Content/inscription.html" class="nav-cta">S'inscrire gratuitement</a>
     </div>
-  </nav>
+    <div id="nav-user">
+      <span id="nav-nom"></span>
+      <a href="index.html" class="active">Accueil</a>
+      <a href="./Content/medicament.html">Médicaments</a>
+      <a href="./Content/Mdocteur.html">Docteurs</a>
+      <a href="./Content/patient.html">Profil</a>
+      <a href="./php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+    </div>
+  </div>
+  <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+</nav>
+<div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
   
   <!-- ─── Acceuil ──────────────────────────────── -->
@@ -417,7 +420,12 @@
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
       observer.observe(el);
     });
-  </script>
+  
+    function toggleMenu() {
+      document.getElementById("nav-liens").classList.toggle("active");
+      document.getElementById("nav-overlay").classList.toggle("active");
+    }
+    </script>
 
 </body>
 </html>
