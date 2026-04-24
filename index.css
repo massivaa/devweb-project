@@ -321,6 +321,9 @@ body.dark-mode .newsletter-form button {
 .menu-toggle {
   display: none;
 }
+.menu-close {
+  display: none;
+}
 @media (max-width: 768px) {
   body  { padding-top: 60px; }
 
