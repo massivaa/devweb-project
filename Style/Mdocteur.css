@@ -1,0 +1,621 @@
+/* ═══════════════════════════════════════════════════
+   Mdocteur.css — Doctors Page Styles
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream, #faf8f3);
+  color: var(--text-dark, #0d1f0d);
+  padding-top: 72px;
+  transition: background 0.4s, color 0.4s;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── Page Hero Banner ─────────────────────────── */
+.doc-hero {
+  background: #1a3a2a;
+  padding: 70px 40px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(201,168,76,0.25);
+}
+
+.doc-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 400px at 70% 50%, rgba(58,138,99,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 10% 70%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.doc-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(58,138,99,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58,138,99,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.doc-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.doc-hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c9a84c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.doc-hero .eyebrow::before,
+.doc-hero .eyebrow::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: #c9a84c;
+}
+
+.doc-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.doc-hero h1 em {
+  font-style: italic;
+  color: #c9a84c;
+}
+
+.doc-hero p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+  animation: fadeUp 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* ─── Search & Filter bar ──────────────────────── */
+.recherche {
+  background: #ffffff;
+  border-bottom: 1px solid #dde8dd;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 72px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(13,38,24,0.06);
+}
+
+.search {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+}
+
+.search::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' stroke='%233a8a63' stroke-width='2'/%3E%3Cpath d='m16 16 4 4' stroke='%233a8a63' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+}
+
+.search input {
+  width: 100%;
+  padding: 11px 16px 11px 40px;
+  border: 1.5px solid #d8e4d4;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  color: #0d1f0d;
+  background: #faf8f3;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.search input:focus {
+  border-color: #3a8a63;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(58,138,99,0.12);
+}
+
+.search input::placeholder { color: #a8b8a8; font-weight: 300; }
+
+.filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter select {
+  padding: 10px 36px 10px 14px;
+  border: 1.5px solid #d8e4d4;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #3a5a3a;
+  background: #faf8f3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233a8a63' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  min-width: 180px;
+}
+
+.filter select:focus {
+  border-color: #3a8a63;
+  box-shadow: 0 0 0 3px rgba(58,138,99,0.12);
+}
+
+/* Results count */
+.results-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: #7a9a7a;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ─── Doctors Grid ─────────────────────────────── */
+.doc-grid-section {
+  padding: 50px 40px 80px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+#docteurs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ─── Doctor Card ──────────────────────────────── */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #dde8dd;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.35s ease,
+              border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(13,38,24,0.14);
+  border-color: rgba(58,138,99,0.3);
+}
+
+/* Card top accent */
+.card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #1a3a2a, #3a8a63, #c9a84c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before { transform: scaleX(1); }
+
+.card-body {
+  padding: 28px 28px 20px;
+  flex: 1;
+}
+
+/* Doctor header row */
+.doc {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.doc-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dde8dd;
+  background: #eaf3de;
+  transition: border-color 0.3s;
+}
+
+.card:hover .icon { border-color: rgba(58,138,99,0.5); }
+
+.doc-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d2618;
+  margin-bottom: 4px;
+}
+
+.doc-info .doc-spec {
+  font-size: 13px;
+  color: #3a8a63;
+  font-weight: 500;
+}
+
+/* Info pills */
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.meta-pill.public {
+  background: #eaf3de;
+  color: #2d6a4f;
+  border-color: #c0dda8;
+}
+
+.meta-pill.prive {
+  background: #faf0e8;
+  color: #8a5a2a;
+  border-color: #e2c97e;
+}
+
+.meta-pill.spec {
+  background: #f0f5ef;
+  color: #3a5a3a;
+  border-color: #d8e4d4;
+}
+
+/* Card footer */
+.card-footer {
+  padding: 16px 28px 24px;
+  border-top: 1px solid #f0f5ef;
+}
+
+.btn-savoir {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  background: #1a3a2a;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+  text-align: center;
+}
+
+.btn-savoir:hover {
+  background: #2d5a3f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(13,38,24,0.2);
+}
+
+/* ─── MODAL ────────────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.open { display: flex; }
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #dde8dd;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  padding: 40px;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  animation: modalIn 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f0f5ef;
+  border: none;
+  font-size: 18px;
+  color: #5a6a5a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.close:hover { background: #e0ece0; color: #1a3a2a; }
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8f0e8;
+}
+
+.modal-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dde8dd;
+  background: #eaf3de;
+}
+
+.modal-header-info h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0d2618;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.modal-header-info .modal-spec {
+  font-size: 13px;
+  color: #3a8a63;
+  font-weight: 500;
+}
+
+/* Modal rows */
+.modal-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f5ef;
+  font-size: 14px;
+}
+
+.modal-row:last-of-type { border-bottom: none; }
+
+.modal-row-label {
+  font-weight: 500;
+  color: #5a6a5a;
+  min-width: 130px;
+  font-size: 13px;
+}
+
+.modal-row-value {
+  color: #1a2e1a;
+  font-weight: 400;
+}
+
+/* Contact row */
+.modal-contact {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e8f0e8;
+}
+
+.modal-contact p {
+  font-size: 13px;
+  color: #7a9a7a;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.icon-contact {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: 1px solid;
+}
+
+.contact-btn.email {
+  background: #eaf3de;
+  color: #2d6a4f;
+  border-color: #c0dda8;
+}
+
+.contact-btn.email:hover {
+  background: #d8eecc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45,106,79,0.15);
+}
+
+.contact-btn.whatsapp {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+
+.contact-btn.whatsapp:hover {
+  background: #d5edd6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46,125,50,0.15);
+}
+
+.contact-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* Reserve button */
+.reservation {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: #c9a84c;
+  color: #0d2618;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+}
+
+.reservation:hover {
+  background: #e2c97e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.35);
+}
+
+/* ─── Dark Mode ─────────────────────────────────── */
+.dark-mode body,
+body.dark-mode { background: #0a100a; color: #e0e8e0; }
+
+.dark-mode .recherche {
+  background: #0f1a0f;
+  border-bottom-color: #1e3a1e;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.dark-mode .search input {
+  background: #111a11;
+  border-color: #1e3a1e;
+  color: #d0e8d0;
+}
+
+.dark-mode .search input:focus {
+  background: #0d150d;
+  border-color: #3a8a63;
+}
+
+.dark-mode .filter select {
+  background-color: #111a11;
+  border-color: #1e3a1e;
+  color: #90a890;
+}
+
+.dark-mode .card {
+  background: #111a11;
+  border-color: #1e3a1e;
+}
+
+.dark-mode .doc-info h3 { color: #d0e8d0; }
+
+.dark-mode .card-footer { border-top-color: #1e3a1e; }
+
+.dark-mode .meta-pill.spec {
+  background: #0d150d;
+  border-color: #1e3a1e;
+  color: #7a9a7a;
+}
+
+.dark-mode .modal-content {
+  background: #111a11;
+  border-color: #1e3a1e;
+}
+
+.dark-mode .modal-header       { border-bottom-color: #1e3a1e; }
+.dark-mode .modal-header-info h2 { color: #d0e8d0; }
+.dark-mode .modal-row          { border-bottom-color: #1a2e1a; }
+.dark-mode .modal-row-label    { color: #507050; }
+.dark-mode .modal-row-value    { color: #b0c8b0; }
+.dark-mode .modal-contact      { border-top-color: #1e3a1e; }
+.dark-mode .close              { background: #1a2e1a; color: #7a9a7a; }
+.dark-mode .close:hover        { background: #1e3a1e; color: #d0e8d0; }
+
+/* ─── Animations ─────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .doc-hero h1 { font-size: 34px; }
+  .doc-hero, .recherche, .doc-grid-section { padding-left: 20px; padding-right: 20px; }
+  #docteurs { grid-template-columns: 1fr; }
+  .recherche { flex-direction: column; align-items: stretch; top: 60px; }
+  .filter { justify-content: stretch; }
+  .filter select { flex: 1; min-width: 0; }
+}

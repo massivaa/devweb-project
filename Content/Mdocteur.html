@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SantéClick — Nos Médecins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Style/Mdocteur.css">
+  <link rel="stylesheet" href="../index.css">
+  <link rel="icon" href="../images/steto.png" type="image/png">
+</head>
+
+<body>
+  <!-- bar de navigation -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-droite">
+      <div id="nav-guest">
+        <a href="connexion.html">Connexion</a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+      <div id="nav-user">
+        <span id="nav-nom"></span>
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html" class="active">Docteurs</a>
+        <a href="patient.html">Profil</a>
+        <a href="../php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+    </div>
+  </nav>
+
+  <!-- specialiteee -->
+  <section class="doc-hero">
+    <div class="doc-hero-inner">
+      <p class="eyebrow">Nos spécialistes</p>
+      <h1>Prenez <em>rendez-vous</em><br>ou discutez avec un médecin</h1>
+      <p>350+ médecins certifiés disponibles — en cabinet ou en téléconsultation.</p>
+    </div>
+  </section>
+
+  <!--bar de recherche -->
+  <div class="recherche">
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Rechercher un médecin par nom...">
+    </div>
+    <div class="filter">
+      <select id="speciality">
+        <option value="all">Toutes les spécialités</option>
+        <option value="cardiologue">Cardiologue</option>
+        <option value="dentiste">Dentiste</option>
+        <option value="dermatologue">Dermatologue</option>
+        <option value="generaliste">Généraliste</option>
+        <option value="gynecologue">Gynécologue</option>
+        <option value="ophtalmologiste">Ophtalmologiste</option>
+        <option value="ORL">ORL</option>
+        <option value="orthopediste">Orthopédiste</option>
+        <option value="pediatre">Pédiatre</option>
+        <option value="psychiatre">Psychiatre</option>
+      </select>
+      <select id="categorie">
+        <option value="all">Toutes les catégories</option>
+        <option value="public">Public</option>
+        <option value="prive">Privé</option>
+      </select>
+    </div>
+    <span class="results-count" id="results-count">6 médecins</span>
+  </div>
+
+  <!-- Doctors Grid -->
+  <div class="doc-grid-section">
+    <div id="docteurs">
+
+      <div class="card" data-speciality="generaliste" data-categorie="public">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="../images/doc.png"
+                alt="Dr. A.Mastene">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. A. Mastene</h3>
+              <div class="doc-spec">Généraliste</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill public">Public</span>
+            <span class="meta-pill spec">Généraliste</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(0)">Voir le profil →</button>
+        </div>
+      </div>
+
+      <div class="card" data-speciality="cardiologue" data-categorie="prive">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face"
+                alt="Dr. B.Amel">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. B. Amel</h3>
+              <div class="doc-spec">Cardiologue</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill prive">Privé</span>
+            <span class="meta-pill spec">Cardiologue</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(1)">Voir le profil →</button>
+        </div>
+      </div>
+
+      <div class="card" data-speciality="dermatologue" data-categorie="prive">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=120&h=120&fit=crop&crop=face"
+                alt="Dr. M.Yasmine">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. M. Yasmine</h3>
+              <div class="doc-spec">Dermatologue</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill prive">Privé</span>
+            <span class="meta-pill spec">Dermatologue</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(2)">Voir le profil →</button>
+        </div>
+      </div>
+
+      <div class="card" data-speciality="dermatologue" data-categorie="prive">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=120&h=120&fit=crop&crop=face"
+                alt="Dr. T.Katia">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. T. Katia</h3>
+              <div class="doc-spec">Dermatologue</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill prive">Privé</span>
+            <span class="meta-pill spec">Dermatologue</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(3)">Voir le profil →</button>
+        </div>
+      </div>
+
+      <div class="card" data-speciality="pediatre" data-categorie="prive">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=120&h=120&fit=crop&crop=face"
+                alt="Dr. S.Nesrine">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. S. Nesrine</h3>
+              <div class="doc-spec">Pédiatre</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill prive">Privé</span>
+            <span class="meta-pill spec">Pédiatre</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(4)">Voir le profil →</button>
+        </div>
+      </div>
+
+      <div class="card" data-speciality="gynecologue" data-categorie="prive">
+        <div class="card-body">
+          <div class="doc">
+            <div class="doc-avatar-wrap">
+              <img class="icon"
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=120&h=120&fit=crop&crop=face"
+                alt="Dr. A.Massiva">
+            </div>
+            <div class="doc-info">
+              <h3>Dr. A. Massiva</h3>
+              <div class="doc-spec">Gynécologue</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <span class="meta-pill prive">Privé</span>
+            <span class="meta-pill spec">Gynécologue</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(5)">Voir le profil →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Fermer">&times;</button>
+
+      <div class="modal-header">
+        <img class="modal-avatar" id="modal-avatar" src="" alt="">
+        <div class="modal-header-info">
+          <h2>Dr. <span id="name"></span></h2>
+          <div class="modal-spec" id="spec"></div>
+        </div>
+      </div>
+
+      <div class="modal-row">
+        <span class="modal-row-label">Catégorie</span>
+        <span class="modal-row-value" id="modal-cat"></span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">Horaires</span>
+        <span class="modal-row-value" id="availb"></span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">Consultation</span>
+        <span class="modal-row-value" id="modal-consult"></span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">Localisation</span>
+        <span class="modal-row-value" id="loc"></span>
+      </div>
+
+      <div class="modal-contact">
+        <p>Contacter le médecin directement :</p>
+        <div class="icon-contact">
+          <a href="mailto:contact@SantéClick.dz" target="_blank" class="contact-btn email">
+            <img src="https://img.icons8.com/ios/50/new-post.png" alt="Email"> E-mail
+          </a>
+          <a href="https://wa.me/213666000000" target="_blank" class="contact-btn whatsapp">
+            <img src="https://img.icons8.com/ios/50/whatsapp--v1.png" alt="WhatsApp"> WhatsApp
+          </a>
+        </div>
+        <button class="reservation" id="modal-reserve">Réserver un rendez-vous</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../JavaScript/Mdocteur.js"></script>
+  <script src="../JavaScript/index.js"></script>
+</body>
+</html>

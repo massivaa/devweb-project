@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SantéClick — Profil Patient</title>
+  <link rel="stylesheet" href="../Style/patient.css" />
+  <link rel="stylesheet" href="../index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+ <!-- bar de navigation -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-droite">
+      <div id="nav-guest">
+        <a href="connexion.html">Connexion</a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+      <div id="nav-user">
+        <span id="nav-nom"></span>
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html">Docteurs</a>
+        <a href="patient.html" class="active">Profil</a>
+        <a href="../php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+    </div>
+  </nav>
+
+  <!-- PAGE LAYOUT -->
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Profile Card -->
+      <div class="card profile-card">
+        <div class="avatar-wrap" id="avatarWrap" title="Cliquer pour changer la photo">
+          <div class="avatar" id="avatarCircle">
+            <span class="avatar-initials" id="avatarInitials">?</span>
+            <img id="avatarImg" class="avatar-photo" alt="Photo du patient" />
+          </div>
+          <div class="avatar-edit-btn">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="white"><path d="M11.5 1.5a2.12 2.12 0 013 3L5 14H2v-3L11.5 1.5z"/></svg>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" />
+        </div>
+
+        <div class="patient-name" id="displayName">— Nom non renseigné —</div>
+        <div class="patient-id">ID : PAT-2024-0842</div>
+        <span class="badge-status" id="badgeStatus">
+          <span class="status-dot"></span>
+          <span id="statusText">Profil incomplet</span>
+        </span>
+
+        <a href="../Content/Yprofile.html" class="ajouter-infos">Ajouter des informations</a>
+      </div>
+
+      <!-- Données vitales -->
+      <div class="card">
+        <div class="section-header">
+          <span class="section-title">Données vitales</span>
+        </div>
+        <div class="vitals-grid" id="vitalsGrid">
+          <div class="vital-item empty-vital">
+            <span class="vital-val" id="vPoids">—</span>
+            <span class="vital-lbl">Poids</span>
+          </div>
+          <div class="vital-item empty-vital">
+            <span class="vital-val" id="vTaille">—</span>
+            <span class="vital-lbl">Taille</span>
+          </div>
+          <div class="vital-item empty-vital">
+            <span class="vital-val" id="vImc">—</span>
+            <span class="vital-lbl">IMC</span>
+          </div>
+          <div class="vital-item empty-vital">
+            <span class="vital-val" id="vGroupe">—</span>
+            <span class="vital-lbl">Groupe</span>
+          </div>
+        </div>
+        <p class="empty-hint" id="vitalsHint">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="opacity:.5"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm1 10.5H7v-4.5h2v4.5zm0-6H7v-2h2v2z"/></svg>
+          Complétez votre profil pour afficher vos données
+        </p>
+      </div>
+
+      <!-- Antécédents -->
+      <div class="card">
+        <div class="section-header">
+          <span class="section-title">Antécédents médicaux</span>
+        </div>
+        <div class="empty-state" id="antecedentsEmpty">
+          <div class="empty-icon">🩺</div>
+          <p class="empty-msg">Aucun antécédent renseigné</p>
+          <p class="empty-sub">Complétez votre formulaire médical</p>
+        </div>
+        <div class="antecedents-list" id="antecedentsList" style="display:none">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- Alerte renouvellement -->
+      <div class="alert-card" id="alertCard" style="display:none">
+        <span class="alert-icon">💊</span>
+        <div class="alert-body">
+          <strong>Rappel :</strong> Renouvellement ordonnance prévu le <strong id="alertDate"></strong>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN COLUMN -->
+    <div class="main-col">
+
+      <!-- Actions rapides -->
+      <div class="card">
+        <div class="section-header">
+          <span class="section-title">Actions rapides</span>
+        </div>
+        <div class="quick-actions">
+          <a href="Yrendezvous.html">
+          <button class="qa-btn">
+            <span class="qa-icon">📅</span>
+            <span class="qa-label">Nouveau rendez-vous</span>
+            <span class="qa-sub">Prendre une consultation</span>
+          </button></a>
+          <a>
+          <button class="qa-btn">
+            <span class="qa-icon">📋</span>
+            <span class="qa-label">Nouvelle ordonnance</span>
+            <span class="qa-sub">Créer une prescription</span>
+          </button></a>
+          <a>
+          <button class="qa-btn">
+            <span class="qa-icon">🔬</span>
+            <span class="qa-label">Analyses médicales</span>
+            <span class="qa-sub">Voir les résultats</span>
+          </button></a>
+          <a>
+          <button class="qa-btn">
+            <span class="qa-icon">📁</span>
+            <span class="qa-label">Dossier médical</span>
+            <span class="qa-sub">Documents &amp; rapports</span>
+          </button></a>
+        </div>
+      </div>
+
+      <!-- Traitement en cours -->
+      <div class="card" id="traitementCard">
+        <div class="section-header">
+          <span class="section-title">Traitement en cours</span>
+          <span class="see-all">voir tout</span>
+        </div>
+        <div class="empty-state" id="traitementEmpty">
+          <div class="empty-icon">💉</div>
+          <p class="empty-msg">Aucun traitement en cours</p>
+          <p class="empty-sub">Vos prescriptions actives apparaîtront ici</p>
+        </div>
+        <div id="traitementList" style="display:none"></div>
+      </div>
+
+      <!-- Rendez-vous récents -->
+      <div class="card">
+        <div class="section-header">
+          <span class="section-title">Rendez-vous récents</span>
+          <span class="see-all">voir tout</span>
+        </div>
+        <div class="empty-state" id="rdvEmpty">
+          <div class="empty-icon">🗓</div>
+          <p class="empty-msg">Aucun rendez-vous enregistré</p>
+          <p class="empty-sub">Vos prochains rendez-vous s'afficheront ici</p>
+        </div>
+        <div class="rdv-list" id="rdvList" style="display:none">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- Ordonnances récentes -->
+      <div class="card">
+        <div class="section-header">
+          <span class="section-title">Ordonnances récentes</span>
+          <span class="see-all">voir tout</span>
+        </div>
+        <div class="empty-state" id="ordoEmpty">
+          <div class="empty-icon">📄</div>
+          <p class="empty-msg">Aucune ordonnance disponible</p>
+          <p class="empty-sub">Vos prescriptions récentes apparaîtront ici</p>
+        </div>
+        <div class="ordo-list" id="ordoList" style="display:none">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL — Ajouter informations -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 class="modal-title">Compléter le profil</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row two-col">
+          <div>
+            <label>Prénom</label>
+            <input type="text" id="fPrenom" placeholder="ex : Karim" />
+          </div>
+          <div>
+            <label>Nom</label>
+            <input type="text" id="fNom" placeholder="ex : Amrani" />
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Date de naissance</label>
+            <input type="date" id="fDob" />
+          </div>
+          <div>
+            <label>Sexe</label>
+            <select id="fSexe">
+              <option value="">— Sélectionner —</option>
+              <option>Masculin</option>
+              <option>Féminin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Poids (kg)</label>
+            <input type="number" id="fPoids" placeholder="ex : 72" />
+          </div>
+          <div>
+            <label>Taille (cm)</label>
+            <input type="number" id="fTaille" placeholder="ex : 178" />
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Groupe sanguin</label>
+            <select id="fGroupe">
+              <option value="">—</option>
+              <option>A+</option><option>A−</option>
+              <option>B+</option><option>B−</option>
+              <option>AB+</option><option>AB−</option>
+              <option>O+</option><option>O−</option>
+            </select>
+          </div>
+          <div>
+            <label>Téléphone</label>
+            <input type="tel" id="fTel" placeholder="+213 06 xx xx" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Wilaya</label>
+          <select id="fWilaya">
+            <option value="">— Sélectionner —</option>
+            <option>Alger</option><option>Oran</option><option>Constantine</option>
+            <option>Annaba</option><option>Tizi Ouzou</option><option>Sétif</option>
+            <option>Béjaïa</option><option>Blida</option><option>Batna</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Antécédents médicaux (séparés par virgule)</label>
+          <input type="text" id="fAntecedents" placeholder="ex : Diabète type 2, Hypertension, Allergie pénicilline" />
+        </div>
+        <div class="form-row">
+          <label>Mutuelle / Assurance</label>
+          <input type="text" id="fMutuelle" placeholder="ex : CNAS, CASNOS..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="btnCancel">Annuler</button>
+        <button class="btn-save" id="btnSave">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../JavaScript/patient.js"></script>
+  <script src="../JavaScript/index.js"></script>
+</body>
+</html>

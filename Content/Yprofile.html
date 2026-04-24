@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SantéClick — Mon Profil Médical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Style/Ystyleprofile.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-droite">
+      <div id="nav-guest">
+        <a href="connexion.html">Connexion</a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+      <div id="nav-user">
+        <span id="nav-nom"></span>
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html">Docteurs</a>
+        <a href="patient.html" class="active">Profil</a>
+        <a href="../php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+    </div>
+  </nav>
+
+  <!-- Page -->
+  <div class="form-page" style="align-items:flex-start; padding-top:50px; padding-bottom:60px;">
+    <div class="form-card wide">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="header-icon">
+          <img src="https://img.icons8.com/ios/50/medical-history--v1.png" alt="Profil">
+        </div>
+        <h2>Mon Profil Médical</h2>
+        <p>Vos informations de santé centralisées et sécurisées</p>
+      </div>
+
+      <form action="traitement.php" method="post">
+
+        <!-- Identité -->
+        <p class="form-section-title"><span>1</span> Identité personnelle</p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="nom">Nom <span class="required">*</span></label>
+            <input type="text" name="name" id="nom" placeholder="Votre nom" required autocomplete="family-name">
+          </div>
+          <div class="field-group">
+            <label for="prenom">Prénom <span class="required">*</span></label>
+            <input type="text" name="surname" id="prenom" placeholder="Votre prénom" required autocomplete="given-name">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="email">Adresse e-mail <span class="required">*</span></label>
+            <input type="email" name="email" id="email" placeholder="exemple@email.com" required autocomplete="email">
+          </div>
+          <div class="field-group">
+            <label for="dob">Date de naissance <span class="required">*</span></label>
+            <input type="date" name="date" id="dob" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Genre <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="gender" value="Homme"> Homme
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="gender" value="Femme"> Femme
+            </label>
+          </div>
+        </div>
+
+        <!-- Sécurité -->
+        <p class="form-section-title"><span>2</span> Sécurité du compte</p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="motdepasse">Nouveau mot de passe</label>
+            <input type="password" name="password" id="motdepasse" minlength="8"
+                   placeholder="Laisser vide pour ne pas changer" autocomplete="new-password">
+          </div>
+          <div class="field-group">
+            <label for="confirmer_pass">Confirmer le mot de passe</label>
+            <input type="password" name="confirm" id="confirmer_pass" minlength="8"
+                   placeholder="Répéter le nouveau mot de passe" autocomplete="new-password">
+          </div>
+        </div>
+
+        <!-- Données biométriques -->
+        <p class="form-section-title"><span>3</span> Données biométriques</p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="taille">Taille (cm)</label>
+            <input type="number" id="taille" min="50" max="250" placeholder="ex : 170">
+          </div>
+          <div class="field-group">
+            <label for="poids">Poids (kg)</label>
+            <input type="number" id="poids" min="2" max="300" placeholder="ex : 65">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="groupe_sanguin">Groupe sanguin <span class="required">*</span></label>
+          <select id="groupe_sanguin" required>
+            <option value="">-- Sélectionner --</option>
+            <option value="A+">A+</option>
+            <option value="A-">A−</option>
+            <option value="B+">B+</option>
+            <option value="B-">B−</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB−</option>
+            <option value="O+">O+</option>
+            <option value="O-">O−</option>
+          </select>
+        </div>
+
+        <!-- Antécédents médicaux -->
+        <p class="form-section-title"><span>4</span> Antécédents médicaux</p>
+
+        <div class="field-group">
+          <label for="allergies">Allergies connues</label>
+          <input type="text" name="Allergies" id="allergies"
+                 placeholder="Ex : pénicilline, arachides, latex...">
+        </div>
+
+        <div class="field-group">
+          <label for="antecedents">Antécédents médicaux</label>
+          <input type="text" name="antecedents" id="antecedents"
+                 placeholder="Ex : diabète, hypertension, opération...">
+        </div>
+
+        <div class="field-group">
+          <label for="medicaments_actuels">Médicaments actuels</label>
+          <input type="text" name="medicaments_actuels" id="medicaments_actuels"
+                 placeholder="Ex : Paracétamol 500mg, Metformine 850mg...">
+        </div>
+
+        <div class="field-group">
+          <label>Maladies chroniques</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="maladies[]" value="diabete"> Diabète
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="maladies[]" value="asthme"> Asthme
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="maladies[]" value="hypertension"> Hypertension
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="maladies[]" value="autre"> Autre
+            </label>
+          </div>
+        </div>
+
+        <!-- Contact d'urgence -->
+        <p class="form-section-title">
+          <span style="background:#c9a84c;color:#0d2618;">!</span>
+          <span class="urgency-label">Contact d'urgence</span>
+        </p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="urgence_nom">Nom complet</label>
+            <input type="text" name="urgence_nom" id="urgence_nom"
+                   placeholder="Nom du contact d'urgence">
+          </div>
+          <div class="field-group">
+            <label for="tel">Numéro de téléphone</label>
+            <input type="tel" name="tel" id="tel" pattern="[0-9]{10}" maxlength="10"
+                   placeholder="0x xx xx xx xx">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top:12px;">
+          Enregistrer mon profil
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="../JavaScript/index.js"></script>
+</body>
+</html>

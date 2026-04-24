@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SantéClick — Inscription</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Style/Ystyleprofile.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-droite">
+      <a href="../index.html">Accueil</a>
+      <a href="connexion.html">Se connecter</a>
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+    </div>
+  </nav>
+
+  <!-- Page -->
+  <div class="form-page">
+    <div class="form-card wide">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="header-icon">
+          <img src="https://img.icons8.com/ios/50/add-user-male--v1.png" alt="Inscription">
+        </div>
+        <h2>Créer votre compte</h2>
+        <p>Rejoignez SantéClick — c'est rapide et gratuit</p>
+      </div>
+
+      <!-- Form -->
+      <form action="../php/inscription.php" method="post">
+
+        <!-- Identité -->
+        <p class="form-section-title">
+          <span>1</span> Identité
+        </p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="nom">Nom <span class="required">*</span></label>
+            <input type="text" name="name" id="nom" placeholder="Votre nom" required autocomplete="family-name">
+          </div>
+          <div class="field-group">
+            <label for="prenom">Prénom <span class="required">*</span></label>
+            <input type="text" name="surname" id="prenom" placeholder="Votre prénom" required autocomplete="given-name">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="dob">Date de naissance <span class="required">*</span></label>
+          <input type="date" name="date" id="dob" required>
+        </div>
+
+        <div class="field-group">
+          <label>Genre <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="gender" value="Homme" required> Homme
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="gender" value="Femme"> Femme
+            </label>
+          </div>
+        </div>
+
+        <!-- Compte -->
+        <p class="form-section-title">
+          <span>2</span> Informations de connexion
+        </p>
+
+        <div class="field-group">
+          <label for="email">Adresse e-mail <span class="required">*</span></label>
+          <input type="email" name="email" id="email" placeholder="exemple@email.com" required autocomplete="email">
+        </div>
+
+        <div class="field-group">
+          <label for="motdepasse">Mot de passe <span class="required">*</span></label>
+          <input type="password" name="password" id="motdepasse" minlength="8" required
+                 placeholder="Au moins 8 caractères" autocomplete="new-password">
+          <div id="strength-bar" style="margin-top:8px;"></div>
+          <small id="strength-text"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="confirmer_passe">Confirmer le mot de passe <span class="required">*</span></label>
+          <input type="password" name="confirm_password" id="confirmer_passe" minlength="8" required
+                 placeholder="Répétez votre mot de passe" autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Créer mon compte
+        </button>
+
+      </form>
+
+      <div class="form-switch">
+        Vous avez déjà un compte ?
+        <a href="connexion.html">Se connecter</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../JavaScript/index.js"></script>
+  <script src="../JavaScript/inscription.js"></script>
+</body>
+</html>
