@@ -263,7 +263,7 @@
           <p>"SantéClick a changé ma façon de gérer ma santé. Les livraisons sont ponctuelles et l'interface est vraiment intuitive. Je recommande vivement."</p>
           <div class="card-author">
             <img
-              src="https://images.unsplash.com/photo-1494790108755-2616b612b647?w=100&q=80"
+              src="./images/doc.png"
               alt="Fatima A."
               class="card-avatar"
             >
@@ -318,7 +318,7 @@
           <p>Rejoignez plus de 12 000 patients qui font confiance à SantéClick chaque jour pour leur santé.</p>
         </div>
         <div class="cta-actions reveal-right">
-          <a href="./Content/inscription.html" class="btn btn-primary">
+          <a id="commencer" href="#" class="btn btn-primary">
             Commencer gratuitement <span class="btn-arrow">→</span>
           </a>
         </div>
@@ -407,23 +407,6 @@
   </footer>
 
   <script src="JavaScript/index.js"></script>
-  <script>
-    // animation de scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-      observer.observe(el);
-    });
-  
-    function toggleMenu() {
-      document.getElementById("nav-liens").classList.toggle("active");
-      document.getElementById("nav-overlay").classList.toggle("active");
-    }
-    </script>
-
+  <script src="JavaScript/home.js"></script>
 </body>
 </html>
