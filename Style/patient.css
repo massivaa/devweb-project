@@ -544,6 +544,9 @@ body {
 .btn-save:hover { background: #1f5c47; }
 .btn-save:active { transform: scale(0.98); }
 
+.btn-delete{background: #1f5c47; color: white; border: 1px solid #f5c6cb;}
+.btn-delete:hover{background: #c0392b; color: white;}
+
 .dark-mode .ajouter-infos{background-color: #153229;}
 .dark-mode .ajouter-infos:hover{transform: scale(1.03); background-color: #193c31;}
 .dark-mode .patient-name{color:white;}
