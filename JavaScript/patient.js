@@ -42,3 +42,62 @@ function renderAll() {
 }
 
 loadProfile();
+
+async function loadRendezVous() {
+  const res = await fetch('../php/get_rendezvous.php');
+  const data = await res.json();
+
+  const list = document.getElementById('rdvList');
+  const empty = document.getElementById('rdvEmpty');
+
+  if (!data.length) {
+    empty.style.display = 'flex';
+    list.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  list.style.display = 'block';
+
+  list.innerHTML = data.map(rdv => `
+    <div class="rdv-card">
+      <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
+      ${rdv.specialite}<br>
+      📅 ${rdv.date_rdv} à ${rdv.heure}<br>
+      📝 ${rdv.motif || "Aucun motif"}
+    </div>
+  `).join('');
+}
+
+loadRendezVous();
+
+list.innerHTML = data.map(rdv => `
+  <div class="rdv-card">
+    <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
+    ${rdv.specialite}<br>
+    📅 ${rdv.date_rdv} à ${rdv.heure}<br>
+    📝 ${rdv.motif || "Aucun motif"}
+
+    <button onclick="deleteRdv(${rdv.id})" class="btn-delete">
+      Annuler
+    </button>
+  </div>
+`).join('');
+
+async function deleteRdv(id) {
+  const formData = new FormData();
+  formData.append("rdv_id", id);
+
+  const res = await fetch("../php/annuler_rndv.php", {
+    method: "POST",
+    body: formData
+  });
+
+  const text = await res.text();
+
+  if (text === "success") {
+    loadRendezVous(); // refresh list
+  } else {
+    alert("Erreur suppression");
+  }
+}

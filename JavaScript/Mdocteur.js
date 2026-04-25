@@ -1,36 +1,67 @@
-//test du lien
-console.log('Projet de massiva');
+// test du lien
+console.log("Projet de massiva");
 
-//creation du tableau de docteurs
-const doctors = [
-  { name: "A.Mastene",  spec: "generaliste",  availb: "Lundi – Mercredi",  cat: "public", loc: "Alger Centre" },
-  { name: "B.Amel",     spec: "cardiologue",  availb: "Dimanche – Jeudi",  cat: "privé",  loc: "Bab El Oued, Alger" },
-  { name: "M.Yasmine",  spec: "dermatologue", availb: "Mardi – Samedi",    cat: "privé",  loc: "Hydra, Alger" },
-  { name: "T.Katia",    spec: "dermatologue", availb: "Lundi – Mercredi",  cat: "privé",  loc: "El Biar, Alger" },
-  { name: "S.Nesrine",  spec: "pédiatre",     availb: "Dimanche – Jeudi",  cat: "privé",  loc: "Kouba, Alger" },
-  { name: "A.Massiva",  spec: "gynécologue",  availb: "Samedi – Mercredi", cat: "privé",  loc: "Cheraga, Alger" },
-];
-
+// ─── GLOBAL STATE ──────────────────────
+let doctors = [];
 let currentDoctor = null;
 
-//plus d'infos sur docteurs
+// ─── LOAD DOCTORS ──────────────────────
+async function loadDoctors() {
+  try {
+    const res = await fetch("../php/docteur.php");
+    doctors = await res.json();
+
+    renderDoctors(doctors);
+  } catch (err) {
+    console.error("Erreur chargement docteurs:", err);
+  }
+}
+
+// ─── RENDER DOCTORS ──────────────────────
+function renderDoctors(list) {
+  const container = document.getElementById("docteurs");
+
+  container.innerHTML = list.map(doc => `
+    <div class="card">
+      <div class="card-body">
+        <h3>Dr ${doc.prenom} ${doc.nom}</h3>
+        <p>${doc.specialite}</p>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn-savoir" onclick="openModal(${doc.id})">
+          Voir le profil →
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+// ─── MODAL ──────────────────────
 function openModal(id) {
-  const doc = doctors[id];
+  const doc = doctors.find(d => d.id == id);
+
+  if (!doc) {
+    alert("Médecin introuvable");
+    return;
+  }
+
   currentDoctor = doc;
 
-  document.getElementById("name").textContent  = doc.name;
-  document.getElementById("spec").textContent  = doc.spec;
-  document.getElementById("availb").textContent = doc.availb;
-  document.getElementById("modal-cat").textContent = doc.cat;
-  document.getElementById("loc").textContent   = doc.loc;
+  document.getElementById("name").textContent = doc.nom + " " + doc.prenom;
+  document.getElementById("spec").textContent = doc.specialite;
+
+  document.getElementById("modal-cat").textContent = "Médecin";
+  document.getElementById("loc").textContent = "Clinique";
+  document.getElementById("availb").textContent = "Sur rendez-vous";
 
   document.getElementById("modal").classList.add("open");
 }
 
-// ─── Main logic on DOM ready ──────────────────────
+// ─── DOM READY ──────────────────────
 document.addEventListener("DOMContentLoaded", function () {
 
-  // — Modal close —
+  // close modal
   document.getElementById("closeModal").addEventListener("click", () => {
     document.getElementById("modal").classList.remove("open");
   });
@@ -39,25 +70,23 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target === this) this.classList.remove("open");
   });
 
-  // lien de reservation vers lA page rendezvous
+  // reservation button
   document.querySelector(".reservation").addEventListener("click", function () {
     if (currentDoctor) {
       window.location.href =
-        "../Content/Yrendezvous.html?speciality=" + encodeURIComponent(currentDoctor.spec) +
-        "&doctor=" + encodeURIComponent(currentDoctor.name);
+        "../Content/Yrendezvous.html?doctor_id=" + currentDoctor.id +
+        "&doctor=" + encodeURIComponent(currentDoctor.nom + " " + currentDoctor.prenom);
     } else {
       window.location.href = "../Content/Yrendezvous.html";
     }
   });
 
-  //recherche des docterrs
-  const searchInput      = document.getElementById("searchInput");
+  // SEARCH
+  const searchInput = document.getElementById("searchInput");
   const specialitySelect = document.getElementById("speciality");
-  const categorieSelect  = document.getElementById("categorie");
-  const cards            = document.querySelectorAll("#docteurs .card");
-  const resultsCount     = document.getElementById("resultsCount");
+  const resultsCount = document.getElementById("results-count");
 
-  function normalizeText(text) {
+  function normalize(text) {
     return text
       .normalize("NFD")
       .replace(/\p{Diacritic}/gu, "")
@@ -65,52 +94,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function filterDoctors() {
-    const q    = normalizeText(searchInput.value.trim());
-    const spec = normalizeText(specialitySelect.value);
-    const cat  = normalizeText(categorieSelect.value);
-    let visible = 0;
+    const q = normalize(searchInput.value.trim());
+    const spec = normalize(specialitySelect.value);
 
-    cards.forEach(card => {
-      const nameEl = card.querySelector("h3");
-      const name   = nameEl ? normalizeText(nameEl.textContent) : "";
-      const cs     = normalizeText(card.dataset.speciality || "");
-      const cc     = normalizeText(card.dataset.categorie  || "");
+    let filtered = doctors.filter(doc => {
+      const name = normalize(doc.nom + " " + doc.prenom);
+      const speciality = normalize(doc.specialite);
 
-      // prefixe du nom 
-      let nameMatch = true;
-      if (q !== "") {
-        const cleanQ      = q.replace(/\.+$/, "");
-        const nameTokens  = name.replace(/\bdr\b\s*/g, "").split(/[\.\s\-]+/).filter(Boolean);
-        if (q.includes(".")) {
-          const parts = cleanQ.split(".").filter(Boolean);
-          nameMatch   = parts.every((part, i) => nameTokens[i] && nameTokens[i].startsWith(part));
-        } else {
-          nameMatch = nameTokens.some(token => token.startsWith(cleanQ));
-        }
-      }
-
-      const specMatch = spec === "all" || cs === spec;
-      const catMatch  = cat  === "all" || cc.includes(cat);
-      const show      = nameMatch && specMatch && catMatch;
-
-      card.style.display = show ? "" : "none";
-      if (show) visible++;
+      return (q === "" || name.includes(q)) &&
+             (spec === "all" || speciality === spec);
     });
 
+    renderDoctors(filtered);
+
     resultsCount.textContent =
-      visible + " médecin" + (visible > 1 ? "s" : "") +
-      " disponible" + (visible > 1 ? "s" : "");
+      filtered.length + " médecin" + (filtered.length > 1 ? "s" : "");
   }
 
   searchInput.addEventListener("input", filterDoctors);
   specialitySelect.addEventListener("change", filterDoctors);
-  categorieSelect.addEventListener("change", filterDoctors);
 
-  //animation 
-  cards.forEach((card, i) => {
-    card.style.animationDelay = (i * 0.07) + "s";
-  });
-
-  // execution 
-  filterDoctors();
+  // INIT
+  loadDoctors();
 });
