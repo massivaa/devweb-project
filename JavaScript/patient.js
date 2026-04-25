@@ -60,31 +60,32 @@ async function loadRendezVous() {
   list.style.display = 'block';
 
   list.innerHTML = data.map(rdv => `
-    <div class="rdv-card">
-      <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
-      ${rdv.specialite}<br>
-      📅 ${rdv.date_rdv} à ${rdv.heure}<br>
-      📝 ${rdv.motif || "Aucun motif"}
+    <div class="rdv-item">
+
+      <div class="rdv-info">
+        <div class="rdv-doc">Dr ${rdv.prenom} ${rdv.nom}</div>
+        <div class="rdv-spec">${rdv.specialite}</div>
+      </div>
+
+      <div class="rdv-right">
+        <span class="rdv-date-main">${rdv.date_rdv}</span>
+        <span class="rdv-date-time">${rdv.heure}</span>
+
+        <button onclick="deleteRdv(${rdv.id})" class="btn-sm gold">
+          Annuler
+        </button>
+      </div>
+
     </div>
   `).join('');
 }
-
 loadRendezVous();
 
-list.innerHTML = data.map(rdv => `
-  <div class="rdv-card">
-    <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
-    ${rdv.specialite}<br>
-    📅 ${rdv.date_rdv} à ${rdv.heure}<br>
-    📝 ${rdv.motif || "Aucun motif"}
-
-    <button onclick="deleteRdv(${rdv.id})" class="btn-delete">
-      Annuler
-    </button>
-  </div>
-`).join('');
 
 async function deleteRdv(id) {
+
+  if (!confirm("Voulez-vous vraiment annuler ce rendez-vous ?")) return;
+
   const formData = new FormData();
   formData.append("rdv_id", id);
 
@@ -96,7 +97,7 @@ async function deleteRdv(id) {
   const text = await res.text();
 
   if (text === "success") {
-    loadRendezVous(); // refresh list
+    loadRendezVous();
   } else {
     alert("Erreur suppression");
   }

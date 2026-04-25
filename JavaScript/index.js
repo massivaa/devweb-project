@@ -37,13 +37,6 @@ function toggleMode(){
     updateDarkModeToggleButtons();
 }
 
-window.onload = function(){
-    if (localStorage.getItem("mode") === "dark"){
-       document.body.classList.add("dark-mode"); 
-    }
-    setContactIconsForMode();
-    updateDarkModeToggleButtons();
-};
 
 //fonction pour connexion de bar de navigation
 const urlParams = new URLSearchParams(window.location.search);
@@ -56,16 +49,40 @@ if (connected === 'true' && nom) {
     localStorage.setItem('user_nom', nom);
     localStorage.setItem('user_prenom', prenom);
     localStorage.setItem('logged_in', 'true');
+    window.history.replaceState({}, '', window.location.pathname);
 }
 
-const loggedIn = localStorage.getItem('logged_in');
-const userPrenom = localStorage.getItem('user_prenom');
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem("mode") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+    setContactIconsForMode();
+    updateDarkModeToggleButtons();
 
-if (loggedIn === 'true') {
-    document.getElementById('nav-guest').style.display = 'none';
-    document.getElementById('nav-user').style.display = 'block';
-    document.getElementById('nav-nom').textContent = 'Bonjour, ' + userPrenom + ' !';
-} else {
-    document.getElementById('nav-guest').style.display = 'block';
-    document.getElementById('nav-user').style.display = 'none';
-}
+    const loggedIn = localStorage.getItem('logged_in') === 'true';
+    const userPrenom = localStorage.getItem('user_prenom');
+
+    const navGuest = document.getElementById('nav-guest');
+    const navUser = document.getElementById('nav-user');
+    const navNom = document.getElementById('nav-nom');
+    const commencer = document.getElementById('commencer');
+
+    if (loggedIn) {
+        if (navGuest) navGuest.style.display = 'none';
+        if (navUser) navUser.style.display = 'flex';
+        if (navNom) navNom.textContent = 'Bonjour, ' + userPrenom + ' !';
+    } else {
+        if (navGuest) navGuest.style.display = 'flex';
+        if (navUser) navUser.style.display = 'none';
+    }
+
+    if (commencer) {
+        if (loggedIn) {
+            commencer.innerHTML = 'Voir mon profil <span class="btn-arrow">→</span>';
+            commencer.href = './Content/patient.html';
+        } else {
+            commencer.innerHTML = 'Commencer gratuitement <span class="btn-arrow">→</span>';
+            commencer.href = './Content/inscription.html';
+        }
+    }
+});
