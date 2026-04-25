@@ -58,7 +58,7 @@
         <a href="Mdocteur.html" class="retour">Retour aux médecins</a>
       </div>
 
-      <form action="Yprofile.html" method="get" id="rdv-form">
+      <form action="../php/rendezvous.php" method="POST" id="rdv-form">
 
         <!-- Médecin -->
         <p class="form-section-title"><span>1</span> Choix du médecin</p>
@@ -77,14 +77,14 @@
           </div>
           <div class="field-group">
             <label for="doctor">Médecin <span class="required">*</span></label>
-            <select name="doctor" id="doctor" required>
+            <select name="doctor_id" id="doctor" required>
               <option value="">-- Choisir un médecin --</option>
-              <option value="A.Mastene">Dr. A. Mastene — Généraliste</option>
-              <option value="B.Amel">Dr. B. Amel — Cardiologue</option>
-              <option value="M.Yasmine">Dr. M. Yasmine — Dermatologue</option>
-              <option value="T.Katia">Dr. T. Katia — Dermatologue</option>
-              <option value="S.Nesrine">Dr. S. Nesrine — Pédiatre</option>
-              <option value="A.Massiva">Dr. A. Massiva — Gynécologue</option>
+              <option value="1">Dr. A. Mastene — Généraliste</option>
+              <option value="2">Dr. B. Amel — Cardiologue</option>
+              <option value="3">Dr. M. Yasmine — Dermatologue</option>
+              <option value="4">Dr. T. Katia — Dermatologue</option>
+              <option value="5">Dr. S. Nesrine — Pédiatre</option>
+              <option value="6">Dr. A. Massiva — Gynécologue</option>
             </select>
           </div>
         </div>
@@ -175,48 +175,6 @@
   </div>
 
   <script src="../JavaScript/index.js"></script>
-  <script>
-    // Pre-fill from URL params (coming from doctor modal)
-    document.addEventListener('DOMContentLoaded', function () {
-      const params = new URLSearchParams(window.location.search);
-      const spec   = params.get('speciality');
-      const doc    = params.get('doctor');
-      if (spec) document.getElementById('speciality').value = spec;
-      if (doc)  document.getElementById('doctor').value = doc;
-      updateSummary();
-    });
-
-    // Quick time slot selection
-    function selectSlot(btn, time) {
-      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-      btn.classList.add('selected');
-      document.getElementById('heureRdv').value = time;
-      updateSummary();
-    }
-
-    // Live summary
-    function updateSummary() {
-      const doc    = document.getElementById('doctor').value;
-      const date   = document.getElementById('dateRdv').value;
-      const heure  = document.getElementById('heureRdv').value;
-      const type   = document.querySelector('input[name="type_consult"]:checked');
-      const sum    = document.getElementById('rdv-summary');
-
-      if (doc || date || heure) {
-        sum.style.display = 'block';
-        document.getElementById('sum-doctor').textContent = doc ? doc.replace('.', '. ') : '—';
-        document.getElementById('sum-date').textContent   = date
-          ? new Date(date).toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'})
-          : '—';
-        document.getElementById('sum-heure').textContent  = heure || '—';
-        document.getElementById('sum-type').textContent   = type ? (type.value === 'cabinet' ? 'En cabinet' : 'Téléconsultation') : '—';
-      }
-    }
-
-    document.getElementById('doctor').addEventListener('change', updateSummary);
-    document.getElementById('dateRdv').addEventListener('change', updateSummary);
-    document.getElementById('heureRdv').addEventListener('change', updateSummary);
-    document.querySelectorAll('input[name="type_consult"]').forEach(r => r.addEventListener('change', updateSummary));
-  </script>
+  <script src="../JavaScript/rendezvous.js"></script>
 </body>
 </html>
