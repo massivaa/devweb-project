@@ -8,7 +8,7 @@ let currentDoctor = null;
 // ─── LOAD DOCTORS ──────────────────────
 async function loadDoctors() {
   try {
-    const res = await fetch("../php/docteur.php");
+    const res = await fetch("https://mknay.alwaysdata.net/php/docteur.php");
     doctors = await res.json();
 
     renderDoctors(doctors);

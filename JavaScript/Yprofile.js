@@ -1,6 +1,6 @@
 async function fillProfileForm() {
   try {
-    const res = await fetch('../php/profile.php');
+    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php');
     const data = await res.json();
 
     console.log("DATA PROFILE =", data);

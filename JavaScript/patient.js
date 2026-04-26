@@ -2,7 +2,7 @@ const state = { patient: null };
 
 async function loadProfile() {
   try {
-    const res = await fetch('../php/profile.php');
+    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php');
     const data = await res.json();
 
     if (!data) return;
@@ -44,7 +44,7 @@ function renderAll() {
 loadProfile();
 
 async function loadRendezVous() {
-  const res = await fetch('../php/get_rendezvous.php');
+  const res = await fetch('https://mknay.alwaysdata.net/php/get_rendezvous.php');
   const data = await res.json();
 
   const list = document.getElementById('rdvList');
@@ -89,7 +89,7 @@ async function deleteRdv(id) {
   const formData = new FormData();
   formData.append("rdv_id", id);
 
-  const res = await fetch("../php/annuler_rndv.php", {
+  const res = await fetch("https://mknay.alwaysdata.net/php/annuler_rndv.php", {
     method: "POST",
     body: formData
   });
