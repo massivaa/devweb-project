@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — SantéClick</title>
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="../Style/faq.css">
+</head>
+<body>
+
+  <!-- NAVBAR (same as other pages) -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-droite">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-close" onclick="toggleMenu()">✕</button>
+      <button onclick="toggleMode()" title="Mode sombre / clair">🌘</button>
+    </div>
+    <div class="nav-liens" id="nav-liens">
+      <div id="nav-guest">
+        <a href="../Content/connexion.html">Connexion</a>
+        <a href="../Content/inscription.html" class="nav-cta">S'inscrire gratuitement</a>
+      </div>
+      <div id="nav-user">
+        <span id="nav-nom"></span>
+        <a href="../index.html">Accueil</a>
+        <a href="../Content/medicament.html">Médicaments</a>
+        <a href="../Content/Mdocteur.html">Docteurs</a>
+        <a href="../Content/patient.html">Profil</a>
+        <a href="../php/deconnexion.php" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
+
+  <!-- HERO -->
+  <section class="faq-hero">
+    <div class="faq-hero-inner">
+      <span class="section-label">Centre d'aide</span>
+      <h1>Questions <em>fréquentes</em></h1>
+      <p>Trouvez rapidement les réponses à vos questions sur SantéClick.</p>
+
+      <!-- Search bar -->
+      <div class="faq-search">
+        <span class="faq-search-icon">🔍</span>
+        <input type="text" id="faq-search-input" placeholder="Rechercher une question..." oninput="filterFAQ(this.value)">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ CONTENT -->
+  <section class="faq-section">
+    <div class="container">
+
+      <div class="faq-layout">
+
+        <!-- Sidebar categories -->
+        <aside class="faq-sidebar">
+          <p class="faq-sidebar-title">Catégories</p>
+          <ul>
+            <li><a href="#" class="faq-cat active" data-cat="all">Toutes les questions</a></li>
+            <li><a href="#" class="faq-cat" data-cat="compte">Mon compte</a></li>
+            <li><a href="#" class="faq-cat" data-cat="rdv">Rendez-vous</a></li>
+            <li><a href="#" class="faq-cat" data-cat="medicaments">Médicaments</a></li>
+            <li><a href="#" class="faq-cat" data-cat="securite">Sécurité & Données</a></li>
+            <li><a href="#" class="faq-cat" data-cat="paiement">Paiement</a></li>
+          </ul>
+        </aside>
+
+        <!-- FAQ items -->
+        <div class="faq-list" id="faq-list">
+
+          <!-- Compte -->
+          <div class="faq-item" data-cat="compte">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment créer un compte sur SantéClick ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Cliquez sur "S'inscrire gratuitement" en haut de la page ou bien sur 'Commencer gratuitement' tout en bas. Remplissez le formulaire avec votre nom, prénom, email et mot de passe. Votre compte est créé instantanément et gratuitement.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="compte">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment modifier mon profil ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Connectez-vous puis accédez à la page "Profil" depuis la barre de navigation. Vous pouvez modifier vos informations personnelles, ajouter une photo de profil, et renseigner vos informations médicales comme la taille, le poids et le groupe sanguin...</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="compte">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>J'ai oublié mon mot de passe, que faire ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sur la page de connexion, cliquez sur "Mot de passe oublié". Entrez votre adresse email et vous recevrez un lien de réinitialisation dans quelques minutes. Pensez à vérifier vos spams.</p>
+            </div>
+          </div>
+
+          <!-- RDV -->
+          <div class="faq-item" data-cat="rdv">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment prendre un rendez-vous ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Connectez-vous à votre compte, accédez à la page "Docteurs", choisissez un médecin et cliquez sur "Prendre rendez-vous". Sélectionnez la date, l'heure, le type de consultation et le motif. Vous recevrez une confirmation par email.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="rdv">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment annuler ou modifier un rendez-vous ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Rendez-vous dans votre espace "Profil" puis dans la section "Mes rendez-vous". Vous pouvez annuler ou modifier un rendez-vous jusqu'à 2 heures avant l'heure prévue.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="rdv">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Quels types de consultations sont disponibles ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>SantéClick propose deux types de consultations : <strong>en présentiel</strong> (vous vous déplacez au cabinet du médecin) et <strong>en ligne / téléconsultation</strong> (consultation par vidéo depuis chez vous).</p>
+            </div>
+          </div>
+
+          <!-- Médicaments -->
+          <div class="faq-item" data-cat="medicaments">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment rechercher un médicament ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Accédez à la page "Médicaments" et utilisez la barre de recherche pour trouver un médicament par son nom ou sa catégorie. Vous pouvez consulter la description, la posologie et l'acheté avec ou sans ordonnances.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="medicaments">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Est-ce que SantéClick vend des médicaments ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Oui, SantéClick est une plateforme d'information médicale et de e-commerce conçue pour faciliter l'accès aux soins. Vous pouvez consulter des informations sur les médicaments, et les commander en ligne avec livraison disponible dans les <strong> 58 wilayas d'Algérie</strong> — sans avoir à vous déplacer.</p>
+            </div>
+          </div>
+
+          <!-- Sécurité -->
+          <div class="faq-item" data-cat="securite">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Est-ce que mes données médicales sont sécurisées ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Oui. Vos données sont stockées de manière sécurisée et chiffrée. Elles ne sont jamais partagées avec des tiers sans votre consentement. Nous respectons la réglementation algérienne sur la protection des données personnelles.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="securite">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Comment supprimer mon compte ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pour supprimer votre compte, contactez notre support via le formulaire de contact ou par email. Toutes vos données seront supprimées définitivement dans un délai de 30 jours.</p>
+            </div>
+          </div>
+
+          <!-- Paiement -->
+          <div class="faq-item" data-cat="paiement">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Est-ce que la plateforme est gratuite ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>L'inscription et la navigation sur SantéClick sont entièrement gratuites. Les consultations médicales sont payées directement au médecin selon ses tarifs. L'achat de médicaments en ligne est payant. Aucune commission n'est prélevée par SantéClick.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-cat="paiement">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Quels modes de paiement sont acceptés ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Le paiement se fait directement avec le médecin lors de la consultation. Chaque médecin définit ses propres modalités de paiement (espèces, virement, etc.). Pour les médicaments commandés en ligne, nous acceptons la <strong>carte Dahabia</strong>, le <strong>CCP</strong> et le <strong>paiement à la livraison</strong>.</p>
+            </div>
+          </div>
+
+          <!-- No results message -->
+          <div class="faq-no-results" id="faq-no-results" style="display:none;">
+            <p>😕 Aucune question ne correspond à votre recherche.</p>
+            <a href="mailto:contact@santeclick.dz" class="btn btn-primary" style="margin-top:16px; display:inline-flex;">Contacter le support</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Still have questions -->
+      <div class="faq-cta reveal">
+        <div class="faq-cta-inner">
+          <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+          <p>Notre équipe est disponible pour vous aider du dimanche au jeudi, de 8h à 17h.</p>
+          <div class="faq-cta-btns">
+            <a href="mailto:contact@santeclick.dz" class="btn btn-primary">Envoyer un email</a><br>
+            <a href="https://wa.me/213555000000" class="btn btn-outline" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="../JavaScript/index.js"></script>
+  <script>
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // close all
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-icon').textContent = '+';
+      });
+
+      // open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.querySelector('.faq-icon').textContent = '−';
+      }
+    }
+
+    function filterFAQ(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.faq-item[data-cat]');
+      let visible = 0;
+
+      items.forEach(item => {
+        const text = item.querySelector('.faq-question span').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+        if (text.includes(q) || answer.includes(q)) {
+          item.style.display = '';
+          visible++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      document.getElementById('faq-no-results').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    // Category filter
+    document.querySelectorAll('.faq-cat').forEach(cat => {
+      cat.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.faq-cat').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+
+        const selected = this.dataset.cat;
+        document.querySelectorAll('.faq-item[data-cat]').forEach(item => {
+          item.style.display = (selected === 'all' || item.dataset.cat === selected) ? '' : 'none';
+        });
+
+        document.getElementById('faq-search-input').value = '';
+        document.getElementById('faq-no-results').style.display = 'none';
+      });
+    });
+
+    // scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
