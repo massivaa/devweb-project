@@ -53,3 +53,9 @@ async function deleteRdv(id) {
     alert("Erreur suppression");
   }
 }
+
+// Appeler les fonctions au chargement
+document.addEventListener("DOMContentLoaded", function() {
+  loadProfile();
+  loadRendezVous();
+});

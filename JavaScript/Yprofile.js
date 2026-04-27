@@ -14,3 +14,8 @@ async function fillProfileForm() {
   document.getElementById('prenom').value = data.prenom || '';
   document.getElementById('email').value = data.email || '';
 }
+
+// Appeler la fonction au chargement
+document.addEventListener("DOMContentLoaded", function() {
+  fillProfileForm();
+});

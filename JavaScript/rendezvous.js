@@ -16,6 +16,35 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   updateSummary();
+
+  // Intercepter la soumission du formulaire
+  const form = document.getElementById('rdv-form');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('https://mknay.alwaysdata.net/php/rendezvous.php', {
+          method: 'POST',
+          credentials: 'include',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          alert('Rendez-vous enregistré avec succès !');
+          window.location.href = 'patient.html';
+        } else {
+          alert('Erreur: ' + (data.message || 'Impossible de prendre rendez-vous'));
+        }
+      } catch (err) {
+        alert('Erreur de connexion');
+      }
+    });
+  }
 });
 
 

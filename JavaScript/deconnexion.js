@@ -1,3 +1,4 @@
+
 async function logout() {
   try {
     const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
@@ -8,10 +9,10 @@ async function logout() {
     const data = await res.json();
 
     if (data.success) {
-      window.location.href = "../index.html";
+      window.location.href = "/index.html";
     }
 
   } catch (err) {
-    alert("Erreur lors de la déconnexion");
+    alert("Erreur déconnexion");
   }
 }

@@ -60,6 +60,8 @@ function openModal(id) {
 
 // ─── DOM READY ──────────────────────
 document.addEventListener("DOMContentLoaded", function () {
+  // Charger les médecins au démarrage
+  loadDoctors();
 
   // close modal
   document.getElementById("closeModal").addEventListener("click", () => {
