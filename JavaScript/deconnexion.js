@@ -1,25 +1,24 @@
-window.logout = async function () {
-  try {
-    const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
-      method: "POST",
-      credentials: "include"
-    });
+async function logout() {
+    try {
+        const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
+            method: "POST",
+            credentials: "include"
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (data.success) {
+        if (data.success) {
+            // 🔥 send signal to navbar system
+            localStorage.setItem("auth_event", Date.now());
 
-      // 🔥 FORCE UI RESET
-      localStorage.removeItem("user"); // if you store user
-      sessionStorage.clear();
+            // redirect
+            window.location.href = "index.html";
+        }
 
-      // reload page to refresh navbar state
-      window.location.href = "/index.html";
-
+    } catch (err) {
+        console.error(err);
+        alert("Logout failed");
     }
+}
 
-  } catch (err) {
-    console.error(err);
-    alert("Logout failed");
-  }
-};
+window.logout = logout;
