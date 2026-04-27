@@ -1,24 +1,30 @@
-window.logout = async function () {
-  try {
-    const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
-      method: "POST",
-      credentials: "include"
-    });
+document.addEventListener("DOMContentLoaded", () => {
 
-    const data = await res.json();
+  const btn = document.getElementById("logoutBtn");
 
-    if (data.success) {
-      // Clear localStorage
-      localStorage.removeItem('logged_in');
-      localStorage.removeItem('user_nom');
-      localStorage.removeItem('user_prenom');
-      window.location.href = "../index.html";
-    } else {
-      alert("Erreur déconnexion");
+  if (!btn) return;
+
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
+        method: "POST",
+        credentials: "include"
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        window.location.href = "/index.html";
+      } else {
+        alert("Erreur déconnexion");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Serveur inaccessible");
     }
+  });
 
-  } catch (err) {
-    console.error(err);
-    alert("Erreur serveur");
-  }
-};
+});
