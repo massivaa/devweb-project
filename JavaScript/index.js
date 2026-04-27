@@ -85,4 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
             commencer.href = './Content/inscription.html';
         }
     }
+    window.addEventListener("storage", function (event) {
+    if (event.key === "auth_event") {
+        updateNavbarState();
+    }
+});
 });
