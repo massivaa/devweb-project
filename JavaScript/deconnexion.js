@@ -8,7 +8,11 @@ window.logout = async function () {
     const data = await res.json();
 
     if (data.success) {
-      window.location.href = "/index.html";
+      // Clear localStorage
+      localStorage.removeItem('logged_in');
+      localStorage.removeItem('user_nom');
+      localStorage.removeItem('user_prenom');
+      window.location.href = "../index.html";
     } else {
       alert("Erreur déconnexion");
     }
