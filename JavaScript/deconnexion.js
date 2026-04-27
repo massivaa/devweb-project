@@ -1,5 +1,4 @@
-
-async function logout() {
+window.logout = async function () {
   try {
     const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
       method: "POST",
@@ -10,9 +9,12 @@ async function logout() {
 
     if (data.success) {
       window.location.href = "/index.html";
+    } else {
+      alert("Erreur déconnexion");
     }
 
   } catch (err) {
-    alert("Erreur déconnexion");
+    console.error(err);
+    alert("Erreur serveur");
   }
-}
+};
