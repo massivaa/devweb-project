@@ -1,18 +1,19 @@
-document.getElementById("logoutBtn").addEventListener("click", function(e){
-    e.preventDefault();
-    logout();
-});
 async function logout() {
+
     try {
+
         const res = await fetch("https://mknay.alwaysdata.net/php/deconnexion.php", {
             method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            }
+            credentials: "include"
         });
 
-        const data = await res.json();
+        console.log("STATUS:", res.status);
+
+        const text = await res.text();
+
+        console.log("RESPONSE:", text);
+
+        const data = JSON.parse(text);
 
         if (data.success) {
 
@@ -20,13 +21,13 @@ async function logout() {
             localStorage.removeItem("user_nom");
             localStorage.removeItem("user_prenom");
 
-            localStorage.setItem("auth_event", Date.now());
-
             window.location.href = "../index.html";
         }
 
     } catch (err) {
-        console.error(err);
+
+        console.error("LOGOUT ERROR:", err);
+
         alert("Logout failed");
     }
 }
