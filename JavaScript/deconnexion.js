@@ -1,3 +1,4 @@
+console.log("deconnexion.js loaded");
 async function logout() {
 
     try {
