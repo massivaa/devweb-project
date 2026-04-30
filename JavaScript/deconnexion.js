@@ -22,7 +22,7 @@ async function logout() {
             localStorage.removeItem("user_nom");
             localStorage.removeItem("user_prenom");
 
-            window.location.href = "../index.html";
+            window.location.href = "/index.html";
         }
 
     } catch (err) {
