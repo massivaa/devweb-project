@@ -1,24 +1,35 @@
 window.addEventListener('DOMContentLoaded', () => {
+
     const ctaBtn = document.getElementById('commencer');
-    const loggedIn = localStorage.getItem('logged_in') === 'true';
 
     if (!ctaBtn) return;
 
+    const loggedIn = localStorage.getItem('logged_in') === 'true';
+
     if (loggedIn) {
-        ctaBtn.textContent = "Voir mon profil →";
+
+        ctaBtn.innerHTML = 'Voir mon profil <span class="btn-arrow">→</span>';
         ctaBtn.href = "./Content/patient.html";
+
     } else {
-        ctaBtn.textContent = "Commencer gratuitement →";
+
+        ctaBtn.innerHTML = 'Commencer gratuitement <span class="btn-arrow">→</span>';
         ctaBtn.href = "./Content/inscription.html";
     }
 });
 
- const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.1 });
+const observer = new IntersectionObserver((entries) => {
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    entries.forEach(e => {
+
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+        }
+
+    });
+
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
     observer.observe(el);
-  });
+});
