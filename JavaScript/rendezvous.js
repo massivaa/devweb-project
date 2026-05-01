@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ==========================
+// 
 // QUICK SLOT SELECTION FIX
-// ==========================
+// 
 function selectSlot(btn, time) {
   // reset all buttons
   document.querySelectorAll('.time-slot').forEach(s => {
@@ -68,15 +68,15 @@ function selectSlot(btn, time) {
 }
 
 
-// ==========================
+// 
 // LIVE SUMMARY FIXED
-// ==========================
+// 
 function updateSummary() {
 
   const doctorSelect = document.getElementById('doctor');
   const docId = doctorSelect.value;
 
-  // 🔥 GET DOCTOR NAME FROM SELECT TEXT
+  // GET DOCTOR NAME FROM SELECT TEXT
   const doctorText = doctorSelect.options[doctorSelect.selectedIndex]?.text;
 
   const date = document.getElementById('dateRdv').value;
@@ -87,7 +87,6 @@ function updateSummary() {
   if (docId || date || heure) {
     sum.style.display = 'block';
 
-    // ✔ DOCTOR NAME FIX
     document.getElementById('sum-doctor').textContent =
       doctorText || '—';
 
@@ -113,9 +112,7 @@ function updateSummary() {
 }
 
 
-// ==========================
 // LISTENERS
-// ==========================
 document.getElementById('doctor').addEventListener('change', updateSummary);
 document.getElementById('dateRdv').addEventListener('change', updateSummary);
 document.getElementById('heureRdv').addEventListener('input', updateSummary); // 🔥 FIX IMPORTANT

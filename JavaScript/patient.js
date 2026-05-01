@@ -1,18 +1,3 @@
-async function loadProfile() {
-  const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
-    credentials: "include" // 🔥 SINON SESSION MORTE
-  });
-
-  const result = await res.json();
-
-  if (!result.success) return;
-
-  const p = result.data;
-
-  document.getElementById('displayName').textContent =
-    (p.prenom || '') + ' ' + (p.nom || '');
-}
-
 async function loadRendezVous() {
   const res = await fetch('https://mknay.alwaysdata.net/php/get_rendezvous.php', {
     credentials: "include"
@@ -25,10 +10,22 @@ async function loadRendezVous() {
   const data = result.data;
 
   const list = document.getElementById('rdvList');
+  const empty = document.getElementById('rdvEmpty');
+
+  if (data.length === 0) {
+    empty.style.display = 'block';
+    list.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  list.style.display = 'block';
 
   list.innerHTML = data.map(rdv => `
-    <div>
-      Dr ${rdv.prenom} ${rdv.nom} - ${rdv.date_rdv}
+    <div class="rdv-item">
+      <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
+      ${rdv.date_rdv} à ${rdv.heure}
+      <br>
       <button onclick="deleteRdv(${rdv.id})">Annuler</button>
     </div>
   `).join('');
