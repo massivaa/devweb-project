@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SantéClick — Médicaments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Style/achat.css">
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <div class="nav-center">
+      <a href="index.html">Accueil</a>
+      <a href="medicament.html" class="active">Médicaments</a>
+      <a href="Mdocteur.html">Docteurs</a>
+      <a href="patient.html">Profil</a>
+    </div>
+    <div class="nav-droite">
+      <button class="cart-toggle" onclick="togglePanier()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Panier
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="section-label">Catalogue complet</p>
+      <h1>Nos <em>Médicaments</em></h1>
+      <p class="page-sub">Commandez en toute sécurité. Les médicaments sur ordonnance nécessitent un document valide.</p>
+    </div>
+  </div>
+
+  <!-- ── SEARCH + FILTER BAR ── -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Rechercher un médicament…" oninput="filterProducts()">
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="setTab(this,'tous')">Tous</button>
+      <button class="tab" onclick="setTab(this,'sans')">Sans ordonnance</button>
+      <button class="tab" onclick="setTab(this,'avec')">Avec ordonnance</button>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main">
+
+    <!-- SANS ORDONNANCE -->
+    <section class="cat-section" id="sec-sans" data-cat="sans">
+      <div class="cat-header">
+        <div class="cat-pill sans">Sans ordonnance</div>
+        <h2 class="cat-title">Disponible librement</h2>
+        <p class="cat-sub">Ajoutez au panier et commandez directement.</p>
+      </div>
+      <div class="products-grid" id="grid-sans"></div>
+    </section>
+
+    <!-- AVEC ORDONNANCE -->
+    <section class="cat-section" id="sec-avec" data-cat="avec">
+      <div class="cat-header">
+        <div class="cat-pill avec">Avec ordonnance</div>
+        <h2 class="cat-title">Ordonnance requise</h2>
+        <p class="cat-sub">Ces médicaments nécessitent une ordonnance médicale valide pour être commandés.</p>
+      </div>
+      <div class="products-grid" id="grid-avec"></div>
+    </section>
+
+  </main>
+
+  <!-- ── PANIER DRAWER ── -->
+  <div class="overlay" id="overlay" onclick="togglePanier()"></div>
+
+  <aside class="panier" id="panier">
+    <div class="panier-head">
+      <h2>Mon Panier</h2>
+      <button class="panier-close" onclick="togglePanier()">✕</button>
+    </div>
+
+    <div class="panier-items" id="panierItems">
+      <div class="panier-empty" id="panierEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+
+    <div class="panier-footer" id="panierFooter" style="display:none">
+      <div class="recap">
+        <div class="recap-row"><span>Sous-total</span><span id="subtotal">0 DA</span></div>
+        <div class="recap-row"><span>Livraison</span><span class="green">Gratuit</span></div>
+        <div class="recap-row total"><span>Total</span><span id="total">0 DA</span></div>
+      </div>
+      <a href="commande.html" class="btn-checkout">Passer la commande →</a>
+      <p class="panier-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Les médicaments sur ordonnance devront être vérifiés avant expédition.
+      </p>
+    </div>
+  </aside>
+
+  <!-- ── ORDONNANCE MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="modal" id="modal">
+    <div class="modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3>Ordonnance requise</h3>
+    <p>Ce médicament ne peut pas être commandé sans ordonnance médicale valide.</p>
+    <p>Pour commander ce produit, veuillez <strong>télécharger votre ordonnance</strong> via la section dédiée.</p>
+    <div class="modal-actions">
+      <a href="mesOrdonnances.html" class="btn-modal-primary">Soumettre une ordonnance</a>
+      <button class="btn-modal-ghost" onclick="closeModal()">Fermer</button>
+    </div>
+  </div>
+
+  <script src="../JavaScript/achat.js"></script>
+</body>
+</html>

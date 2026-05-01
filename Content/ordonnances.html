@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Ordonnances</title>
+    <link rel="stylesheet" href="../Style/ordonnance.css">
+</head>
+<body>
+  
+    <header class="topbar">
+        <div class="logo">💊 SantéClick</div>
+        <nav class="menu">
+            <a href="#">Accueil</a>
+            <a href="#">Patients</a>
+            <a href="#">Ordonnances</a>
+            <a href="#">Profil</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Patient Card -->
+        <div class="patient-card">
+            <div class="avatar">🧖🏼</div>
+            <div class="patient-info">
+                <h2>Patient concerné</h2>
+                <p><strong>Nom :</strong> TALEB Jafar</p>
+                <p><strong>Date de naissance :</strong> 23/08/2025</p>
+                <p><strong>Numéro patient :</strong> PAT-2026-001</p>
+            </div>
+        </div>
+
+        <!-- Prescriptions Section -->
+        <div class="prescriptions-section">
+            <div class="section-header">
+                <h2>Liste des ordonnances</h2>
+            </div>
+
+            <!-- Prescription List -->
+            <div class="prescription-list" id="prescriptionList">
+                <!-- Items will be done by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>Aucune ordonnance trouvée</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
