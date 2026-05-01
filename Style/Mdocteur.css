@@ -20,7 +20,7 @@ body {
   padding: 0 40px;
 }
 
-/* ─── Page Hero Banner ─────────────────────────── */
+/* Page Hero Banner ────────────────────────*/
 .doc-hero {
   background: #1a3a2a;
   padding: 70px 40px 60px;
@@ -102,7 +102,7 @@ body {
   animation: fadeUp 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
 }
 
-/* ─── Search & Filter bar ──────────────────────── */
+/* Search & Filter bar ─────────────────────*/
 .recherche {
   background: #ffffff;
   border-bottom: 1px solid #dde8dd;
@@ -195,7 +195,7 @@ body {
   white-space: nowrap;
 }
 
-/* ─── Doctors Grid ─────────────────────────────── */
+/* Doctors Grid */
 .doc-grid-section {
   padding: 50px 40px 80px;
   max-width: 1160px;
@@ -208,7 +208,7 @@ body {
   gap: 24px;
 }
 
-/* ─── Doctor Card ──────────────────────────────── */
+/* Doctor Card ─*/
 .card {
   background: #ffffff;
   border-radius: 16px;
@@ -349,7 +349,7 @@ body {
   box-shadow: 0 6px 18px rgba(13,38,24,0.2);
 }
 
-/* ─── MODAL ────────────────────────────────────── */
+/* MODAL ───────*/
 .modal {
   display: none;
   position: fixed;
@@ -548,7 +548,7 @@ body {
   box-shadow: 0 8px 24px rgba(201,168,76,0.35);
 }
 
-/* ─── Dark Mode ─────────────────────────────────── */
+/* Dark Mode ────*/
 .dark-mode body,
 body.dark-mode { background: #0a100a; color: #e0e8e0; }
 
@@ -604,13 +604,13 @@ body.dark-mode { background: #0a100a; color: #e0e8e0; }
 .dark-mode .close              { background: #1a2e1a; color: #7a9a7a; }
 .dark-mode .close:hover        { background: #1e3a1e; color: #d0e8d0; }
 
-/* ─── Animations ─────────────────────────────────── */
+/* Animations ────*/
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Responsive ─────────────────────────────────── */
+/* Responsive ────*/
 @media (max-width: 768px) {
   .doc-hero h1 { font-size: 34px; }
   .doc-hero, .recherche, .doc-grid-section { padding-left: 20px; padding-right: 20px; }

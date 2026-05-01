@@ -1,11 +1,6 @@
-/* ═══════════════════════════════════════════════════
-   Ystyleprofile.css — Shared Form Styles
-   Used by: connexion, inscription, profil, rendezvous
-═══════════════════════════════════════════════════ */
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
 
-/* ─── Base ─────────────────────────────────────── */
+/* Base*/
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -17,7 +12,12 @@ body {
   transition: background 0.4s, color 0.4s;
 }
 
-/* ─── Page wrapper ─────────────────────────────── */
+/* Page wrapper */
+.form-page {
+  flex-direction: column;   /* 🔥 THIS is the fix */
+  align-items: center;      /* keep centered horizontally */
+}
+
 .form-page {
   min-height: calc(100vh - 72px);
   display: flex;
@@ -40,7 +40,7 @@ body {
   z-index: 0;
 }
 
-/* ─── Card wrapper ─────────────────────────────── */
+/* Card wrapper */
 .form-card {
   position: relative;
   z-index: 1;
@@ -62,7 +62,7 @@ body {
 /* Wide card for profile page */
 .form-card.wide { max-width: 720px; }
 
-/* ─── Card header ──────────────────────────────── */
+/* Card header */
 .form-header {
   text-align: center;
   margin-bottom: 36px;
@@ -102,7 +102,7 @@ body {
   font-weight: 300;
 }
 
-/* ─── Section titles inside form ──────────────── */
+/* Section titles inside form */
 .form-section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -133,7 +133,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ─── Field groups ─────────────────────────────── */
+/* Field groups */
 .field-group {
   margin-bottom: 20px;
 }
@@ -158,7 +158,7 @@ label .required {
   margin-left: 3px;
 }
 
-/* ─── Inputs ───────────────────────────────────── */
+/* Inputs*/
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -202,7 +202,7 @@ select {
   cursor: pointer;
 }
 
-/* ─── Radio / Checkbox ─────────────────────────── */
+/* Radio / Checkbox*/
 .radio-group,
 .checkbox-group {
   display: flex;
@@ -242,7 +242,7 @@ select {
   flex-shrink: 0;
 }
 
-/* ─── Password strength ─────────────────────────── */
+/* Password strength ────────────────────────*/
 #strength-bar {
   height: 4px;
   border-radius: 4px;
@@ -269,7 +269,7 @@ select {
   margin-bottom: 14px;
 }
 
-/* ─── Submit button ─────────────────────────────── */
+/* Submit button */
 .btn-submit {
   width: 100%;
   padding: 14px;
@@ -317,7 +317,7 @@ select {
   box-shadow: 0 8px 24px rgba(201,168,76,0.35);
 }
 
-/* ─── Switch link (se connecter / s'inscrire) ──── */
+/* Switch link (se connecter / s'inscrire) ─*/
 .form-switch {
   text-align: center;
   margin-top: 24px;
@@ -336,7 +336,7 @@ select {
 
 .form-switch a:hover { color: #c9a84c; }
 
-/* ─── Back link ─────────────────────────────────── */
+/* Back link ────*/
 .retour {
   display: inline-flex;
   align-items: center;
@@ -358,7 +358,7 @@ select {
   background: rgba(255,255,255,0.06);
 }
 
-/* ─── Urgency label ─────────────────────────────── */
+/* Urgency label */
 .urgency-label {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -366,7 +366,7 @@ select {
   color: #c9a84c;
 }
 
-/* ─── Dark Mode ─────────────────────────────────── */
+/* Dark Mode ────*/
 .dark-mode body,
 body.dark-mode {
   background: #0a100a;
@@ -427,7 +427,26 @@ body.dark-mode {
 .dark-mode #strength-bar    { background: #1e3a1e; }
 .dark-mode #strength-text   { color: #507050; }
 
-/* ─── Responsive ────────────────────────────────── */
+.order-summary {
+  margin-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e8f0e8;
+  font-size: 14px;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 16px;
+}
+/* Responsive ───*/
 @media (max-width: 640px) {
   .form-card { padding: 32px 24px; }
   .field-row { grid-template-columns: 1fr; }
