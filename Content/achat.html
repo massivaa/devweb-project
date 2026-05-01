@@ -14,27 +14,20 @@
   <!-- ── NAVBAR ── -->
   <nav class="navbar">
     <div class="nav-gauche">Santé<span>Click</span></div>
-    <div class="nav-droite">
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <button class="menu-close" onclick="toggleMenu()">✕</button>
-      <button onclick="toggleMode()" title="Mode sombre / clair">🌘</button>
+    <div class="nav-center">
+      <a href="index.html">Accueil</a>
+      <a href="medicament.html" class="active">Médicaments</a>
+      <a href="Mdocteur.html">Docteurs</a>
+      <a href="patient.html">Profil</a>
     </div>
-    <div class="nav-liens" id="nav-liens">
-      <div id="nav-guest">
-        <a href="../Content/connexion.html">Connexion</a>
-        <a href="../Content/inscription.html" class="nav-cta">S'inscrire gratuitement</a>
-      </div>
-      <div id="nav-user">
-        <span id="nav-nom"></span>
-        <a href="../index.html">Accueil</a>
-        <a href="../Content/medicament.html">Médicaments</a>
-        <a href="../Content/Mdocteur.html">Docteurs</a>
-        <a href="../Content/patient.html">Profil</a>
-        <a href="#" id ="logoutBtn" onclick="logout()" style="color:rgba(255,120,120,0.8)">Déconnexion</a>      </div>
-      </div>
+    <div class="nav-droite">
+      <button class="cart-toggle" onclick="togglePanier()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Panier
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
     </div>
   </nav>
-  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
   <!-- ── PAGE HEADER ── -->
   <div class="page-header">
