@@ -1,6 +1,6 @@
-/* ============================================================
+/* 
    DONNÉES — tirées de tes ordonnances
-   ============================================================ */
+    */
 
 var AVEC_ORDONNANCE = [
   // Hypertension
@@ -36,9 +36,9 @@ var SANS_ORDONNANCE = [
   { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:420, oldPrice:null, img:"../images/medicaments/zinc.jpg" }
 ];
 
-/* ============================================================
+/* 
    PANIER
-   ============================================================ */
+    */
 var cart = [];
 
 function addToCart(id, btn) {
@@ -136,9 +136,9 @@ function renderPanier() {
   footerEl.style.display = "block";
 }
 
-/* ============================================================
+/* 
    DRAWER
-   ============================================================ */
+    */
 function togglePanier() {
   var panier  = document.getElementById("panier");
   var overlay = document.getElementById("overlay");
@@ -151,9 +151,9 @@ function togglePanier() {
   }
 }
 
-/* ============================================================
+/* 
    MODAL ORDONNANCE
-   ============================================================ */
+    */
 function showModal() {
   document.getElementById("modal").classList.add("show");
   document.getElementById("modalOverlay").classList.add("show");
@@ -163,9 +163,9 @@ function closeModal() {
   document.getElementById("modalOverlay").classList.remove("show");
 }
 
-/* ============================================================
+/* 
    RENDU GRILLES
-   ============================================================ */
+    */
 function renderSans() {
   var grid = document.getElementById("grid-sans");
   if (!grid) return;
@@ -220,9 +220,9 @@ function renderAvec() {
   grid.innerHTML = html;
 }
 
-/* ============================================================
+/* 
    FILTRES
-   ============================================================ */
+    */
 var activeTab = "tous";
 
 function setTab(btn, tab) {
@@ -250,11 +250,19 @@ function applyFilters() {
   }
 }
 
-/* ============================================================
+/* 
    INIT
-   ============================================================ */
+    */
 document.addEventListener("DOMContentLoaded", function() {
   renderSans();
   renderAvec();
   renderPanier();
 });
+
+function goToCheckout() {
+  if (cart.length === 0) return;
+
+  // sauvgarde 
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "formulaireAchat.html";
+}
