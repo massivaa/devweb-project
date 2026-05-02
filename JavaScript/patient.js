@@ -56,3 +56,33 @@ document.addEventListener("DOMContentLoaded", function() {
   loadProfile();
   loadRendezVous();
 });
+async function loadProfile() {
+  try {
+    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
+      credentials: "include"
+    });
+
+    const result = await res.json();
+
+    console.log("PROFILE DATA:", result); // 🔥 DEBUG
+
+    if (!result.success) return;
+
+    const data = result.data;
+
+    // NAME
+    document.getElementById('displayName').textContent =
+      (data.nom || '') + ' ' + (data.prenom || '');
+
+    // VITALS
+    document.getElementById('vPoids').textContent = data.poids || '—';
+    document.getElementById('vTaille').textContent = data.taille || '—';
+    document.getElementById('vImc').textContent = data.imc
+      ? parseFloat(data.imc).toFixed(1)
+      : '—';
+    document.getElementById('vGroupe').textContent = data.groupe_sanguin || '—';
+
+  } catch (err) {
+    console.error("Erreur loadProfile:", err);
+  }
+}
