@@ -1,11 +1,11 @@
 // test du lien
 console.log("Projet de massiva");
 
-// ─── GLOBAL STATE ──────────────────────
+// GLOBAL STATE ──────────────────────
 let doctors = [];
 let currentDoctor = null;
 
-// ─── LOAD DOCTORS ──────────────────────
+// LOAD DOCTORS ──────────────────────
 async function loadDoctors() {
   try {
     const res = await fetch("https://mknay.alwaysdata.net/php/docteur.php");
@@ -17,7 +17,7 @@ async function loadDoctors() {
   }
 }
 
-// ─── RENDER DOCTORS ──────────────────────
+// RENDER DOCTORS ──────────────────────
 function renderDoctors(list) {
   const container = document.getElementById("docteurs");
 
@@ -37,7 +37,7 @@ function renderDoctors(list) {
   `).join("");
 }
 
-// ─── MODAL ──────────────────────
+// MODAL ──────────────────────
 function openModal(id) {
   const doc = doctors.find(d => d.id == id);
 
@@ -58,7 +58,7 @@ function openModal(id) {
   document.getElementById("modal").classList.add("open");
 }
 
-// ─── DOM READY ──────────────────────
+// DOM READY ──────────────────────
 document.addEventListener("DOMContentLoaded", function () {
   // Charger les médecins au démarrage
   loadDoctors();
@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentDoctor) {
       window.location.href =
         "../Content/Yrendezvous.html?doctor_id=" + currentDoctor.id +
-        "&doctor=" + encodeURIComponent(currentDoctor.nom + " " + currentDoctor.prenom);
+        "&doctor=" + encodeURIComponent(currentDoctor.nom + " " + currentDoctor.prenom) +
+        "&speciality=" + encodeURIComponent(currentDoctor.specialite);
     } else {
       window.location.href = "../Content/Yrendezvous.html";
     }
