@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const summary = document.getElementById("orderSummary");
 
-  // ---------------------------
-  // ⭐ AUTO FILL USER INFO
-  // ---------------------------
+  //  AUTO FILL USER INFO
   const prenom = localStorage.getItem("user_prenom") || "";
   const nom = localStorage.getItem("user_nom") || "";
   const emailLS = localStorage.getItem("user_email") || "";
@@ -19,16 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (emailInput && emailLS) {
-    emailInput.value = emailLS;
+    emailInput.value = user.email || "";
   }
 
   if (phoneInput && phoneLS) {
-    phoneInput.value = phoneLS;
+    phoneInput.value = user.telephone || "";
   }
 
-  // ---------------------------
-  // CART
-  // ---------------------------
+  //CART
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (!summary) return;
