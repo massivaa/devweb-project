@@ -24,7 +24,7 @@ form.addEventListener('submit', async function(e) {
     try {
         const res = await fetch("https://mknay.alwaysdata.net/php/inscription.php", {
             method: "POST",
-            credentials: "include", // 🔥 IMPORTANT
+            credentials: "include", 
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: body.toString()
         });

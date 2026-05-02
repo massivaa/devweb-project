@@ -87,3 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 });
+if (window.location.pathname.includes("connexion.html")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const connected = urlParams.get('connected');
+    const nom = urlParams.get('nom');
+    const prenom = urlParams.get('prenom');
+
+    if (connected === 'true' && nom) {
+        localStorage.setItem('user_nom', nom);
+        localStorage.setItem('user_prenom', prenom);
+        localStorage.setItem('logged_in', 'true');
+        window.history.replaceState({}, '', window.location.pathname);
+    }
+}
