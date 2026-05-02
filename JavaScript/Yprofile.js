@@ -1,43 +1,62 @@
 async function fillProfileForm() {
-
   try {
     const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
       credentials: "include"
     });
 
     const result = await res.json();
-    console.log("DATA:", result); // debug
+    console.log("PROFILE DATA:", result);
 
-    if (!result.success) return;
+    if (!result || !result.success || !result.data) return;
 
-    const data = result.data;
+    const data = result.data || {};
 
-    
-    document.getElementById('nom').value = data.nom || '';
-    document.getElementById('prenom').value = data.prenom || '';
-    document.getElementById('email').value = data.email || '';
-    document.getElementById('dob').value = data.date_naissance ? data.date_naissance.split(' ')[0] : '';
-    document.getElementById('telephone').value = data.telephone || '';
-    document.getElementById('wilaya').value = data.wilaya || '';
+    // helper sécurisé
+    const setValue = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.value = value ?? '';
+    };
 
-    document.getElementById('taille').value = data.taille || '';
-    document.getElementById('poids').value = data.poids || '';
-    document.getElementById('groupe_sanguin').value = data.groupe_sanguin || '';
+    // identité
+    setValue('nom', data.nom);
+    setValue('prenom', data.prenom);
+    setValue('email', data.email);
 
-    document.getElementById('antecedents').value = data.antecedents || '';
+    if (data.date_naissance) {
+      setValue('dob', data.date_naissance.split(' ')[0]);
+    }
 
-    document.getElementById('tel').value = data.urgence_tel || '';
+    // infos perso
+    setValue('telephone', data.telephone);
+    setValue('wilaya', data.wilaya);
+
+    // biométrie
+    setValue('taille', data.taille);
+    setValue('poids', data.poids);
+    setValue('groupe_sanguin', data.groupe_sanguin);
+
+    // médical
+    setValue('antecedents', data.antecedents);
+
+    // urgence
+    setValue('tel', data.urgence_tel);
+
+    // GENRE (radio buttons)
     if (data.genre) {
-      if (data.genre === "Homme") {
-        document.getElementById("gender_homme").checked = true;
-      } else if (data.genre === "Femme") {
-        document.getElementById("gender_femme").checked = true;
+      const male = document.getElementById('gender_homme');
+      const female = document.getElementById('gender_femme');
+
+      if (male && female) {
+        male.checked = data.genre === "Homme";
+        female.checked = data.genre === "Femme";
       }
     }
+
   } catch (err) {
-    console.error("Erreur:", err);
+    console.error("Erreur chargement profil:", err);
   }
 }
+
 
 // Appeler la fonction au chargement
 document.addEventListener("DOMContentLoaded", function() {
