@@ -13,6 +13,7 @@ async function fillProfileForm() {
   document.getElementById('nom').value = data.nom || '';
   document.getElementById('prenom').value = data.prenom || '';
   document.getElementById('email').value = data.email || '';
+  document.getElementById('dob').value = data.date || '';
 }
 
 // Appeler la fonction au chargement
