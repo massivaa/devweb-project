@@ -82,14 +82,14 @@
           <label>Genre <span class="required">*</span></label>
           <div class="radio-group">
             <label class="radio-item">
-              <input type="radio" name="gender" value="Homme"> Homme
+              <input type="radio" name="gender" id="gender_homme" value="Homme"> Homme
             </label>
             <label class="radio-item">
-              <input type="radio" name="gender" value="Femme"> Femme
+              <input type="radio" name="gender" id="gender_femme" value="Femme"> Femme
             </label>
           </div>
         </div>
-
+          
         <div class="field-row">
           <div class="field-group">
             <label for="telephone">Téléphone</label>
@@ -154,7 +154,7 @@
           <input type="text" name="Allergies" id="allergies"
                  placeholder="Ex : pénicilline, arachides, latex...">
         </div>
-
+          
         <div class="field-group">
           <label for="antecedents">Antécédents médicaux</label>
           <input type="text" name="antecedents" id="antecedents"
@@ -166,31 +166,31 @@
           <input type="text" name="medicaments_actuels" id="medicaments_actuels"
                  placeholder="Ex : Paracétamol 500mg, Metformine 850mg...">
         </div>
-
+          
         <div class="field-group">
           <label>Maladies chroniques</label>
           <div class="checkbox-group">
             <label class="checkbox-item">
-              <input type="checkbox" name="maladies[]" value="diabete"> Diabète
+              <input type="checkbox" name="maladies[]" id="maladie_diabete" value="diabete"> Diabète
             </label>
             <label class="checkbox-item">
-              <input type="checkbox" name="maladies[]" value="asthme"> Asthme
+              <input type="checkbox" name="maladies[]" id="maladie_asthme" value="asthme"> Asthme
             </label>
             <label class="checkbox-item">
-              <input type="checkbox" name="maladies[]" value="hypertension"> Hypertension
+              <input type="checkbox" name="maladies[]" id="maladie_hypertension" value="hypertension"> Hypertension
             </label>
             <label class="checkbox-item">
-              <input type="checkbox" name="maladies[]" value="autre"> Autre
+              <input type="checkbox" name="maladies[]" id="maladie_autre" value="autre"> Autre
             </label>
           </div>
         </div>
-
+          
         <!-- Contact d'urgence -->
         <p class="form-section-title">
           <span style="background:#c9a84c;color:#0d2618;">!</span>
           <span class="urgency-label">Contact d'urgence</span>
         </p>
-
+        
         <div class="field-row">
           <div class="field-group">
             <label for="urgence_nom">Nom complet</label>
@@ -203,7 +203,7 @@
                    placeholder="0x xx xx xx xx">
           </div>
         </div>
-
+          
         <button type="submit" class="btn-submit" style="margin-top:12px;">
           Enregistrer mon profil
         </button>
