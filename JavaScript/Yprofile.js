@@ -21,3 +21,36 @@ async function fillProfileForm() {
 document.addEventListener("DOMContentLoaded", function() {
   fillProfileForm();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const form = document.getElementById("profile-form");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://mknay.alwaysdata.net/php/sauvgarder_profile.php", {
+        method: "POST",
+        credentials: "include",
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Profil enregistré avec succès !");
+        window.location.href = "patient.html";
+      } else {
+        alert("Erreur: " + (data.message || "échec"));
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Erreur serveur");
+    }
+  });
+
+});

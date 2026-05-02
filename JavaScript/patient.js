@@ -38,7 +38,7 @@ async function deleteRdv(id) {
 
   const res = await fetch("https://mknay.alwaysdata.net/php/annuler_rndv.php", {
     method: "POST",
-    credentials: "include", // 🔥
+    credentials: "include", 
     body: formData
   });
 
