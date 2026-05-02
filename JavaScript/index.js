@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const loggedIn = localStorage.getItem('logged_in') === 'true';
     const userPrenom = localStorage.getItem('user_prenom');
 
+    const btnInscrire = document.getElementById('btn-inscrire');
+    const btnConnect = document.getElementById('btn-connect');
+
     const navGuest = document.getElementById('nav-guest');
     const navUser = document.getElementById('nav-user');
     const navNom = document.getElementById('nav-nom');
@@ -70,10 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (loggedIn) {
         if (navGuest) navGuest.style.display = 'none';
         if (navUser) navUser.style.display = 'flex';
-        if (navNom) navNom.textContent = 'Bonjour, ' + userPrenom + ' !';
+        if (btnInscrire) btnInscrire.style.display = "none";
+        if (btnConnect) btnConnect.style.display = "none";
+        let heroText = document.querySelector('.hero-text h1');
+        if (heroText && userPrenom) {
+            heroText.insertAdjacentHTML(
+                "beforebegin",
+                `<p style="font-size:18px;color:var(--green-mid);margin-bottom:10px">
+                    Bonjour, ${userPrenom} 👋
+                </p>`
+            );
+        }
     } else {
         if (navGuest) navGuest.style.display = 'flex';
         if (navUser) navUser.style.display = 'none';
+        if (btnInscrire) btnInscrire.style.display = "inline-flex";
+        if (btnConnect) btnConnect.style.display = "inline-flex";
     }
 
     if (commencer) {
@@ -87,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 });
+
 if (window.location.pathname.includes("connexion.html")) {
     const urlParams = new URLSearchParams(window.location.search);
     const connected = urlParams.get('connected');
