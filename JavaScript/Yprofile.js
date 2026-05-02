@@ -13,8 +13,14 @@ async function fillProfileForm() {
   document.getElementById('nom').value = data.nom || '';
   document.getElementById('prenom').value = data.prenom || '';
   document.getElementById('email').value = data.email || '';
-  document.getElementById('dob').value = data.dob || '';
+  document.getElementById('dob').value = data.date_naissance || '';
   document.getElementById('genre').value = data.genre || '';
+  document.getElementById('telephone').value = data.telephone || '';
+  document.getElementById('wilaya').value = data.wilaya || '';
+  document.getElementById('taille').value = data.taille || '';
+  document.getElementById('poids').value = data.poids || '';
+  document.getElementById('groupe_sanguin').value = data.groupe_sanguin || '';
+  document.getElementById('antecedents').value = data.antecedents || '';
 }
 
 // Appeler la fonction au chargement
