@@ -13,29 +13,35 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-gauche">Santé<span>Click</span></div>
+<nav class="navbar">
+  <div class="nav-gauche">
+    Santé<span>Click</span>
+  </div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-    <div class="nav-droite">
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <div class="nav-liens" id="nav-liens">
+    <button class="menu-close" onclick="toggleMenu()">×</button>
+
+    <div class="nav-center">
+      <a href="index.html" class="active">Accueil</a>
+      <a href="./Content/medicament.html">Médicaments</a>
+      <a href="./Content/Mdocteur.html">Docteurs</a>
+      <a href="./Content/patient.html">Profil</a>
     </div>
-    
-    <div class="nav-liens" id="nav-liens">
-      <button class="menu-close" onclick="toggleMenu()">×</button>
+
+    <div class="nav-auth">
       <div id="nav-guest">
-        <a href="connexion.html">Connexion</a>
-        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+        <a href="./Content/connexion.html">Connexion</a>
       </div>
       <div id="nav-user">
-        <span id="nav-nom"></span>
-        <a href="../index.html">Accueil</a>
-        <a href="medicament.html">Médicaments</a>
-        <a href="Mdocteur.html">Docteurs</a>
-        <a href="patient.html">Profil</a>
-        <a href="#" id ="logoutBtn" onclick="logout()" style="color:rgba(255,120,120,0.8)">Déconnexion</a>      </div>
+        <a href="#" id="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+
       <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+
     </div>
-  </nav>
+  </div>
+</nav>
   <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
   <!-- Page -->
