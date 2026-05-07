@@ -18,28 +18,28 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: "Inter", sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  background: #faf8f3;
+  color: #0d1a13;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 /* ── TOPBAR ── */
 .topbar {
-  background: var(--forest);
-  color: var(--mist);
+  background: #072b1c;
+  color: #b8e8d0;
   font-size: 0.73rem;
   letter-spacing: 0.07em;
   text-align: center;
   padding: 0.5rem 1rem;
   font-weight: 500;
 }
-.topbar span { color: var(--gold); margin: 0 0.5rem; opacity: 0.6; }
+.topbar span { color: #c8a44a; margin: 0 0.5rem; opacity: 0.6; }
 
 /* ── HERO ── */
 .hero {
   min-height: 92vh;
-  background: var(--forest);
+  background: #072b1c;
   display: flex;
   align-items: center;
   position: relative;
@@ -82,7 +82,7 @@ body {
   gap: 8px;
   padding: 6px 14px;
   border: 1px solid rgba(200,164,74,.35);
-  color: var(--gold);
+  color: #c8a44a;
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -93,7 +93,7 @@ body {
   content: "";
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--gold);
+  background: #c8a44a;
   flex-shrink: 0;
 }
 
@@ -109,7 +109,7 @@ body {
 .hero h1 em {
   font-style: italic;
   font-weight: 300;
-  color: var(--gold);
+  color: #c8a44a;
   display: block;
 }
 
@@ -140,10 +140,10 @@ body {
 }
 
 .btn-hero {
-  background: var(--gold);
-  color: var(--forest);
+  background: #c8a44a;
+  color: #072b1c;
 }
-.btn-hero:hover { background: var(--gold-pale); transform: translateY(-2px); }
+.btn-hero:hover { background: #eed98a; transform: translateY(-2px); }
 
 .btn-ghost {
   background: transparent;
@@ -176,7 +176,7 @@ body {
   font-family: "Fraunces", serif;
   font-size: 2.4rem;
   font-weight: 600;
-  color: var(--gold);
+  color: #c8a44a;
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 0.3rem;

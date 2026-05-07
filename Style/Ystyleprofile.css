@@ -12,15 +12,9 @@ body {
   transition: background 0.4s, color 0.4s;
 }
 
-/* Page wrapper */
-.form-page {
-  flex-direction: column;   /* 🔥 THIS is the fix */
-  align-items: center;      /* keep centered horizontally */
-}
-
 .form-page {
   min-height: calc(100vh - 72px);
-  display: flex;
+  display: flex; 
   align-items: center;
   justify-content: center;
   padding: 50px 20px;
