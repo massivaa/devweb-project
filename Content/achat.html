@@ -8,27 +8,49 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../Style/achat.css">
-  <link rel="stylesheet" href="../Style/achat.css">
+  <link rel="stylesheet" href="../index.css">
 </head>
 <body>
 
   <!-- ── NAVBAR ── -->
-  <nav class="navbar">
-    <div class="nav-gauche">Santé<span>Click</span></div>
+<nav class="navbar">
+  <div class="nav-gauche">Santé<span>Click</span></div>
+  <div class="mobile-actions">
+    <button class="cart-toggle" onclick="togglePanier()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="cart-text">Panier</span>
+
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="nav-liens" id="nav-liens">
+    <button class="menu-close" onclick="toggleMenu()">×</button>
+
     <div class="nav-center">
-      <a href="index.html">Accueil</a>
-      <a href="medicament.html" class="active">Médicaments</a>
-      <a href="Mdocteur.html">Docteurs</a>
-      <a href="patient.html">Profil</a>
+      <a href="../index.html">Accueil</a>
+      <a href="../Content/medicament.html">Médicaments</a>
+      <a href="../Content/Mdocteur.html">Docteurs</a>
+      <a href="../Content/patient.html">Profil</a>
     </div>
-    <div class="nav-droite">
-      <button class="cart-toggle" onclick="togglePanier()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        Panier
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
+
+    <div class="nav-auth">
+      <div id="nav-guest">
+        <a href="./Content/connexion.html">Connexion</a>
+      </div>
+
+      <div id="nav-user">
+        <a href="#" id="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- ── PAGE HEADER ── -->
   <div class="page-header">
@@ -123,5 +145,6 @@
   </div>
 
   <script src="../JavaScript/achat.js"></script>
+  <script src="../JavaScript/index.js"></script>
 </body>
 </html>
