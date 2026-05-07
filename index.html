@@ -12,34 +12,45 @@
 </head>
 <body>
 
- <!--Navbar-->
- <nav class="navbar">
-  <div class="nav-gauche">Santé<span>Click</span></div>
-
-  <div class="nav-droite">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<nav class="navbar">
+  <div class="nav-gauche">
+    Santé<span>Click</span>
   </div>
-  
-  <!--liens -->
+
+  <!-- Menu mobile -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <!-- Liens -->
   <div class="nav-liens" id="nav-liens">
     <button class="menu-close" onclick="toggleMenu()">×</button>
-    <div id="nav-guest">
-      <a href="./Content/connexion.html">Connexion</a>
-      <a href="./Content/inscription.html" class="nav-cta">S'inscrire gratuitement</a>
-    </div>
-    <div id="nav-user">
-      <span id="nav-nom"></span>
+
+    <!-- centre -->
+    <div class="nav-center">
       <a href="index.html" class="active">Accueil</a>
       <a href="./Content/medicament.html">Médicaments</a>
       <a href="./Content/Mdocteur.html">Docteurs</a>
       <a href="./Content/patient.html">Profil</a>
-      <a href="#" id ="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+    </div>
+
+    <!-- droite -->
+    <div class="nav-auth">
+      <div id="nav-guest">
+        <a href="./Content/connexion.html">Connexion</a>
+      </div>
+
+      <!-- visible connecté -->
+      <div id="nav-user">
+        <a href="#" id="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a>
+      </div>
+
+      <!-- dark mode -->
+      <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+
     </div>
   </div>
-  <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
 </nav>
-<div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
+<div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
   
   <!-- ─── Acceuil ──────────────────────────────── -->
   <section class="hero">
@@ -50,10 +61,10 @@
         <h1>Votre santé<br>mérite le<br><em>meilleur soin</em></h1>
         <p>Médicaments sur ordonnance ou en vente libre, consultations avec des spécialistes, gestion de votre dossier santé — tout en un seul endroit, sécurisé et accessible.</p>
         <div class="hero-btns">
-          <a href="./Content/inscription.html" class="btn btn-primary">
+          <a id="btn-inscrire" href="./Content/inscription.html" class="btn btn-primary">
             Créer un compte <span class="btn-arrow">→</span>
           </a>
-          <a href="./Content/connexion.html" class="btn btn-outline">
+          <a id="btn-connect" href="./Content/connexion.html" class="btn btn-outline">
             Se connecter
           </a>
         </div>
