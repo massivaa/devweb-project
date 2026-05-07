@@ -354,42 +354,50 @@ body.dark-mode .newsletter-form button {
     cursor: pointer;
   }
 
-  .menu-close {
-    display: none;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 28px;
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
 
-   .nav-liens{
-    position:fixed;
-    top:0;
-    right:0;
-    width:75%;
-    max-width:320px;
-    height:100vh;
-    background:#0d2618;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:flex-start;
-    padding:80px 0 20px 0;
-    transform:translateX(100%);
-    transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);
-    z-index:999;
+  .menu-close{
+   position: absolute;
+   top:18px;
+   right:18px;
+   z-index:1001;
+   display:block;
+   border:none !important;
+   background:transparent !important;
+   color:white !important;
+   font-size:32px;
+   font-weight:300;
+   padding:0 !important;
+   margin:0 !important;
+   line-height:1;
+   cursor:pointer;
   }
-
+  
+  .nav-liens:not(.active) .menu-close{
+    display:none;
+  }
+  
+  .nav-liens{
+   position:fixed;
+   top:0;
+   right:0;
+   width:75%;
+   max-width:320px;
+   height:100vh;
+   background:#0d2618;
+   display:flex;
+   flex-direction:column;
+   align-items:flex-start;
+   justify-content:flex-start;
+   padding:80px 0 20px 0;
+   transform:translateX(100%);
+   transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);
+   z-index:999;
+  }
+  
   .nav-liens.active {
     transform: translateX(0);
   }
-
-  .nav-center,
-  .nav-auth{
+  .nav-center, .nav-auth{
     width:100%;
     display:flex;
     flex-direction:column;
@@ -397,15 +405,14 @@ body.dark-mode .newsletter-form button {
     gap:0;
     margin:0;
   }
-
-  #nav-guest,
-  #nav-user{
+  
+  #nav-guest, #nav-user{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
   }
-
+  
   .nav-liens a{
     width:100%;
     padding:18px 24px;
@@ -414,15 +421,13 @@ body.dark-mode .newsletter-form button {
     display:block;
     margin:0;
   }
-
-  /* bouton dark mode */
+  
   .nav-auth button{
     margin:20px 24px;
   }
-
-
-
-  /* Overlay sombre derrière le menu */
+  
+  
+  
   .nav-overlay {
     display: none;
     position: fixed;
@@ -430,20 +435,20 @@ body.dark-mode .newsletter-form button {
     background: rgba(0,0,0,0.5);
     z-index: 998;
   }
-
   .nav-overlay.active {
     display: block;
   }
-
+  
   .nav-droite {
     flex-wrap: wrap;
     gap: 4px;
     justify-content: flex-end;
     flex: 1;
   }
-
   .navbar a {
     font-size: 12px;
     padding: 6px 10px;
   }
+  
+  
 }
