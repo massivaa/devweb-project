@@ -8,6 +8,7 @@ body {
   color: #0d1a13;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  padding-top: 72px;
 }
 
 .mobile-actions{
@@ -724,6 +725,7 @@ body {
 .dark-mode .modal {background: #0f1a0f;}
 .dark-mode .modal h3 {color: #e6f5e6;}
 .dark-mode .modal p {color: #8aa88a;}
+.dark-mode .modal strong{color: white;}
 
 
 /* ── RESPONSIVE ─────────*/
