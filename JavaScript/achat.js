@@ -1,6 +1,4 @@
-/* 
-   DONNÉES — tirées de tes ordonnances
-    */
+/* avec ordonnance*/
 
 var AVEC_ORDONNANCE = [
   // Hypertension
@@ -36,9 +34,7 @@ var SANS_ORDONNANCE = [
   { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:420, oldPrice:null, img:"../images/medicaments/zinc.jpg" }
 ];
 
-/* 
-   PANIER
-    */
+/* panier */
 var cart = [];
 
 function addToCart(id, btn) {
@@ -212,7 +208,7 @@ function renderAvec() {
           '<div class="product-desc">' + p.posologie + '</div>' +
         '</div>' +
         '<div class="product-footer">' +
-          '<div class="product-price ordo-label">Sur ordonnance</div>' +
+          '<div class="product-price ordo-label"></div>' +
           '<button class="btn-locked" onclick="showModal()">🔒 Ordonnance</button>' +
         '</div>' +
       '</div>';
