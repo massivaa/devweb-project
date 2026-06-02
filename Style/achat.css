@@ -740,11 +740,10 @@ body {
   .page-header { padding: 3rem 5% 4rem; }
 }
 
-/* Desktop: move the panier button down when navbar is not collapsed (>=769px) */
 @media (min-width: 769px) {
   .mobile-actions {
     position: fixed;
-    top: 150px;
+    top: 120px;
     right: 20px;
     z-index: 1100;
     pointer-events: auto;
