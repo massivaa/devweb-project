@@ -97,7 +97,7 @@ body {
   line-height: 1.75;
 }
 
-/* ── TOOLBAR ────────────*/
+/* tool*/
 .toolbar {
   background: white;
   border-bottom: 1px solid #dce8e1;
@@ -152,11 +152,10 @@ body {
 .tab:last-child { border-right: 1px solid #dce8e1; }
 .tab:hover { background: #f0ece1; color: #0d1a13; }
 .tab.active { background: #072b1c; color: white; border-color: #072b1c; }
-
-/* ── MAIN ───────────────*/
+/*tous*/
 .main { padding: 4rem 8%; display: flex; flex-direction: column; gap: 5rem; }
 
-/* ── CATEGORY SECTION ──*/
+/* categorie*/
 .cat-section { transition: opacity 0.25s; }
 .cat-section.hidden { display: none; }
 
@@ -205,7 +204,7 @@ body {
   font-weight: 300;
 }
 
-/* ── PRODUCT GRID ───────*/
+/* produits*/
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -226,7 +225,7 @@ body {
 .product-card.locked { opacity: 1; }
 .product-card.locked .product-img { filter: grayscale(30%); }
 
-/* image zone */
+/* image*/
 .product-img {
   width: 100%;
   aspect-ratio: 1;
@@ -247,7 +246,7 @@ body {
   font-size: 3.5rem;
 }
 
-/* lock overlay on avec-ordonnance */
+/* avec-ordonnance */
 .product-card.locked .lock-badge {
   position: absolute;
   top: 10px; right: 10px;
@@ -350,7 +349,7 @@ body {
   background: #fdf0ef;
 }
 
-/* added animation */
+/* animationnnn */
 .btn-add.added {
   background: #2ea66e;
   animation: addedPop 0.35s cubic-bezier(.36,.07,.19,.97);
@@ -362,9 +361,11 @@ body {
   100% { transform: scale(1); }
 }
 
-/* ── PANIER DRAWER ───────*/
+/* panieer*/
 .overlay {
-  position: fixed; inset: 0;
+  position: fixed;
+  top: 72px;
+  left:0; right:0;bottom:0;
   background: rgba(7,43,28,.5);
   z-index: 300;
   opacity: 0;
@@ -375,9 +376,9 @@ body {
 
 .panier {
   position: fixed;
-  top: 0; right: 0;
+  top: 75px; right: 0;
   width: 420px; max-width: 100vw;
-  height: 100vh;
+  height: calc(100vh-72px);
   background: #faf8f3;
   z-index: 400;
   display: flex;
