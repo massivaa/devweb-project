@@ -94,8 +94,19 @@ async function loadProfile() {
     const data = result.data;
 
     // NAME
-    document.getElementById('displayName').textContent =
-      (data.nom || '') + ' ' + (data.prenom || '');
+    const displayName = [(data.prenom || ''), (data.nom || '')]
+      .filter(Boolean)
+      .join(' ') || '— Nom non renseigné —';
+    document.getElementById('displayName').textContent = displayName;
+
+    const emailEl = document.getElementById('patientEmail');
+    const phoneEl = document.getElementById('patientPhone');
+    if (emailEl) {
+      emailEl.textContent = data.email ? `Email : ${data.email}` : 'Email : —';
+    }
+    if (phoneEl) {
+      phoneEl.textContent = data.telephone ? `Tél : ${data.telephone}` : 'Tél : —';
+    }
 
     // VITALS
     document.getElementById('vPoids').textContent = data.poids || '—';
@@ -104,6 +115,12 @@ async function loadProfile() {
       ? parseFloat(data.imc).toFixed(1)
       : '—';
     document.getElementById('vGroupe').textContent = data.groupe_sanguin || '—';
+
+    const statusText = document.getElementById('statusText');
+    if (statusText) {
+      const isComplete = data.nom && data.prenom && data.email && data.poids && data.taille && data.groupe_sanguin;
+      statusText.textContent = isComplete ? 'Profil complet' : 'Profil incomplet';
+    }
 
   } catch (err) {
     console.error("Erreur loadProfile:", err);

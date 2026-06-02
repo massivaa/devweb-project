@@ -1,28 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   const summary = document.getElementById("orderSummary");
-
-  //  AUTO FILL USER INFO
-  const prenom = localStorage.getItem("user_prenom") || "";
-  const nom = localStorage.getItem("user_nom") || "";
-  const emailLS = localStorage.getItem("user_email") || "";
-  const phoneLS = localStorage.getItem("user_phone") || "";
-
   const fullNameInput = document.getElementById("fullName");
   const emailInput = document.getElementById("email");
   const phoneInput = document.getElementById("phone");
+  const cityInput = document.getElementById("city");
 
-  if (fullNameInput && (prenom || nom)) {
-    fullNameInput.value = (prenom + " " + nom).trim();
-  }
-
-  if (emailInput && emailLS) {
-    emailInput.value = user.email || "";
-  }
-
-  if (phoneInput && phoneLS) {
-    phoneInput.value = user.telephone || "";
-  }
+  fillUserCheckoutInfo();
 
   //CART
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -60,6 +44,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+async function fillUserCheckoutInfo() {
+  const fullNameInput = document.getElementById("fullName");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const cityInput = document.getElementById("city");
+
+  try {
+    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
+      credentials: 'include'
+    });
+    const result = await res.json();
+
+    if (!result.success || !result.data) return;
+    const data = result.data;
+
+    if (fullNameInput) {
+      fullNameInput.value = [(data.prenom || ''), (data.nom || '')].filter(Boolean).join(' ');
+    }
+    if (emailInput) {
+      emailInput.value = data.email || '';
+    }
+    if (phoneInput) {
+      phoneInput.value = data.telephone || '';
+    }
+    if (cityInput && data.wilaya) {
+      cityInput.value = data.wilaya;
+    }
+  } catch (err) {
+    console.error('Erreur chargement profil commande:', err);
+  }
+}
 
 // PAYMENT
 function traiterPaiement(event) {
