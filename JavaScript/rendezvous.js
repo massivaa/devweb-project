@@ -117,7 +117,7 @@ function updateSummary() {
 // LISTENERS
 document.getElementById('doctor').addEventListener('change', updateSummary);
 document.getElementById('dateRdv').addEventListener('change', updateSummary);
-document.getElementById('heureRdv').addEventListener('input', updateSummary); // 🔥 FIX IMPORTANT
+document.getElementById('heureRdv').addEventListener('input', updateSummary); 
 
 document.querySelectorAll('input[name="type_consult"]').forEach(r =>
   r.addEventListener('change', updateSummary)
