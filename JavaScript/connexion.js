@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await res.json();
 
             if (data.success) {
+                localStorage.setItem('user_id', data.user_id);
+                localStorage.setItem('user_email', data.email || email);
+                localStorage.setItem('user_nom', data.nom);
+                localStorage.setItem('user_prenom', data.prenom);
+                localStorage.setItem('logged_in', 'true');
                 window.location.href = `../index.html?connected=true&nom=${encodeURIComponent(data.nom)}&prenom=${encodeURIComponent(data.prenom)}`;
             } else {
                 alert("Erreur login");

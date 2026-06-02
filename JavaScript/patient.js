@@ -81,7 +81,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function loadProfile() {
   try {
-    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
+    const storedUserId = localStorage.getItem('user_id');
+    const profileUrl = storedUserId
+      ? `https://mknay.alwaysdata.net/php/profile.php?user_id=${encodeURIComponent(storedUserId)}`
+      : 'https://mknay.alwaysdata.net/php/profile.php';
+
+    const res = await fetch(profileUrl, {
       credentials: "include"
     });
 

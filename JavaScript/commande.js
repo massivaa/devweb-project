@@ -50,14 +50,24 @@ async function fillUserCheckoutInfo() {
   const emailInput = document.getElementById("email");
   const phoneInput = document.getElementById("phone");
   const cityInput = document.getElementById("city");
+  const storedUserId = localStorage.getItem("user_id");
 
   try {
-    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
+    const profileUrl = storedUserId
+      ? `https://mknay.alwaysdata.net/php/profile.php?user_id=${encodeURIComponent(storedUserId)}`
+      : 'https://mknay.alwaysdata.net/php/profile.php';
+
+    const res = await fetch(profileUrl, {
       credentials: 'include'
     });
     const result = await res.json();
 
-    if (!result.success || !result.data) return;
+    if (!result.success || !result.data) {
+      if (storedUserId) {
+        console.warn('Profile not loaded from saved user_id');
+      }
+      return;
+    }
     const data = result.data;
 
     if (fullNameInput) {

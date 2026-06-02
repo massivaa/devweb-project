@@ -1,6 +1,11 @@
 async function fillProfileForm() {
   try {
-    const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {
+    const storedUserId = localStorage.getItem('user_id');
+    const url = storedUserId
+      ? `https://mknay.alwaysdata.net/php/profile.php?user_id=${encodeURIComponent(storedUserId)}`
+      : 'https://mknay.alwaysdata.net/php/profile.php';
+
+    const res = await fetch(url, {
       credentials: "include"
     });
 
@@ -73,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
 
     try {
+      const storedUserId = localStorage.getItem('user_id');
+      if (storedUserId) {
+        formData.append('user_id', storedUserId);
+      }
       const res = await fetch("https://mknay.alwaysdata.net/php/sauvgarder_profile.php", {
         method: "POST",
         credentials: "include",
