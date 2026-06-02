@@ -138,12 +138,17 @@ function renderPanier() {
 function togglePanier() {
   var panier  = document.getElementById("panier");
   var overlay = document.getElementById("overlay");
+  var cartToggle = document.querySelector(".cart-toggle");
   if (panier.classList.contains("open")) {
     panier.classList.remove("open");
     overlay.classList.remove("show");
+    cartToggle.style.opacity = "1";
+    cartToggle.style.pointerEvents = "auto";
   } else {
     panier.classList.add("open");
     overlay.classList.add("show");
+    cartToggle.style.opacity = "0";
+    cartToggle.style.pointerEvents = "none";
   }
 }
 
