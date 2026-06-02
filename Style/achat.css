@@ -378,9 +378,9 @@ body {
   position: fixed;
   top: 75px; right: 0;
   width: 420px; max-width: 100vw;
-  height: calc(100vh-72px);
+  height: calc(100vh - 72px);
   background: #faf8f3;
-  z-index: 400;
+  z-index: 900;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
