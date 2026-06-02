@@ -23,3 +23,15 @@ async function logout() {
 }
 
 window.logout = logout;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) {
+        return;
+    }
+
+    logoutBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        logout();
+    });
+});
