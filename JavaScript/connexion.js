@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (window.location.protocol === 'file:') {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Ouvrez cette page depuis votre serveur local XAMPP, par exemple : http://localhost/devwebprojet/Content/connexion.html");
+        });
+        return;
+    }
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -19,30 +27,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = form.querySelector('[name="password"]').value;
 
         try {
-            const res = await fetch("../php/connexion.php", {
+            const res = await fetch("https://mknay.alwaysdata.net/php/connexion.php", {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
             });
 
-            if (!res.ok) {
-                throw new Error(`HTTP ${res.status}`);
-            }
-
             const data = await res.json();
 
             if (data.success) {
                 window.location.href = `../index.html?connected=true&nom=${encodeURIComponent(data.nom)}&prenom=${encodeURIComponent(data.prenom)}`;
             } else {
-                alert(data.message ? `Erreur : ${data.message}` : "Erreur login");
+                alert("Erreur login");
             }
 
         } catch (err) {
-            console.error(err);
-            alert("Serveur inaccessible. Vérifiez que la page est servie depuis votre serveur local et que ../php/connexion.php est accessible.");
+            alert("Serveur inaccessible");
         }
-
-        return;
     });
 });
