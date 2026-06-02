@@ -1,11 +1,11 @@
 // test du lien
 console.log("Projet de massiva");
 
-// GLOBAL STATE ──────────────────────
+// GLOBAL STATE 
 let doctors = [];
 let currentDoctor = null;
 
-// LOAD DOCTORS ──────────────────────
+// LOAD DOCTORS
 async function loadDoctors() {
   try {
     const res = await fetch("https://mknay.alwaysdata.net/php/docteur.php");
@@ -17,7 +17,7 @@ async function loadDoctors() {
   }
 }
 
-// RENDER DOCTORS ──────────────────────
+// RENDER DOCTORS 
 function renderDoctors(list) {
   const container = document.getElementById("docteurs");
 
