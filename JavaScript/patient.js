@@ -53,9 +53,32 @@ async function deleteRdv(id) {
 
 // Appeler les fonctions au chargement
 document.addEventListener("DOMContentLoaded", function() {
+  const isLoggedIn = localStorage.getItem('logged_in') === 'true';
+  const guestWarning = document.getElementById('guestWarning');
+  const pageLayout = document.querySelector('.layout');
+
+  if (!isLoggedIn) {
+    if (guestWarning) {
+      guestWarning.style.display = 'flex';
+    }
+    if (pageLayout) {
+      pageLayout.style.display = 'grid';
+    }
+    return;
+  }
+
+  if (guestWarning) {
+    guestWarning.style.display = 'none';
+  }
+
+  if (pageLayout) {
+    pageLayout.style.display = 'grid';
+  }
+
   loadProfile();
   loadRendezVous();
 });
+
 async function loadProfile() {
   try {
     const res = await fetch('https://mknay.alwaysdata.net/php/profile.php', {

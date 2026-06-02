@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navGuest = document.getElementById('nav-guest');
     const navUser = document.getElementById('nav-user');
     const navNom = document.getElementById('nav-nom');
+    const btnInscrire = document.getElementById('btn-inscrire');
+    const btnConnect = document.getElementById('btn-connect');
     const commencer = document.getElementById('commencer');
 
     if (loggedIn) {
