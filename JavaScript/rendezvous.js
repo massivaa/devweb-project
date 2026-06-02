@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // spécialité
   if (spec) {
-    document.getElementById('speciality').value = spec;
+  document.getElementById('speciality').value =
+    spec.toLowerCase().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
   }
 
   // médecin (ID)

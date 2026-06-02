@@ -37,7 +37,7 @@ function renderDoctors(list) {
   `).join("");
 }
 
-// MODAL ──────────────────────
+// MODAL
 function openModal(id) {
   const doc = doctors.find(d => d.id == id);
 
@@ -55,7 +55,11 @@ function openModal(id) {
   document.getElementById("loc").textContent = "Clinique";
   document.getElementById("availb").textContent = "Sur rendez-vous";
 
+  document.getElementById("emailLink").href = "mailto:" + doc.email;
+  document.getElementById("whatsappLink").href = "https://wa.me/" + doc.telephone;
+
   document.getElementById("modal").classList.add("open");
+
 }
 
 // DOM READY ──────────────────────
