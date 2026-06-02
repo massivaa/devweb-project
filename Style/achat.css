@@ -18,17 +18,27 @@ body {
 }
 
 .cart-toggle{
-  display:flex;
+  display:flex !important;
   align-items:center;
   gap:6px;
-  background:#0d2618;
-  color:white;
-  border:none;
+  background:#0d2618 !important;
+  color:white !important;
+  border:none !important;
   padding:8px 14px;
   border-radius:6px;
   cursor:pointer;
   font-weight:500;
   font-size:14px;
+  transition: opacity 0.3s;
+}
+
+.cart-toggle:hover {
+  background: #1a3a2a !important;
+}
+
+.panier.open ~ .mobile-actions .cart-toggle {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .cart-count{
