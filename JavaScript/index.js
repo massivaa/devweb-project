@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             heroText.insertAdjacentHTML(
                 "beforebegin",
                 `<p style="font-size:18px;color:var(--#2d5a3f);margin-bottom:10px">
-                    Bonjour, ${userPrenom}
+                    Bonjour, ${userPrenom} !!
                 </p>`
             );
         }
