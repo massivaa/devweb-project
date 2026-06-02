@@ -742,10 +742,9 @@ body {
 
 /* Desktop: move the panier button down when navbar is not collapsed (>=769px) */
 @media (min-width: 769px) {
-  /* place the mobile actions (cart) well below navbar + toolbar to avoid category overlap */
   .mobile-actions {
     position: fixed;
-    top: 160px; /* navbar (72px) + toolbar (60px) + gap (28px) */
+    top: 150px;
     right: 20px;
     z-index: 1100;
     pointer-events: auto;
