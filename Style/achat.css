@@ -739,3 +739,18 @@ body {
   .panier { width: 100vw; }
   .page-header { padding: 3rem 5% 4rem; }
 }
+
+/* Desktop: move the panier button down when navbar is not collapsed (>=769px) */
+@media (min-width: 769px) {
+  /* place the mobile actions (cart) just below the fixed navbar without changing the navbar itself */
+  .mobile-actions {
+    position: fixed;
+    top: calc(72px + 10px); /* navbar height (72px) + small gap */
+    right: 20px;
+    z-index: 1100;
+    pointer-events: auto;
+  }
+
+  /* keep the cart layout intact */
+  .cart-toggle { margin-top: 0; }
+}
