@@ -43,7 +43,7 @@
   font-weight: 300;
   margin-bottom: 36px;
 }
-
+.section-label{color: lightgray;}
 /* Search bar */
 .faq-search {
   display: flex;

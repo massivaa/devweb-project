@@ -1,8 +1,16 @@
 /*retour vers la page docteurs*/
-.retour{
-  color: black;
-  border: 1px solid black;
-  background: rgba(146, 225, 146, 0.359);
+.retour, .retour:hover{
+  font-family: serif;
+  font-style: italic;
+  font-size:15px;
+  color: white;
+  border: 1px solid #e2c97e;;
+  background: #3a5a3a;
+  margin-left: -30px;
+}
+.retour:hover{transform: scale(1.02);box-shadow:1px 2px 10px #e2c97e;}
+.dark-mode .retour{
+  background-color:#1a3a2a;
 }
 
 /* horraires*/
