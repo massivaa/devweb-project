@@ -432,6 +432,9 @@ body {
   border-bottom: 0.5px solid rgba(26, 74, 58, 0.12);
 }
 .rdv-item:last-child { border-bottom: none; padding-bottom: 0; }
+.rdv-item boutton{
+  background: 2a6b52;
+}
 .rdv-icon {
   width: 38px; height: 38px;
   border-radius: 8px;
