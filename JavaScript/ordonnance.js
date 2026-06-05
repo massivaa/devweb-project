@@ -56,7 +56,7 @@ async function loadOrdonnances() {
   showLoading(true);
 
   try {
-    const res  = await fetch(`${API_BASE}/get_ordonnances.php`, { credentials: "include" });
+    const res  = await fetch(`${API_BASE}/ordonnance.php`, { credentials: "include" });
     const json = await res.json();
 
     if (json.success && Array.isArray(json.data)) {
