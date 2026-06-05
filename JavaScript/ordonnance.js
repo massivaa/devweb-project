@@ -1,10 +1,3 @@
-/* ══════════════════════════════════════════
-   ordonnances.js — Page Ordonnances
-   Charge les ordonnances depuis l'API,
-   filtre par statut, tri, recherche,
-   et affiche un modal de détail complet.
-══════════════════════════════════════════ */
-
 const API_BASE = "https://mknay.alwaysdata.net/php";
 
 // ── État global ──
@@ -12,11 +5,11 @@ let allOrdonnances = [];
 let activeFilter   = "all";
 let sortOrder      = "desc";
 let searchQuery    = "";
+let currentOrdonnance = null;
 
-// Allergies connues du patient (chargées depuis le profil)
+// Allergies connues du patient
 let knownAllergies = [];
 
-// ── Init ──
 document.addEventListener("DOMContentLoaded", function () {
   const isLoggedIn = localStorage.getItem("logged_in") === "true";
 
@@ -29,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadOrdonnances();
 });
 
-// ── Charger le profil (pour les allergies) ──
+// Charger le profil 
 async function loadProfile() {
   try {
     const storedUserId = localStorage.getItem("user_id");
@@ -51,7 +44,7 @@ async function loadProfile() {
   }
 }
 
-// ── Charger les ordonnances ──
+// Charger les ordonnances 
 async function loadOrdonnances() {
   showLoading(true);
 
@@ -74,7 +67,7 @@ async function loadOrdonnances() {
   renderGrid();
 }
 
-// ── Normaliser une ordonnance ──
+// Normaliser une ordonnance 
 function normalizeOrdonnance(o) {
   return {
     id:           o.id,
@@ -92,7 +85,7 @@ function normalizeOrdonnance(o) {
   };
 }
 
-// ── Résoudre le statut ──
+// statut 
 function resolveStatus(o) {
   if (o.statut || o.status) return o.statut || o.status;
   // Déduire depuis date de validité
@@ -103,7 +96,7 @@ function resolveStatus(o) {
   return "active";
 }
 
-// ── Parser les médicaments ──
+// Parser les médicaments
 function parseMeds(raw) {
   if (!raw) return [];
   if (Array.isArray(raw)) {
@@ -122,14 +115,13 @@ function parseMeds(raw) {
       const parsed = JSON.parse(raw);
       return parseMeds(parsed);
     } catch {
-      // Chaîne simple séparée par virgule
       return raw.split(/[,;]/).map(s => ({ name: s.trim(), dose: "", duration: "", instructions: "" })).filter(m => m.name);
     }
   }
   return [];
 }
 
-// ── Mettre à jour les stats ──
+// Mettre à jour les stats
 function updateStats() {
   const row = document.getElementById("statsRow");
   if (!allOrdonnances.length) { row.style.display = "none"; return; }
@@ -141,7 +133,7 @@ function updateStats() {
   document.getElementById("statExpired").textContent = allOrdonnances.filter(o => o.status === "expired").length;
 }
 
-// ── Rendu grille ──
+// Rendu grille
 function renderGrid() {
   const grid  = document.getElementById("ordoGrid");
   const empty = document.getElementById("emptyState");
@@ -174,7 +166,7 @@ function renderGrid() {
   grid.innerHTML = data.map((o, idx) => renderCard(o, idx)).join("");
 }
 
-// ── Rendu d'une carte ──
+//Rendu d'une carte
 function renderCard(o, idx) {
   const dateStr     = isValidDate(o.date)     ? formatDate(o.date)     : "—";
   const validiteStr = isValidDate(o.validite) ? formatDate(o.validite) : "—";
@@ -211,11 +203,11 @@ function renderCard(o, idx) {
   `;
 }
 
-// ── Modal détail ──
+// Modal détail 
 function openModal(id) {
   const o = allOrdonnances.find(x => x.id == id);
   if (!o) return;
-
+  currentOrdonnance = o;
   document.getElementById("modalTitle").textContent = o.ref;
   document.getElementById("modalSub").textContent   = [
     isValidDate(o.date) ? `Émise le ${formatDate(o.date)}` : "",
@@ -396,4 +388,22 @@ function escHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+//fontion acheter 
+function acheterOrdonnance() {
+
+  if (!currentOrdonnance) return;
+
+  const panier = currentOrdonnance.meds.map(m => ({
+    nom: m.name,
+    dose: m.dose,
+    quantite: 1
+  }));
+
+  localStorage.setItem(
+    "ordonnance_panier",
+    JSON.stringify(panier)
+  );
+
+  window.location.href = "achat.html";
 }

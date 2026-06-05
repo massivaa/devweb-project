@@ -25,13 +25,13 @@ var AVEC_ORDONNANCE = [
 ];
 
 var SANS_ORDONNANCE = [
-  { id:"s1", name:"Doliprane 1000mg",  dosage:"1000mg", cat:"Antidouleur",        posologie:"1 comprimé toutes les 6h max",      price:250, oldPrice:320,  img:"../images/medicaments/doliprane.jpg" },
-  { id:"s2", name:"Ibuprofène 200mg",  dosage:"200mg",  cat:"Anti-inflammatoire", posologie:"1 comprimé 3 fois par jour",        price:310, oldPrice:null, img:"../images/medicaments/ibuprofene.webp" },
-  { id:"s3", name:"Vitamine C 500mg",  dosage:"500mg",  cat:"Vitamines",          posologie:"1 comprimé par jour",               price:180, oldPrice:220,  img:"../images/medicaments/VitamineC.jpg" },
-  { id:"s4", name:"Strepsils Citron",  dosage:"—",      cat:"ORL",                posologie:"1 pastille toutes les 2–3h",        price:150, oldPrice:null, img:"../images/medicaments/strepsils.webp" },
-  { id:"s5", name:"Smecta 3g",         dosage:"3g",     cat:"Gastro",             posologie:"1 sachet 3 fois par jour",          price:200, oldPrice:250,  img:"../images/medicaments/smecta.png" },
-  { id:"s6", name:"Gaviscon Menthe",   dosage:"—",      cat:"Gastro",             posologie:"2–4 comprimés après chaque repas",  price:290, oldPrice:null, img:"../images/medicaments/gaviscon.jpg" },
-  { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:420, oldPrice:null, img:"../images/medicaments/zinc.jpg" }
+  { id:"s1", name:"Doliprane 1000mg",  dosage:"1000mg", cat:"Antidouleur",        posologie:"1 comprimé toutes les 6h max",      price:110, oldPrice:180,  img:"../images/medicaments/doliprane.jpg" },
+  { id:"s2", name:"Ibuprofène 200mg",  dosage:"200mg",  cat:"Anti-inflammatoire", posologie:"1 comprimé 3 fois par jour",        price:250, oldPrice:null, img:"../images/medicaments/ibuprofene.webp" },
+  { id:"s3", name:"Vitamine C 500mg",  dosage:"500mg",  cat:"Vitamines",          posologie:"1 comprimé par jour",               price:250, oldPrice:300,  img:"../images/medicaments/VitamineC.jpg" },
+  { id:"s4", name:"Strepsils Citron",  dosage:"—",      cat:"ORL",                posologie:"1 pastille toutes les 2–3h",        price:350, oldPrice:null, img:"../images/medicaments/strepsils.webp" },
+  { id:"s5", name:"Smecta 3g",         dosage:"3g",     cat:"Gastro",             posologie:"1 sachet 3 fois par jour",          price:430, oldPrice:450,  img:"../images/medicaments/smecta.png" },
+  { id:"s6", name:"Gaviscon Menthe",   dosage:"—",      cat:"Gastro",             posologie:"2–4 comprimés après chaque repas",  price:650, oldPrice:null, img:"../images/medicaments/gaviscon.jpg" },
+  { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:850, oldPrice:null, img:"../images/medicaments/zinc.jpg" }
 ];
 
 /* panier */
