@@ -1,195 +1,147 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
-
+<html lang="fr" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ordonnances</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="../Style/ordonnances.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SantéClick — Ordonnances</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="../Style/ordonnance.css">
 </head>
-
 <body>
 
-<main class="main">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="nav-liens" id="nav-liens">
+      <button class="menu-close" onclick="toggleMenu()">×</button>
+      <div class="nav-center">
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html">Docteurs</a>
+        <a href="patient.html">Profil</a>
+      </div>
+      <div class="nav-auth">
+        <div id="nav-guest"><a href="./Content/connexion.html">Connexion</a></div>
+        <div id="nav-user"><a href="#" id="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a></div>
+        <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
-<div class="topbar">
+  <!-- MAIN -->
+  <main class="ordo-main">
 
-<div>
-<h1 class="page-title">Ordonnances Médicales</h1>
-<div class="page-breadcrumb">
-Gestion des prescriptions médicales
-</div>
-</div>
+    <!-- TOPBAR -->
+    <div class="ordo-topbar">
+      <a href="patient.html" class="btn-retour">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour au profil
+      </a>
+      <div class="ordo-title-wrap">
+        <h1 class="ordo-title">Ordonnances</h1>
+        <p class="ordo-sub">- Vos prescriptions médicales classées et filtrées -</p>
+      </div>
+    </div>
 
-<div class="topbar-actions">
+    <!-- CONTROLS BAR -->
+    <div class="controls-bar">
+      <div class="type-filters">
+        <button class="type-chip active" data-filter="all" onclick="setFilter(this,'all')">
+          <span>📋</span> Toutes
+        </button>
+        <button class="type-chip" data-filter="active" onclick="setFilter(this,'active')">
+          <span>✅</span> Actives
+        </button>
+        <button class="type-chip" data-filter="pending" onclick="setFilter(this,'pending')">
+          <span>⏳</span> En attente
+        </button>
+        <button class="type-chip" data-filter="done" onclick="setFilter(this,'done')">
+          <span>💊</span> Dispensées
+        </button>
+        <button class="type-chip" data-filter="expired" onclick="setFilter(this,'expired')">
+          <span>🗂️</span> Expirées
+        </button>
+      </div>
 
-<button class="btn btn-outline" onclick="toggleTheme()">
-🌙 Mode
-</button>
+      <div class="sort-wrap">
+        <label class="sort-label">Trier par</label>
+        <select class="sort-select" onchange="setSort(this.value)">
+          <option value="desc">Plus récente</option>
+          <option value="asc">Plus ancienne</option>
+        </select>
+      </div>
+    </div>
 
-<label class="btn btn-gold">
-+ Ajouter
-<input
-type="file"
-accept=".pdf,.jpg,.jpeg,.png"
-hidden
-onchange="handleFileUpload(this,'ordo')">
-</label>
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+      <input type="text" id="searchInput" placeholder="Rechercher un médicament, un médecin, une spécialité…" oninput="setSearch(this.value)">
+    </div>
 
-</div>
+    <!-- STATS -->
+    <div class="stats-row" id="statsRow" style="display:none">
+      <div class="stat-chip">
+        <span class="stat-val" id="statTotal">0</span>
+        <span class="stat-lbl">Total</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="statActive">0</span>
+        <span class="stat-lbl">Actives</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="statPending">0</span>
+        <span class="stat-lbl">En attente</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="statExpired">0</span>
+        <span class="stat-lbl">Expirées</span>
+      </div>
+    </div>
 
-</div>
+    <!-- LOADING -->
+    <div class="loading-state" id="loadingState">
+      <div class="spinner"></div>
+      <p>Chargement des ordonnances…</p>
+    </div>
 
-<div class="page active">
+    <!-- EMPTY -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon">📄</div>
+      <p class="empty-msg">Aucune ordonnance trouvée</p>
+      <p class="empty-sub">Essayez un autre filtre ou revenez plus tard.</p>
+    </div>
 
-<!-- STATS -->
+    <!-- GRILLE -->
+    <div class="ordo-grid" id="ordoGrid" style="display:none"></div>
 
-<div class="stats-row">
+  </main>
 
-<div class="stat-chip">
+  <!-- MODAL DÉTAIL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-badge-icon">📋</div>
+          <div>
+            <h2 class="modal-title" id="modalTitle">—</h2>
+            <p class="modal-sub"  id="modalSub">—</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeModalBtn()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-print" onclick="window.print()">🖨️ Imprimer</button>
+      </div>
+    </div>
+  </div>
 
-<div class="stat-icon gold">
-📋
-</div>
-
-<div>
-<div class="stat-value" id="totalOrdonnances">
-0
-</div>
-
-<div class="stat-label">
-Ordonnances
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- FILTRES -->
-
-<div class="filters-bar">
-
-<button
-class="filter-chip active"
-onclick="filterOrdo(this,'all')">
-Toutes
-</button>
-
-<button
-class="filter-chip"
-onclick="filterOrdo(this,'active')">
-Actives
-</button>
-
-<button
-class="filter-chip"
-onclick="filterOrdo(this,'expired')">
-Expirées
-</button>
-
-<button
-class="filter-chip"
-onclick="filterOrdo(this,'pending')">
-En attente
-</button>
-
-<div class="search-box">
-
-<input
-type="text"
-placeholder="Rechercher..."
-oninput="searchOrdo(this.value)">
-
-</div>
-
-</div>
-
-<!-- GRID -->
-
-<div
-class="ordonnances-grid"
-id="ordoGrid">
-
-</div>
-
-</div>
-
-</main>
-
-<!-- MODAL -->
-
-<div class="modal-overlay" id="modalOrdo">
-
-<div class="modal">
-
-<div class="modal-header">
-
-<div>
-
-<div
-class="modal-title"
-id="modalOrdoTitle">
-Ordonnance
-</div>
-
-<div
-class="modal-subtitle"
-id="modalOrdoSub">
-Informations
-</div>
-
-</div>
-
-<div
-class="modal-close"
-onclick="closeModal('modalOrdo')">
-
-✕
-
-</div>
-
-</div>
-
-<div
-class="modal-body"
-id="modalOrdoBody">
-
-</div>
-
-<div class="modal-footer">
-
-<button class="btn btn-outline">
-🖨️ Imprimer
-</button>
-
-<button class="btn btn-outline">
-📥 Télécharger
-</button>
-
-<button
-class="btn btn-ghost"
-onclick="closeModal('modalOrdo')">
-
-Fermer
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="../JavaScript/ordonnances.js"></script>
-
+  <script src="../JavaScript/ordonnancce.js"></script>
+  <script src="../JavaScript/deconnexion.js"></script>
+  <script src="../JavaScript/index.js"></script>
 </body>
 </html>
