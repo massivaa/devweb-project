@@ -2,26 +2,26 @@
 
 var AVEC_ORDONNANCE = [
   // Hypertension
-  { id:"a1",  name:"Lisinopril",          dosage:"10mg",          cat:"Hypertension",    posologie:"1 comprimé par jour",      price=680,                 img:"../../images/medicaments/Lisinopril.webp" },
-  { id:"a2",  name:"Amlodipine",          dosage:"5mg",           cat:"Hypertension",    posologie:"1 comprimé par jour",      price=480,                img:"../images/medicaments/Amlodipine.jpg" },
-  { id:"a3",  name:"Perindopril",         dosage:"4mg – 8mg",     cat:"Hypertension",    posologie:"4–8mg une fois par jour, le matin", price=800,        img:"../images/medicaments/perindopril.webp" },
-  { id:"a4",  name:"Hydrochlorothiazide", dosage:"12.5mg – 50mg", cat:"Hypertension",    posologie:"12.5–50mg une fois par jour, le matin", price=400,    img:"../images/medicaments/Hydrochlorothiazide.jpg" },
-  { id:"a5",  name:"Bisoprolol",          dosage:"2.5mg – 10mg",  cat:"Hypertension",    posologie:"2.5–10mg une fois par jour",   price=620,             img:"../images/medicaments/Bisoprolol.png" },
+  { id:"a1",  name:"Lisinopril",          dosage:"10mg",          cat:"Hypertension",    posologie:"1 comprimé par jour",      price:680,                 img:"../../images/medicaments/Lisinopril.webp" },
+  { id:"a2",  name:"Amlodipine",          dosage:"5mg",           cat:"Hypertension",    posologie:"1 comprimé par jour",      price:480,                img:"../images/medicaments/Amlodipine.jpg" },
+  { id:"a3",  name:"Perindopril",         dosage:"4mg – 8mg",     cat:"Hypertension",    posologie:"4–8mg une fois par jour, le matin", price:800,        img:"../images/medicaments/perindopril.webp" },
+  { id:"a4",  name:"Hydrochlorothiazide", dosage:"12.5mg – 50mg", cat:"Hypertension",    posologie:"12.5–50mg une fois par jour, le matin", price:400,    img:"../images/medicaments/Hydrochlorothiazide.jpg" },
+  { id:"a5",  name:"Bisoprolol",          dosage:"2.5mg – 10mg",  cat:"Hypertension",    posologie:"2.5–10mg une fois par jour",   price:620,             img:"../images/medicaments/Bisoprolol.png" },
   // Diabète
-  { id:"a6",  name:"Metformine",          dosage:"500mg",         cat:"Diabète type 2",  posologie:"2 comprimés 2 fois par jour",   price=320,            img:"../images/medicaments/Metformine.png" },
-  { id:"a7",  name:"Glibenclamide",       dosage:"5mg",           cat:"Diabète type 2",  posologie:"1 comprimé par jour",     price=250,                  img:"../images/medicaments/Glibenclamide.webp" },
-  { id:"a8",  name:"Gliclazide",          dosage:"30mg – 80mg",   cat:"Diabète type 2",  posologie:"30–240mg en 1–2 prises pendant les repas", price=430, img:"../images/medicaments/Gliclazide.jpg" },
-  { id:"a9",  name:"Sitagliptine",        dosage:"50mg – 100mg",  cat:"Diabète type 2",  posologie:"50–100mg une fois par jour",   price=1700,             img:"../images/medicaments/Sitagliptine.webp" },
+  { id:"a6",  name:"Metformine",          dosage:"500mg",         cat:"Diabète type 2",  posologie:"2 comprimés 2 fois par jour",   price:320,            img:"../images/medicaments/Metformine.png" },
+  { id:"a7",  name:"Glibenclamide",       dosage:"5mg",           cat:"Diabète type 2",  posologie:"1 comprimé par jour",     price:250,                  img:"../images/medicaments/Glibenclamide.webp" },
+  { id:"a8",  name:"Gliclazide",          dosage:"30mg – 80mg",   cat:"Diabète type 2",  posologie:"30–240mg en 1–2 prises pendant les repas", price:430, img:"../images/medicaments/Gliclazide.jpg" },
+  { id:"a9",  name:"Sitagliptine",        dosage:"50mg – 100mg",  cat:"Diabète type 2",  posologie:"50–100mg une fois par jour",   price:1700,             img:"../images/medicaments/Sitagliptine.webp" },
   // Asthme
-  { id:"a10", name:"Salbutamol",          dosage:"100mcg",        cat:"Asthme",          posologie:"2 inhalations 3 fois par jour",  price=680,           img:"../images/medicaments/Salbutamol.jpg" },
-  { id:"a11", name:"Fluticasone",         dosage:"250mcg",        cat:"Asthme",          posologie:"2 inhalations 2 fois par jour",  price=1500,           img:"../images/medicaments/Fluticasone.jpg" },
-  { id:"a12", name:"Béclométhasone",      dosage:"50µg/dose",     cat:"Asthme",          posologie:"100–250µg 2 fois par jour",    price=180,             img:"../images/medicaments/Béclométhasone.jpg" },
+  { id:"a10", name:"Salbutamol",          dosage:"100mcg",        cat:"Asthme",          posologie:"2 inhalations 3 fois par jour",  price:680,           img:"../images/medicaments/Salbutamol.jpg" },
+  { id:"a11", name:"Fluticasone",         dosage:"250mcg",        cat:"Asthme",          posologie:"2 inhalations 2 fois par jour",  price:1500,           img:"../images/medicaments/Fluticasone.jpg" },
+  { id:"a12", name:"Béclométhasone",      dosage:"50µg/dose",     cat:"Asthme",          posologie:"100–250µg 2 fois par jour",    price:180,             img:"../images/medicaments/Béclométhasone.jpg" },
   // Rhumatologie
-  { id:"a13", name:"Méthotrexate",        dosage:"7.5mg",         cat:"Rhumatologie",    posologie:"1 comprimé une fois par semaine",  price=1300,         img:"../images/medicaments/Méthotrexate.jpg" },
-  { id:"a14", name:"Ibuprofène",          dosage:"400mg",         cat:"Rhumatologie",    posologie:"1 comprimé 3 fois par jour",   price=180,             img:"../images/medicaments/ibuprofene.webp" },
+  { id:"a13", name:"Méthotrexate",        dosage:"7.5mg",         cat:"Rhumatologie",    posologie:"1 comprimé une fois par semaine",  price:1300,         img:"../images/medicaments/Méthotrexate.jpg" },
+  { id:"a14", name:"Ibuprofène",          dosage:"400mg",         cat:"Rhumatologie",    posologie:"1 comprimé 3 fois par jour",   price:180,             img:"../images/medicaments/ibuprofene.webp" },
   // Psychiatrie
-  { id:"a15", name:"Sertraline",          dosage:"50mg",          cat:"Psychiatrie",     posologie:"1 comprimé par jour",     price=1000,                img:"../images/medicaments/Sertraline.jpeg" },
-  { id:"a16", name:"Paroxétine",          dosage:"20mg",          cat:"Psychiatrie",     posologie:"1 comprimé par jour",     price=1400,                  img:"../images/medicaments/Paroxétine.jpeg" }
+  { id:"a15", name:"Sertraline",          dosage:"50mg",          cat:"Psychiatrie",     posologie:"1 comprimé par jour",     price:1000,                img:"../images/medicaments/Sertraline.jpeg" },
+  { id:"a16", name:"Paroxétine",          dosage:"20mg",          cat:"Psychiatrie",     posologie:"1 comprimé par jour",     price:1400,                  img:"../images/medicaments/Paroxétine.jpeg" }
 ];
 
 var SANS_ORDONNANCE = [
