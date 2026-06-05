@@ -43,7 +43,7 @@
       </a>
       <div class="dossier-title-wrap">
         <h1 class="dossier-title">Dossier Médical</h1>
-        <p class="dossier-sub">Historique chronologique de vos événements de santé</p>
+        <p class="dossier-sub">- Historique chronologique de vos événements de santé -</p>
       </div>
     </div>
 
@@ -53,16 +53,16 @@
       <!-- Type des filters -->
       <div class="type-filters">
         <button class="type-chip active" data-filter="all" onclick="setTypeFilter(this, 'all')">
-          <span class="chip-icon">📋</span> Tout
+          <span class="chip-icon"></span> Tout
         </button>
         <button class="type-chip" data-filter="ordonnance" onclick="setTypeFilter(this, 'ordonnance')">
-          <span class="chip-icon">🩺</span> Ordonnances
+          <span class="chip-icon">🗎</span> Ordonnances
         </button>
         <button class="type-chip" data-filter="analyse" onclick="setTypeFilter(this, 'analyse')">
-          <span class="chip-icon">🔬</span> Analyses
+          <span class="chip-icon">💉</span> Analyses
         </button>
         <button class="type-chip" data-filter="consultation" onclick="setTypeFilter(this, 'consultation')">
-          <span class="chip-icon">📅</span> Consultations
+          <span class="chip-icon">🗓</span> Consultations
         </button>
       </div>
 
@@ -85,7 +85,7 @@
 
     <!-- vide -->
     <div class="empty-state" id="emptyState" style="display:none">
-      <div class="empty-icon">📂</div>
+      <div class="empty-icon">🗁</div>
       <p class="empty-msg">Aucun événement trouvé</p>
       <p class="empty-sub">Essayez un autre filtre ou revenez plus tard.</p>
     </div>
