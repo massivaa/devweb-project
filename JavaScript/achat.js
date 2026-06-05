@@ -3,7 +3,7 @@
 var AVEC_ORDONNANCE = [
   // Hypertension
   { id:"a1",  name:"Lisinopril",          dosage:"10mg",          cat:"Hypertension",    posologie:"1 comprimé par jour",                       img:"../../images/medicaments/Lisinopril.webp" },
-  { id:"a2",  name:"Amlodipine",          dosage:"5mg",           cat:"Hypertension",    posologie:"1 comprimé par jour",                       img:"../images/medicaments/amlodipine.jpg" },
+  { id:"a2",  name:"Amlodipine",          dosage:"5mg",           cat:"Hypertension",    posologie:"1 comprimé par jour",                       img:"../images/medicaments/Amlodipine.jpg" },
   { id:"a3",  name:"Perindopril",         dosage:"4mg – 8mg",     cat:"Hypertension",    posologie:"4–8mg une fois par jour, le matin",         img:"../images/medicaments/perindopril.webp" },
   { id:"a4",  name:"Hydrochlorothiazide", dosage:"12.5mg – 50mg", cat:"Hypertension",    posologie:"12.5–50mg une fois par jour, le matin",     img:"../images/medicaments/Hydrochlorothiazide.jpg" },
   { id:"a5",  name:"Bisoprolol",          dosage:"2.5mg – 10mg",  cat:"Hypertension",    posologie:"2.5–10mg une fois par jour",                img:"../images/medicaments/Bisoprolol.png" },
