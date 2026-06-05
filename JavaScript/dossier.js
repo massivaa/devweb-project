@@ -46,7 +46,7 @@ async function loadDossier() {
 // ordonnances 
 async function fetchOrdonnances() {
   try {
-    const res = await fetch(`${API_BASE}/get_ordonnances.php`, { credentials: "include" });
+    const res = await fetch(`${API_BASE}/ordonnance.php`, { credentials: "include" });
     const json = await res.json();
 
     if (!json.success || !Array.isArray(json.data)) return [];
@@ -70,7 +70,7 @@ async function fetchOrdonnances() {
 //analyses
 async function fetchAnalyses() {
   try {
-    const res = await fetch(`${API_BASE}/get_analyses.php`, { credentials: "include" });
+    const res = await fetch(`${API_BASE}/analyses.php`, { credentials: "include" });
     const json = await res.json();
 
     if (!json.success || !Array.isArray(json.data)) return [];
