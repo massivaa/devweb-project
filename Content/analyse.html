@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Analyses Médicales</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../Style/ordonnances.css">
+</head>
+
+<body>
+
+<main class="main">
+
+<div class="topbar">
+
+<div>
+<h1 class="page-title">Analyses Médicales</h1>
+<div class="page-breadcrumb">
+Historique des examens et résultats médicaux
+</div>
+</div>
+
+<div class="topbar-actions">
+
+<button class="btn btn-outline" onclick="toggleTheme()">
+🌙 Mode
+</button>
+
+<label class="btn btn-gold">
++ Ajouter
+<input
+type="file"
+accept=".pdf,.jpg,.jpeg,.png,.dcm"
+hidden
+onchange="handleFileUpload(this)">
+</label>
+
+</div>
+
+</div>
+
+<div class="stats-row">
+
+<div class="stat-chip">
+
+<div class="stat-icon gold">
+🔬
+</div>
+
+<div>
+
+<div class="stat-value" id="totalAnalyses">
+0
+</div>
+
+<div class="stat-label">
+Analyses
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="filters-bar">
+
+<button class="filter-chip active"
+onclick="filterAnalyse(this,'all')">
+Tous
+</button>
+
+<button class="filter-chip"
+onclick="filterAnalyse(this,'sanguin')">
+Bilan sanguin
+</button>
+
+<button class="filter-chip"
+onclick="filterAnalyse(this,'radio')">
+Radiologie
+</button>
+
+<button class="filter-chip"
+onclick="filterAnalyse(this,'echographie')">
+Échographie
+</button>
+
+<button class="filter-chip"
+onclick="filterAnalyse(this,'autre')">
+Autre
+</button>
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Rechercher analyse..."
+oninput="searchAnalyse(this.value)">
+
+</div>
+
+</div>
+
+<div class="analyses-list" id="analysesList">
+
+</div>
+
+</main>
+
+<div class="modal-overlay" id="modalAnalyse">
+
+<div class="modal" style="max-width:700px">
+
+<div class="modal-header">
+
+<div>
+
+<div class="modal-title"
+id="modalAnalyseTitle">
+
+Analyse
+
+</div>
+
+<div class="modal-subtitle"
+id="modalAnalyseSub">
+
+Informations
+
+</div>
+
+</div>
+
+<div class="modal-close"
+onclick="closeModal('modalAnalyse')">
+
+✕
+
+</div>
+
+</div>
+
+<div class="modal-body"
+id="modalAnalyseBody">
+
+</div>
+
+<div class="modal-footer">
+
+<button class="btn btn-outline">
+🖨️ Imprimer
+</button>
+
+<button class="btn btn-outline">
+📥 Télécharger
+</button>
+
+<button
+class="btn btn-ghost"
+onclick="closeModal('modalAnalyse')">
+
+Fermer
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../JavaScript/analyse.js"></script>
+
+</body>
+</html>

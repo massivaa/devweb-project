@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SantéClick — Dossier Médical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="dossier.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-gauche">Santé<span>Click</span></div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="nav-liens" id="nav-liens">
+      <button class="menu-close" onclick="toggleMenu()">×</button>
+      <div class="nav-center">
+        <a href="../index.html">Accueil</a>
+        <a href="medicament.html">Médicaments</a>
+        <a href="Mdocteur.html">Docteurs</a>
+        <a href="patient.html">Profil</a>
+      </div>
+      <div class="nav-auth">
+        <div id="nav-guest"><a href="./Content/connexion.html">Connexion</a></div>
+        <div id="nav-user"><a href="#" id="logoutBtn" style="color:rgba(255,120,120,0.8)">Déconnexion</a></div>
+        <button onclick="toggleMode()" title="Mode sombre / clair">◑</button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleMenu()"></div>
+
+  <!-- MAIN -->
+  <main class="dossier-main">
+
+    <!-- boutton retour vers patient-->
+    <div class="dossier-topbar">
+      <a href="patient.html" class="btn-retour">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour au profil
+      </a>
+      <div class="dossier-title-wrap">
+        <h1 class="dossier-title">Dossier Médical</h1>
+        <p class="dossier-sub">Historique chronologique de vos événements de santé</p>
+      </div>
+    </div>
+
+    <!-- filtrage -->
+    <div class="controls-bar">
+
+      <!-- Type des filters -->
+      <div class="type-filters">
+        <button class="type-chip active" data-filter="all" onclick="setTypeFilter(this, 'all')">
+          <span class="chip-icon">📋</span> Tout
+        </button>
+        <button class="type-chip" data-filter="ordonnance" onclick="setTypeFilter(this, 'ordonnance')">
+          <span class="chip-icon">🩺</span> Ordonnances
+        </button>
+        <button class="type-chip" data-filter="analyse" onclick="setTypeFilter(this, 'analyse')">
+          <span class="chip-icon">🔬</span> Analyses
+        </button>
+        <button class="type-chip" data-filter="consultation" onclick="setTypeFilter(this, 'consultation')">
+          <span class="chip-icon">📅</span> Consultations
+        </button>
+      </div>
+
+      <!-- ancient et recent -->
+      <div class="sort-wrap">
+        <label class="sort-label">Trier par</label>
+        <select class="sort-select" id="sortSelect" onchange="setSortOrder(this.value)">
+          <option value="desc">Plus récent d'abord</option>
+          <option value="asc">Plus ancien d'abord</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- chargement -->
+    <div class="loading-state" id="loadingState">
+      <div class="spinner"></div>
+      <p>Chargement du dossier…</p>
+    </div>
+
+    <!-- vide -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon">📂</div>
+      <p class="empty-msg">Aucun événement trouvé</p>
+      <p class="empty-sub">Essayez un autre filtre ou revenez plus tard.</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline" id="timeline" style="display:none"></div>
+
+  </main>
+
+  <script src="../JavaScript/dossier.js"></script>
+  <script src="../JavaScript/decnnexion.js"></script>
+  <script src="../JavaScript/index.js"></script>
+</body>
+</html>

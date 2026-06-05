@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ordonnances</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../Style/ordonnances.css">
+</head>
+
+<body>
+
+<main class="main">
+
+<div class="topbar">
+
+<div>
+<h1 class="page-title">Ordonnances Médicales</h1>
+<div class="page-breadcrumb">
+Gestion des prescriptions médicales
+</div>
+</div>
+
+<div class="topbar-actions">
+
+<button class="btn btn-outline" onclick="toggleTheme()">
+🌙 Mode
+</button>
+
+<label class="btn btn-gold">
++ Ajouter
+<input
+type="file"
+accept=".pdf,.jpg,.jpeg,.png"
+hidden
+onchange="handleFileUpload(this,'ordo')">
+</label>
+
+</div>
+
+</div>
+
+<div class="page active">
+
+<!-- STATS -->
+
+<div class="stats-row">
+
+<div class="stat-chip">
+
+<div class="stat-icon gold">
+📋
+</div>
+
+<div>
+<div class="stat-value" id="totalOrdonnances">
+0
+</div>
+
+<div class="stat-label">
+Ordonnances
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FILTRES -->
+
+<div class="filters-bar">
+
+<button
+class="filter-chip active"
+onclick="filterOrdo(this,'all')">
+Toutes
+</button>
+
+<button
+class="filter-chip"
+onclick="filterOrdo(this,'active')">
+Actives
+</button>
+
+<button
+class="filter-chip"
+onclick="filterOrdo(this,'expired')">
+Expirées
+</button>
+
+<button
+class="filter-chip"
+onclick="filterOrdo(this,'pending')">
+En attente
+</button>
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Rechercher..."
+oninput="searchOrdo(this.value)">
+
+</div>
+
+</div>
+
+<!-- GRID -->
+
+<div
+class="ordonnances-grid"
+id="ordoGrid">
+
+</div>
+
+</div>
+
+</main>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modalOrdo">
+
+<div class="modal">
+
+<div class="modal-header">
+
+<div>
+
+<div
+class="modal-title"
+id="modalOrdoTitle">
+Ordonnance
+</div>
+
+<div
+class="modal-subtitle"
+id="modalOrdoSub">
+Informations
+</div>
+
+</div>
+
+<div
+class="modal-close"
+onclick="closeModal('modalOrdo')">
+
+✕
+
+</div>
+
+</div>
+
+<div
+class="modal-body"
+id="modalOrdoBody">
+
+</div>
+
+<div class="modal-footer">
+
+<button class="btn btn-outline">
+🖨️ Imprimer
+</button>
+
+<button class="btn btn-outline">
+📥 Télécharger
+</button>
+
+<button
+class="btn btn-ghost"
+onclick="closeModal('modalOrdo')">
+
+Fermer
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../JavaScript/ordonnances.js"></script>
+
+</body>
+</html>
