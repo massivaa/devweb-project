@@ -204,7 +204,28 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.btn-achete{
+  padding:9px 20px;
+  border-radius:8px;
+  border:none;
+  background:#c9a84c;
+  color:white;
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  transition:.2s;
+  margin-right:10px;
+}
 
+.btn-achete:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+.dark-mode .btn-achete{
+  background:#c9a84c;
+  color:#111;
+}
 /* ── Loading / Empty ── */
 .loading-state {
   display: flex;
