@@ -92,7 +92,7 @@ async function loadProfile() {
 
     const result = await res.json();
 
-    console.log("PROFILE DATA:", result); // 🔥 DEBUG
+    console.log("PROFILE DATA:", result); 
 
     if (!result.success) return;
 
