@@ -145,7 +145,7 @@ function renderAntecedents(text) {
 
 async function loadOrdonnances() {
   try {
-    const res = await fetch('https://mknay.alwaysdata.net/php/get_ordonnances.php', {
+    const res = await fetch('https://mknay.alwaysdata.net/php/ordonnance.php', {
       credentials: "include"
     });
 
