@@ -50,10 +50,6 @@ async function deleteRdv(id) {
   }
 }
 
-
-// =======================
-// INIT
-// =======================
 document.addEventListener("DOMContentLoaded", function () {
   const isLoggedIn = localStorage.getItem('logged_in') === 'true';
   const guestWarning = document.getElementById('guestWarning');
@@ -70,12 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadProfile();
   loadRendezVous();
+  loadOrdonnances();
 });
 
 
-// =======================
-// PROFILE
-// =======================
 async function loadProfile() {
   try {
     const storedUserId = localStorage.getItem('user_id');
