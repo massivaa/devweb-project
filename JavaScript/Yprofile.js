@@ -1,6 +1,10 @@
+// =====================
+// PROFIL CHARGEMENT
+// =====================
 async function fillProfileForm() {
   try {
     const storedUserId = localStorage.getItem('user_id');
+
     const url = storedUserId
       ? `https://mknay.alwaysdata.net/php/profile.php?user_id=${encodeURIComponent(storedUserId)}`
       : 'https://mknay.alwaysdata.net/php/profile.php';
@@ -14,7 +18,7 @@ async function fillProfileForm() {
 
     if (!result || !result.success || !result.data) return;
 
-    const data = result.data || {};
+    const data = result.data;
 
     const setValue = (id, value) => {
       const el = document.getElementById(id);
@@ -57,7 +61,48 @@ async function fillProfileForm() {
 }
 
 
-// ===== ANTECEDENTS (AJOUT) =====
+// =====================
+// NORMALISATION TEXTE
+// =====================
+function normalize(text) {
+  return (text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+
+// =====================
+// SYNC TEXTE → CHECKBOXES
+// =====================
+function syncAntecedentsCheckboxes(antecedentsText) {
+  const list = normalize(antecedentsText);
+
+  const map = {
+    "diabete": "maladie_diabete",
+    "asthme": "maladie_asthme",
+    "hypertension": "maladie_hypertension",
+    "autre": "maladie_autre"
+  };
+
+  Object.values(map).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.checked = false;
+  });
+
+  Object.entries(map).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.checked = list.includes(key);
+  });
+}
+
+
+// =====================
+// UPDATE CHECKBOXES → TEXTE
+// =====================
 function updateAntecedents() {
   const antecedents = [];
 
@@ -82,76 +127,58 @@ function updateAntecedents() {
 }
 
 
-// ===== INIT =====
+// =====================
+// INIT PAGE
+// =====================
 document.addEventListener("DOMContentLoaded", function () {
+
   fillProfileForm();
 
   const form = document.getElementById("profile-form");
 
-  if (form) {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
+  if (!form) return;
 
-      const formData = new FormData(form);
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      const storedUserId = localStorage.getItem('user_id');
-      if (storedUserId) {
-        formData.append('user_id', storedUserId);
+    const formData = new FormData(form);
+
+    const storedUserId = localStorage.getItem('user_id');
+    if (storedUserId) {
+      formData.append('user_id', storedUserId);
+    }
+
+    try {
+      const res = await fetch("https://mknay.alwaysdata.net/php/sauvgarder_profile.php", {
+        method: "POST",
+        credentials: "include",
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Profil enregistré avec succès !");
+        window.location.href = "patient.html";
+      } else {
+        alert("Erreur: " + (data.message || "échec"));
       }
 
-      try {
-        const res = await fetch("https://mknay.alwaysdata.net/php/sauvgarder_profile.php", {
-          method: "POST",
-          credentials: "include",
-          body: formData
-        });
-
-        const data = await res.json();
-
-        if (data.success) {
-          alert("Profil enregistré avec succès !");
-          window.location.href = "patient.html";
-        } else {
-          alert("Erreur: " + (data.message || "échec"));
-        }
-
-      } catch (err) {
-        console.error(err);
-        alert("Erreur serveur");
-      }
-    });
-
-    // ===== listeners checkbox =====
-    [
-      "maladie_diabete",
-      "maladie_asthme",
-      "maladie_hypertension",
-      "maladie_autre"
-    ].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener("change", updateAntecedents);
-      }
-    });
-  }
-});
-function syncAntecedentsCheckboxes(antecedentsText) {
-  if (!antecedentsText) return;
-
-  const list = antecedentsText.toLowerCase();
-
-  const map = {
-    "diabète": "maladie_diabete",
-    "diabete": "maladie_diabete",
-    "asthme": "maladie_asthme",
-    "hypertension": "maladie_hypertension",
-    "autre": "maladie_autre"
-  };
-
-  Object.entries(map).forEach(([key, id]) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    el.checked = list.includes(key);
+    } catch (err) {
+      console.error(err);
+      alert("Erreur serveur");
+    }
   });
-}
+
+  // checkbox listeners
+  [
+    "maladie_diabete",
+    "maladie_asthme",
+    "maladie_hypertension",
+    "maladie_autre"
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("change", updateAntecedents);
+  });
+
+});
