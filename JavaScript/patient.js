@@ -114,7 +114,6 @@ async function loadProfile() {
       statusText.textContent = isComplete ? 'Profil complet' : 'Profil incomplet';
     }
 
-    // 🔥 IMPORTANT : afficher antécédents ici
     renderAntecedents(data.antecedents);
 
   } catch (err) {
@@ -151,45 +150,17 @@ async function loadOrdonnances() {
     });
 
     const result = await res.json();
+    console.log("ORDO PATIENT:", result);
 
-    if (!result.success) return;
+    if (!result.success || !Array.isArray(result.data)) {
+      renderOrdonnances([]);
+      return;
+    }
 
     renderOrdonnances(result.data);
 
   } catch (err) {
     console.error("Erreur loadOrdonnances:", err);
+    renderOrdonnances([]);
   }
-}
-
-function renderOrdonnances(data) {
-  const empty = document.getElementById('ordoEmpty');
-  const list = document.getElementById('ordoList');
-
-  if (!data || data.length === 0) {
-    if (empty) empty.style.display = 'block';
-    if (list) list.style.display = 'none';
-    return;
-  }
-
-  if (empty) empty.style.display = 'none';
-  if (list) list.style.display = 'block';
-
-  list.innerHTML = data.map(ordo => `
-    <div class="ordo-item">
-      <div class="ordo-title">
-        📄 Ordonnance du ${ordo.date || '—'}
-      </div>
-
-      <div class="ordo-body">
-        ${ordo.medecin ? `<strong>Dr ${ordo.medecin}</strong><br>` : ''}
-        ${ordo.description ? ordo.description : 'Aucun détail'}
-      </div>
-
-      ${ordo.fichier ? `
-        <a href="${ordo.fichier}" target="_blank" class="ordo-btn">
-          Voir PDF
-        </a>
-      ` : ''}
-    </div>
-  `).join('');
 }
