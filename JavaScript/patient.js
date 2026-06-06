@@ -26,7 +26,7 @@ async function loadRendezVous() {
       <strong>Dr ${rdv.prenom} ${rdv.nom}</strong><br>
       ${rdv.date_rdv} à ${rdv.heure}
       <br>
-      <button onclick="deleteRdv(${rdv.id})">Annuler</button>
+      <button class="cancel-btn" onclick="deleteRdv(${rdv.id})">Annuler</button>
     </div>
   `).join('');
 }
