@@ -164,3 +164,42 @@ async function loadOrdonnances() {
     renderOrdonnances([]);
   }
 }
+function renderOrdonnances(data) {
+  const empty = document.getElementById('ordoEmpty');
+  const list  = document.getElementById('ordoList');
+
+  if (!list || !empty) return;
+
+  if (!data || data.length === 0) {
+    empty.style.display = 'block';
+    list.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  list.style.display = 'block';
+
+  list.innerHTML = data.map(ordo => {
+    const date = ordo.date || ordo.date_emission || "—";
+    const medecin = ordo.medecin || ordo.doctor || ordo.nom_medecin || "";
+
+    return `
+      <div class="ordo-item">
+        <div class="ordo-title">
+          📄 Ordonnance du ${date}
+        </div>
+
+        <div class="ordo-body">
+          ${medecin ? `<strong>Dr ${medecin}</strong><br>` : ""}
+          ${ordo.description || ordo.motif || "Aucun détail"}
+        </div>
+
+        ${ordo.fichier ? `
+          <a href="${ordo.fichier}" target="_blank" class="ordo-btn">
+            Voir PDF
+          </a>
+        ` : ""}
+      </div>
+    `;
+  }).join('');
+}
