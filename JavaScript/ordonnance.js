@@ -52,6 +52,8 @@ async function loadOrdonnances() {
     const res  = await fetch(`${API_BASE}/ordonnance.php`, { credentials: "include" });
     const json = await res.json();
 
+    console.log("ORDONNANCES:", json);
+
     if (json.success && Array.isArray(json.data)) {
       allOrdonnances = json.data.map(normalizeOrdonnance);
     } else {
