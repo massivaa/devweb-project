@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: #f6f7f5;
+  color: #1d2b1f;
+}
+
+.legal-page {
+  padding: 80px 20px;
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border: 1px solid #d8e4d4;
+  border-radius: 16px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.legal-container h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #0d2618;
+}
+
+.legal-container h2 {
+  font-size: 18px;
+  margin-top: 25px;
+  color: #2d5a3f;
+  border-left: 4px solid #c9a84c;
+  padding-left: 10px;
+}
+
+.legal-container p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4a5a4a;
+  margin-top: 8px;
+}
+/* ── bouton retour ── */
+.retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #d8e4d4;
+  color: #2d5a3f;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s;
+  width: fit-content;
+}
+
+.retour:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: #c9a84c;
+  color: #0d2618;
+  transform: translateX(-3px);
+}
+
+
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 25px;
+  }
+
+  .legal-container h1 {
+    font-size: 28px;
+  }
+}
+.dark-mode .legal-container{background: #1d2b1f;}
+.dark-mode .legal-container p{color: lightgrey;}
+.dark-mode .legal-container h1{color: white;}
