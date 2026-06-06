@@ -191,7 +191,7 @@ function renderOrdonnances(data) {
 
         <div class="ordo-body">
           ${medecin ? `<strong>Dr ${medecin}</strong><br>` : ""}
-          ${ordo.description || ordo.motif || "Aucun détail"}
+          ${ordo.description || ordo.motif || ""}
         </div>
 
         ${ordo.fichier ? `
