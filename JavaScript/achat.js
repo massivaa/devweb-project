@@ -55,7 +55,8 @@ if (ordonnancePanier.length > 0) {
         dosage: produit.dosage,
         price: produit.price,
         img: produit.img,
-        qty: med.quantite || 1
+        qty: med.quantite || 1,
+        ordonnance: true
       });
     }
 
@@ -89,21 +90,42 @@ function addToCart(id, btn) {
 }
 
 function changeQty(id, delta) {
+
   for (var i = 0; i < cart.length; i++) {
+
     if (cart[i].id === id) {
+
+      if (cart[i].ordonnance) return;
+
       cart[i].qty += delta;
-      if (cart[i].qty <= 0) cart.splice(i, 1);
+
+      if (cart[i].qty <= 0) {
+        cart.splice(i, 1);
+      }
+
       break;
     }
   }
+
   renderPanier();
 }
 
 function removeItem(id) {
-  var next = [];
+
   for (var i = 0; i < cart.length; i++) {
-    if (cart[i].id !== id) next.push(cart[i]);
+    if (cart[i].id === id && cart[i].ordonnance) {
+      return;
+    }
   }
+
+  var next = [];
+
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].id !== id) {
+      next.push(cart[i]);
+    }
+  }
+
   cart = next;
   renderPanier();
 }
@@ -141,13 +163,17 @@ function renderPanier() {
           '<div class="panier-item-name">' + item.name + '</div>' +
           '<div class="panier-item-dosage">' + item.dosage + '</div>' +
           '<div class="panier-item-price">' + lineTotal + ' DA</div>' +
-          '<div class="panier-item-qty">' +
-            '<button class="qty-btn" onclick="changeQty(\'' + item.id + '\',-1)">−</button>' +
-            '<span class="qty-val">' + item.qty + '</span>' +
-            '<button class="qty-btn" onclick="changeQty(\'' + item.id + '\',+1)">+</button>' +
-          '</div>' +
+          (item.ordonnance
+  ? '<div class="ordo-fixed">Ordonnance médicale</div>'
+  : '<div class="panier-item-qty">' +
+      '<button class="qty-btn" onclick="changeQty(\'' + item.id + '\',-1)">−</button>' +
+      '<span class="qty-val">' + item.qty + '</span>' +
+      '<button class="qty-btn" onclick="changeQty(\'' + item.id + '\',+1)">+</button>' +
+    '</div>') +
         '</div>' +
-        '<button class="item-remove" onclick="removeItem(\'' + item.id + '\')" title="Supprimer">✕</button>' +
+        (item.ordonnance
+  ? ''
+  : '<button class="item-remove" onclick="removeItem(\'' + item.id + '\')" title="Supprimer">✕</button>') +
       '</div>';
   }
   itemsEl.innerHTML = html;
@@ -159,9 +185,7 @@ function renderPanier() {
   footerEl.style.display = "block";
 }
 
-/* 
-   DRAWER
-    */
+/* panier*/
 function togglePanier() {
   var panier  = document.getElementById("panier");
   var overlay = document.getElementById("overlay");
@@ -179,9 +203,7 @@ function togglePanier() {
   }
 }
 
-/* 
-   MODAL ORDONNANCE
-    */
+/* ordonnance*/
 function showModal() {
   document.getElementById("modal").classList.add("show");
   document.getElementById("modalOverlay").classList.add("show");
@@ -248,9 +270,7 @@ function renderAvec() {
   grid.innerHTML = html;
 }
 
-/* 
-   FILTRES
-    */
+/* filtre*/
 var activeTab = "tous";
 
 function setTab(btn, tab) {
@@ -278,9 +298,7 @@ function applyFilters() {
   }
 }
 
-/* 
-   INIT
-    */
+
 document.addEventListener("DOMContentLoaded", function() {
   renderSans();
   renderAvec();

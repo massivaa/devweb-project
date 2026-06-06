@@ -346,7 +346,6 @@ function setSearch(val) {
   renderGrid();
 }
 
-// ── Helpers ──
 function showLoading(show) {
   document.getElementById("loadingState").style.display = show ? "flex" : "none";
   document.getElementById("ordoGrid").style.display     = "none";
@@ -380,7 +379,7 @@ function formatDoctor(o) {
 }
 
 function shortMedName(name) {
-  // Affiche seulement le nom principal (avant le premier espace ou chiffre)
+  // Affiche seulement le nom principal 
   return name.split(/\s+/).slice(0, 2).join(" ");
 }
 
