@@ -2,7 +2,7 @@
 
 var AVEC_ORDONNANCE = [
   // Hypertension
-  { id:"a1",  name:"Lisinopril",          dosage:"10mg",          cat:"Hypertension",    posologie:"1 comprimé par jour",      price:680,                 img:"../../images/medicaments/Lisinopril.webp" },
+  { id:"a1",  name:"Lisinopril",          dosage:"10mg",          cat:"Hypertension",    posologie:"1 comprimé par jour",      price:680,                 img:"../images/medicaments/Lisinopril.webp" },
   { id:"a2",  name:"Amlodipine",          dosage:"5mg",           cat:"Hypertension",    posologie:"1 comprimé par jour",      price:480,                img:"../images/medicaments/Amlodipine.jpg" },
   { id:"a3",  name:"Perindopril",         dosage:"4mg – 8mg",     cat:"Hypertension",    posologie:"4–8mg une fois par jour, le matin", price:800,        img:"../images/medicaments/perindopril.webp" },
   { id:"a4",  name:"Hydrochlorothiazide", dosage:"12.5mg – 50mg", cat:"Hypertension",    posologie:"12.5–50mg une fois par jour, le matin", price:400,    img:"../images/medicaments/Hydrochlorothiazide.jpg" },
@@ -36,6 +36,33 @@ var SANS_ORDONNANCE = [
 
 /* panier */
 var cart = [];
+
+const ordonnancePanier =
+  JSON.parse(localStorage.getItem("ordonnance_panier")) || [];
+
+if (ordonnancePanier.length > 0) {
+
+  ordonnancePanier.forEach(med => {
+
+    const produit = AVEC_ORDONNANCE.find(
+      p => p.name.toLowerCase() === med.nom.toLowerCase()
+    );
+
+    if (produit) {
+      cart.push({
+        id: produit.id,
+        name: produit.name,
+        dosage: produit.dosage,
+        price: produit.price,
+        img: produit.img,
+        qty: med.quantite || 1
+      });
+    }
+
+  });
+
+  localStorage.removeItem("ordonnance_panier");
+}
 
 function addToCart(id, btn) {
   var product = null;
