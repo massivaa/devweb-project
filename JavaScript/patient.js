@@ -87,23 +87,24 @@ async function loadProfile() {
     if (!result.success) return;
 
     const data = result.data;
-    if (data.photo) {
-
     const avatarImg = document.getElementById("avatarImg");
-    const initials = document.getElementById("avatarInitials");
+const avatarInitials = document.getElementById("avatarInitials");
 
-    avatarImg.src = data.photo;
-    avatarImg.style.display = "block";
-
-    if (initials) {
-      initials.style.display = "none";
-    }
-    const initials =
+const initials =
   (data.prenom?.charAt(0) || "") +
   (data.nom?.charAt(0) || "");
 
-  document.getElementById("avatarInitials").textContent =
-  initials.toUpperCase();
+if (avatarInitials) {
+  avatarInitials.textContent = initials.toUpperCase();
+}
+
+if (data.photo && avatarImg) {
+  avatarImg.src = data.photo;
+  avatarImg.style.display = "block";
+
+  if (avatarInitials) {
+    avatarInitials.style.display = "none";
+  }
 }
 
     const displayName = [(data.prenom || ''), (data.nom || '')]
@@ -221,46 +222,57 @@ function renderOrdonnances(data) {
     `;
   }).join('');
 }
-document.getElementById("fileInput").addEventListener("change", async function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const file = this.files[0];
-  if (!file) return;
+  const fileInput = document.getElementById("fileInput");
 
-  const formData = new FormData();
-  formData.append("photo", file);
+  if (!fileInput) return;
 
-  try {
+  fileInput.addEventListener("change", async function () {
 
-    const res = await fetch(
-      "https://mknay.alwaysdata.net/php/photo.php",
-      {
-        method: "POST",
-        credentials: "include",
-        body: formData
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("photo", file);
+
+    try {
+
+      const res = await fetch(
+        "https://mknay.alwaysdata.net/php/photo.php",
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+
+        const avatarImg = document.getElementById("avatarImg");
+        const avatarInitials = document.getElementById("avatarInitials");
+
+        if (avatarImg) {
+          avatarImg.src = data.url + "?t=" + Date.now();
+          avatarImg.style.display = "block";
+        }
+
+        if (avatarInitials) {
+          avatarInitials.style.display = "none";
+        }
+
+      } else {
+        alert("Erreur lors de l'enregistrement de la photo.");
       }
-    );
 
-    const data = await res.json();
-
-    if (data.success) {
-
-      const avatarImg = document.getElementById("avatarImg");
-      const initials  = document.getElementById("avatarInitials");
-
-      avatarImg.src = data.url;
-      avatarImg.style.display = "block";
-
-      if (initials) {
-        initials.style.display = "none";
-      }
-
-    } else {
-      alert("Erreur lors de l'enregistrement de la photo.");
+    } catch (err) {
+      console.error(err);
+      alert("Erreur serveur.");
     }
 
-  } catch (err) {
-    console.error(err);
-    alert("Erreur serveur.");
-  }
+  });
 
 });
