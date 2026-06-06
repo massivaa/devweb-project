@@ -29,12 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // Chargement
 async function loadAnalyses() {
   showLoading(true);
-  console.log(json.data);
-
+  
   try {
     const res  = await fetch(`${API_BASE}/analyses.php`, { credentials: "include" });
     const json = await res.json();
-
+    console.log(json.data);
+    console.log("Analyses reçues :", json.data);
+    
     if (json.success && Array.isArray(json.data)) {
       allAnalyses = json.data.map(normalizeAnalyse);
     } else {
