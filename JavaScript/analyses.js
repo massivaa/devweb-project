@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Chargement
 async function loadAnalyses() {
   showLoading(true);
+  console.log(json.data);
 
   try {
     const res  = await fetch(`${API_BASE}/analyses.php`, { credentials: "include" });
