@@ -636,6 +636,7 @@ body.modal-open {
   position: fixed;
   inset: 0;
   height: 100dvh;
+  padding-top: 90px;
 }
 .btn-print:hover { background: #1a4a3a; color: #fff; border-color: #1a4a3a; }
 
@@ -712,6 +713,7 @@ body.modal-open {
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
+    body{padding-top:72px;}
   .ordo-main { padding-left: 14px; padding-right: 14px; }
   .controls-bar { flex-direction: column; align-items: flex-start; }
   .sort-wrap { width: 100%; }
