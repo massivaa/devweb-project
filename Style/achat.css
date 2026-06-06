@@ -505,6 +505,12 @@ body {
   gap: 8px;
   margin-top: 8px;
 }
+.ordo-fixed{
+  margin-top:8px;
+  font-size:12px;
+  color:#c9a84c;
+  font-weight:600;
+}
 .qty-btn {
   width: 24px; height: 24px;
   background: #f0ece1;
