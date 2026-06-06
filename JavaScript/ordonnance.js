@@ -208,6 +208,8 @@ function renderCard(o, idx) {
 // Modal détail 
 function openModal(id) {
   const o = allOrdonnances.find(x => x.id == id);
+  const scrollY = window.scrollY;
+  document.body.dataset.scrollY = scrollY;
   if (!o) return;
   currentOrdonnance = o;
   document.getElementById("modalTitle").textContent = o.ref;
@@ -321,6 +323,9 @@ function closeModal(e) {
 function closeModalBtn() {
   document.getElementById("modalOverlay").classList.remove("open");
   document.body.style.overflow = "";
+  const scrollY = document.body.dataset.scrollY;
+  document.body.classList.remove("modal-open");
+  window.scrollTo(0, parseInt(scrollY || "0"));
 }
 
 // ── Contrôles ──

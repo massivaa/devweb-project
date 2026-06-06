@@ -26,7 +26,7 @@ var AVEC_ORDONNANCE = [
 
 var SANS_ORDONNANCE = [
   { id:"s1", name:"Doliprane 1000mg",  dosage:"1000mg", cat:"Antidouleur",        posologie:"1 comprimé toutes les 6h max",      price:110, oldPrice:180,  img:"../images/medicaments/doliprane.jpg" },
-  { id:"s2", name:"Ibuprofène 200mg",  dosage:"200mg",  cat:"Anti-inflammatoire", posologie:"1 comprimé 3 fois par jour",        price:250, oldPrice:null, img:"../images/medicaments/ibuprofene.webp" },
+  { id:"s2", name:"Ibuprofène 200mg",  dosage:"200mg",  cat:"Anti-inflammatoire", posologie:"1 comprimé 3 fois par jour",        price:250, oldPrice:null, img:"../images/medicaments/ibuprofene2.webp" },
   { id:"s3", name:"Vitamine C 500mg",  dosage:"500mg",  cat:"Vitamines",          posologie:"1 comprimé par jour",               price:250, oldPrice:300,  img:"../images/medicaments/VitamineC.jpg" },
   { id:"s4", name:"Strepsils Citron",  dosage:"—",      cat:"ORL",                posologie:"1 pastille toutes les 2–3h",        price:350, oldPrice:null, img:"../images/medicaments/strepsils.webp" },
   { id:"s5", name:"Smecta 3g",         dosage:"3g",     cat:"Gastro",             posologie:"1 sachet 3 fois par jour",          price:430, oldPrice:450,  img:"../images/medicaments/smecta.png" },
