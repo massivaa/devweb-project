@@ -32,7 +32,7 @@ var SANS_ORDONNANCE = [
   { id:"s5", name:"Smecta 3g",         dosage:"3g",     cat:"Gastro",             posologie:"1 sachet 3 fois par jour",          price:430, oldPrice:450,  img:"../images/medicaments/smecta.png" },
   { id:"s6", name:"Gaviscon Menthe",   dosage:"—",      cat:"Gastro",             posologie:"2–4 comprimés après chaque repas",  price:650, oldPrice:null, img:"../images/medicaments/gaviscon.jpg" },
   { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:850, oldPrice:null, img:"../images/medicaments/zinc.jpg" },
-  { id:"s8", name:"Probiotiques",      dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:3500, oldPrice:3950, img:"../images/medicaments/probiotiques.png" },
+  { id:"s8", name:"Probiotiques",      dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:3500, oldPrice:3950, img:"../images/medicaments/Probiotiques.png" },
   { id:"s9", name:"Fer",               dosage:"100mg",  cat:"Compléments",        posologie:"1 comprimé par jour",               price:680, oldPrice:null, img:"../images/medicaments/fer.png" },
   { id:"s10",name:"Lopéramide",        dosage:"2mg",    cat:"Anti-diarrhéique",   posologie:"1 comprimé par jour",               price:150, oldPrice:null, img:"../images/medicaments/loperamide.png" },
   { id:"s11",name:"Cétirizine",        dosage:"10mg",   cat:"Anti-histaminique",  posologie:"1 comprimé par jour",               price:240, oldPrice:null, img:"../images/medicaments/cetirizine.png" },
