@@ -149,3 +149,53 @@ function renderAntecedents(text) {
     </div>
   `).join('');
 }
+
+async function loadOrdonnances() {
+  try {
+    const res = await fetch('https://mknay.alwaysdata.net/php/get_ordonnances.php', {
+      credentials: "include"
+    });
+
+    const result = await res.json();
+
+    if (!result.success) return;
+
+    renderOrdonnances(result.data);
+
+  } catch (err) {
+    console.error("Erreur loadOrdonnances:", err);
+  }
+}
+
+function renderOrdonnances(data) {
+  const empty = document.getElementById('ordoEmpty');
+  const list = document.getElementById('ordoList');
+
+  if (!data || data.length === 0) {
+    if (empty) empty.style.display = 'block';
+    if (list) list.style.display = 'none';
+    return;
+  }
+
+  if (empty) empty.style.display = 'none';
+  if (list) list.style.display = 'block';
+
+  list.innerHTML = data.map(ordo => `
+    <div class="ordo-item">
+      <div class="ordo-title">
+        📄 Ordonnance du ${ordo.date || '—'}
+      </div>
+
+      <div class="ordo-body">
+        ${ordo.medecin ? `<strong>Dr ${ordo.medecin}</strong><br>` : ''}
+        ${ordo.description ? ordo.description : 'Aucun détail'}
+      </div>
+
+      ${ordo.fichier ? `
+        <a href="${ordo.fichier}" target="_blank" class="ordo-btn">
+          Voir PDF
+        </a>
+      ` : ''}
+    </div>
+  `).join('');
+}
