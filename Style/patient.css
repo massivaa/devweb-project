@@ -674,7 +674,27 @@ body {
 
 .btn-delete{background: #1f5c47; color: white; border: 1px solid #f5c6cb;}
 .btn-delete:hover{background: #c0392b; color: white;}
+/*pour annuler rndv!!!*/
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: all 0.25s ease;
+}
 
+.cancel-btn:hover {
+  background: #bb2d3b;
+  transform: translateY(-2px);
+}
+
+.cancel-btn:active {
+  transform: translateY(0);
+}
 .dark-mode .ajouter-infos{background-color: #153229;}
 .dark-mode .ajouter-infos:hover{transform: scale(1.03); background-color: #193c31;}
 .dark-mode .patient-name{color:white;}
