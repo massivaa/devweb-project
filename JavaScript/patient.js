@@ -276,3 +276,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+  const avatarWrap = document.getElementById("avatarWrap");
+  const fileInput = document.getElementById("fileInput");
+
+  if (avatarWrap && fileInput) {
+
+    avatarWrap.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+  }
+
+});
