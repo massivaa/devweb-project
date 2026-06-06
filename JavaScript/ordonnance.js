@@ -11,12 +11,22 @@ let currentOrdonnance = null;
 let knownAllergies = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+
   const isLoggedIn = localStorage.getItem("logged_in") === "true";
 
+  const guestWarning = document.getElementById("guestWarning");
+  const pageContent  = document.getElementById("pageContent");
+
   if (!isLoggedIn) {
-    window.location.href = "connexion.html";
+
+    if (guestWarning) guestWarning.style.display = "flex";
+    if (pageContent) pageContent.style.display = "none";
+
     return;
   }
+
+  if (guestWarning) guestWarning.style.display = "none";
+  if (pageContent) pageContent.style.display = "block";
 
   loadProfile();
   loadOrdonnances();
