@@ -237,8 +237,9 @@ body {
   flex-direction: column;
   transition: background 0.2s;
   position: relative;
+  margin:5px;
 }
-.product-card:hover { background: white; }
+.product-card:hover { background: white; transform:scale(1.01);}
 
 .product-card.locked { opacity: 1; }
 .product-card.locked .product-img { filter: grayscale(30%); }
