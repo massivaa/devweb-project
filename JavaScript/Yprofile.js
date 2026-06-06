@@ -37,6 +37,7 @@ async function fillProfileForm() {
     setValue('groupe_sanguin', data.groupe_sanguin);
 
     setValue('antecedents', data.antecedents);
+    syncAntecedentsCheckboxes(data.antecedents);
 
     setValue('tel', data.urgence_tel);
 
@@ -134,3 +135,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+function syncAntecedentsCheckboxes(antecedentsText) {
+  if (!antecedentsText) return;
+
+  const list = antecedentsText.toLowerCase();
+
+  const map = {
+    "diabète": "maladie_diabete",
+    "diabete": "maladie_diabete",
+    "asthme": "maladie_asthme",
+    "hypertension": "maladie_hypertension",
+    "autre": "maladie_autre"
+  };
+
+  Object.entries(map).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.checked = list.includes(key);
+  });
+}
