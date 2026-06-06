@@ -132,7 +132,7 @@ function traiterPaiement(event) {
     <p><strong>Montant payé:</strong> ${window.totalPrice} DA</p>
     <p><strong>Livraison à:</strong> ${fullName}, ${address}, ${postalCode} ${city}, ${country}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <button class="back-btn" onclick="goHome()">Retour à l'accueil</button>
+    <a href="../index.html" class="back-btn">Retour à l'accueil</a>
   `;
 
   localStorage.removeItem("cart");
@@ -152,12 +152,4 @@ function showError(msg) {
   setTimeout(() => {
     el.style.display = "none";
   }, 4000);
-}
-
-
-
-// HOME
-
-function goHome() {
-  window.location.href = "../index.html";
 }

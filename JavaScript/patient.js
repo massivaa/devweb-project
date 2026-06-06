@@ -87,6 +87,24 @@ async function loadProfile() {
     if (!result.success) return;
 
     const data = result.data;
+    if (data.photo) {
+
+    const avatarImg = document.getElementById("avatarImg");
+    const initials = document.getElementById("avatarInitials");
+
+    avatarImg.src = data.photo;
+    avatarImg.style.display = "block";
+
+    if (initials) {
+      initials.style.display = "none";
+    }
+    const initials =
+  (data.prenom?.charAt(0) || "") +
+  (data.nom?.charAt(0) || "");
+
+  document.getElementById("avatarInitials").textContent =
+  initials.toUpperCase();
+}
 
     const displayName = [(data.prenom || ''), (data.nom || '')]
       .filter(Boolean)
@@ -203,3 +221,46 @@ function renderOrdonnances(data) {
     `;
   }).join('');
 }
+document.getElementById("fileInput").addEventListener("change", async function () {
+
+  const file = this.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("photo", file);
+
+  try {
+
+    const res = await fetch(
+      "https://mknay.alwaysdata.net/php/photo.php",
+      {
+        method: "POST",
+        credentials: "include",
+        body: formData
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.success) {
+
+      const avatarImg = document.getElementById("avatarImg");
+      const initials  = document.getElementById("avatarInitials");
+
+      avatarImg.src = data.url;
+      avatarImg.style.display = "block";
+
+      if (initials) {
+        initials.style.display = "none";
+      }
+
+    } else {
+      alert("Erreur lors de l'enregistrement de la photo.");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Erreur serveur.");
+  }
+
+});

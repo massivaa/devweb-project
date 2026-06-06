@@ -31,7 +31,15 @@ var SANS_ORDONNANCE = [
   { id:"s4", name:"Strepsils Citron",  dosage:"—",      cat:"ORL",                posologie:"1 pastille toutes les 2–3h",        price:350, oldPrice:null, img:"../images/medicaments/strepsils.webp" },
   { id:"s5", name:"Smecta 3g",         dosage:"3g",     cat:"Gastro",             posologie:"1 sachet 3 fois par jour",          price:430, oldPrice:450,  img:"../images/medicaments/smecta.png" },
   { id:"s6", name:"Gaviscon Menthe",   dosage:"—",      cat:"Gastro",             posologie:"2–4 comprimés après chaque repas",  price:650, oldPrice:null, img:"../images/medicaments/gaviscon.jpg" },
-  { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:850, oldPrice:null, img:"../images/medicaments/zinc.jpg" }
+  { id:"s7", name:"Zinc + Sélénium",   dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:850, oldPrice:null, img:"../images/medicaments/zinc.jpg" },
+  { id:"s8", name:"Probiotiques",      dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:3500, oldPrice:3950, img:"../images/medicaments/probiotiques.png" },
+  { id:"s9", name:"Fer",               dosage:"100mg",  cat:"Compléments",        posologie:"1 comprimé par jour",               price:680, oldPrice:null, img:"../images/medicaments/fer.png" },
+  { id:"s10",name:"Lopéramide",        dosage:"2mg",    cat:"Anti-diarrhéique",   posologie:"1 comprimé par jour",               price:150, oldPrice:null, img:"../images/medicaments/loperamide.png" },
+  { id:"s11",name:"Cétirizine",        dosage:"10mg",   cat:"Anti-histaminique",  posologie:"1 comprimé par jour",               price:240, oldPrice:null, img:"../images/medicaments/cetirizine.png" },
+  { id:"s12",name:"Vitamine D3",       dosage:"50000UI",cat:"Compléments",        posologie:"1 comprimé par jour",               price:240, oldPrice:null, img:"../images/medicaments/vitamineD3.png" },
+  { id:"s13",name:"Calcium",           dosage:"500mg",  cat:"Compléments",    posologie:"1 comprimé par jour",               price:800, oldPrice:null, img:"../images/medicaments/calcium.png" },
+  { id:"s14",name:"Vitamine B12",      dosage:"_",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:800, oldPrice:null, img:"../images/medicaments/vitamineb12.png" },
+  { id:"s15",name:"Magnésium",         dosage:"—",      cat:"Compléments",        posologie:"1 comprimé par jour",               price:900, oldPrice:100, img:"../images/medicaments/magnesium.png" }
 ];
 
 /* panier */
