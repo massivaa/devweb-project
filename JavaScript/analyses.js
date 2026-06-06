@@ -7,7 +7,6 @@ let activeFilter = "all";
 let sortOrder    = "desc";
 let searchQuery  = "";
 
-// ── Mapping catégories ──
 // On détecte la catégorie depuis le nom ou type de l'analyse
 const CATEGORY_RULES = [
   { key: "sanguin",      keywords: ["sanguin","sang","nfs","crp","hba1c","glycem","cholest","ldl","hdl","triglyc","hemoglobin","plaquette","globule","ferrit","bilan bio","ionogramme","urée","creatinine","albumi","protéine","transamin","ast","alt","ggt","phosphat","bilirub","tsh","t3","t4","insuline","cortisol","vitamine","hémato","coagulat","tp","tca","fibrinogène"], emoji: "🩸" },
@@ -16,7 +15,6 @@ const CATEGORY_RULES = [
   { key: "scanner",      keywords: ["scanner","scan","irm","mri","tomodensito","tdm","pet","scintigraph","cérébr","cerveau","crân","thorac scanner","abdo scanner"], emoji: "🧠" },
 ];
 
-// ── Init ──
 document.addEventListener("DOMContentLoaded", function () {
   const isLoggedIn = localStorage.getItem("logged_in") === "true";
 
@@ -28,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadAnalyses();
 });
 
-// ── Chargement depuis l'API ──
+// Chargement
 async function loadAnalyses() {
   showLoading(true);
 
@@ -57,7 +55,7 @@ function normalizeAnalyse(a) {
   const cat  = detectCategory(name, a.type || a.categorie || "");
 
   return {
-    id:          a.id,
+    id:          a.id_analyse,
     name,
     category:    cat.key,
     emoji:       cat.emoji,
