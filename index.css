@@ -87,7 +87,7 @@ body {
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
 }
 
 .nav-gauche::before {
