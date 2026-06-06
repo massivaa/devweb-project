@@ -1,9 +1,3 @@
-/* ══════════════════════════════════════════
-   analyse.js — Page Analyses Médicales
-   Charge les analyses depuis l'API,
-   filtre par catégorie, tri et recherche,
-   et affiche un modal de détail.
-══════════════════════════════════════════ */
 
 const API_BASE = "https://mknay.alwaysdata.net/php";
 
@@ -57,7 +51,7 @@ async function loadAnalyses() {
   renderList();
 }
 
-// ── Normaliser une analyse depuis l'API ──
+// depuis la base de donnée
 function normalizeAnalyse(a) {
   const name = a.type_analyse || a.nom || a.titre || a.libelle || "Analyse";
   const cat  = detectCategory(name, a.type || a.categorie || "");
@@ -69,7 +63,7 @@ function normalizeAnalyse(a) {
     emoji:       cat.emoji,
     date:        parseDate(a.date_analyse || a.date || a.created_at),
     laboratoire: a.laboratoire || a.centre || a.lieu || "",
-    prescripteur:a.medecin || a.prescripteur || a.medecin_nom || "",
+    prescripteur:a.prenom || a.nom? `Dr ${a.prenom || ""} ${a.nom || ""}`.trim(): "",
     status:      a.statut || "done",
     description: a.description || a.indication || "",
     conclusion:  a.conclusion || a.compte_rendu || a.resultat_texte || "",
