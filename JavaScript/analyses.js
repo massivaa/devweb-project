@@ -33,7 +33,7 @@ async function loadAnalyses() {
   showLoading(true);
 
   try {
-    const res  = await fetch(`${API_BASE}/get_analyses.php`, { credentials: "include" });
+    const res  = await fetch(`${API_BASE}/analyses.php`, { credentials: "include" });
     const json = await res.json();
 
     if (json.success && Array.isArray(json.data)) {
