@@ -32,13 +32,12 @@ async function loadRendezVous() {
 }
 
 async function deleteRdv(id) {
-
   const formData = new FormData();
   formData.append("rdv_id", id);
 
   const res = await fetch("https://mknay.alwaysdata.net/php/annuler_rndv.php", {
     method: "POST",
-    credentials: "include", 
+    credentials: "include",
     body: formData
   });
 
@@ -51,37 +50,36 @@ async function deleteRdv(id) {
   }
 }
 
-// Appeler les fonctions au chargement
-document.addEventListener("DOMContentLoaded", function() {
+
+// =======================
+// INIT
+// =======================
+document.addEventListener("DOMContentLoaded", function () {
   const isLoggedIn = localStorage.getItem('logged_in') === 'true';
   const guestWarning = document.getElementById('guestWarning');
   const pageLayout = document.querySelector('.layout');
 
   if (!isLoggedIn) {
-    if (guestWarning) {
-      guestWarning.style.display = 'flex';
-    }
-    if (pageLayout) {
-      pageLayout.style.display = 'grid';
-    }
+    if (guestWarning) guestWarning.style.display = 'flex';
+    if (pageLayout) pageLayout.style.display = 'grid';
     return;
   }
 
-  if (guestWarning) {
-    guestWarning.style.display = 'none';
-  }
-
-  if (pageLayout) {
-    pageLayout.style.display = 'grid';
-  }
+  if (guestWarning) guestWarning.style.display = 'none';
+  if (pageLayout) pageLayout.style.display = 'grid';
 
   loadProfile();
   loadRendezVous();
 });
 
+
+// =======================
+// PROFILE
+// =======================
 async function loadProfile() {
   try {
     const storedUserId = localStorage.getItem('user_id');
+
     const profileUrl = storedUserId
       ? `https://mknay.alwaysdata.net/php/profile.php?user_id=${encodeURIComponent(storedUserId)}`
       : 'https://mknay.alwaysdata.net/php/profile.php';
@@ -92,28 +90,16 @@ async function loadProfile() {
 
     const result = await res.json();
 
-    console.log("PROFILE DATA:", result); 
-
     if (!result.success) return;
 
     const data = result.data;
 
-    // NAME
     const displayName = [(data.prenom || ''), (data.nom || '')]
       .filter(Boolean)
       .join(' ') || '— Nom non renseigné —';
+
     document.getElementById('displayName').textContent = displayName;
 
-    const emailEl = document.getElementById('patientEmail');
-    const phoneEl = document.getElementById('patientPhone');
-    if (emailEl) {
-      emailEl.textContent = data.email ? `Email : ${data.email}` : 'Email : —';
-    }
-    if (phoneEl) {
-      phoneEl.textContent = data.telephone ? `Tél : ${data.telephone}` : 'Tél : —';
-    }
-
-    // VITALS
     document.getElementById('vPoids').textContent = data.poids || '—';
     document.getElementById('vTaille').textContent = data.taille || '—';
     document.getElementById('vImc').textContent = data.imc
@@ -123,11 +109,43 @@ async function loadProfile() {
 
     const statusText = document.getElementById('statusText');
     if (statusText) {
-      const isComplete = data.nom && data.prenom && data.email && data.poids && data.taille && data.groupe_sanguin;
+      const isComplete =
+        data.nom &&
+        data.prenom &&
+        data.email &&
+        data.poids &&
+        data.taille &&
+        data.groupe_sanguin;
+
       statusText.textContent = isComplete ? 'Profil complet' : 'Profil incomplet';
     }
+
+    // 🔥 IMPORTANT : afficher antécédents ici
+    renderAntecedents(data.antecedents);
 
   } catch (err) {
     console.error("Erreur loadProfile:", err);
   }
+}
+
+function renderAntecedents(text) {
+  const empty = document.getElementById('antecedentsEmpty');
+  const list = document.getElementById('antecedentsList');
+
+  if (!text || text.trim() === "") {
+    if (empty) empty.style.display = 'block';
+    if (list) list.style.display = 'none';
+    return;
+  }
+
+  if (empty) empty.style.display = 'none';
+  if (list) list.style.display = 'block';
+
+  const items = text.split(',').map(e => e.trim()).filter(Boolean);
+
+  list.innerHTML = items.map(item => `
+    <div class="antecedent-item">
+      🩺 ${item}
+    </div>
+  `).join('');
 }
