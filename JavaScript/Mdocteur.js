@@ -21,20 +21,29 @@ async function loadDoctors() {
 function renderDoctors(list) {
   const container = document.getElementById("docteurs");
 
-  container.innerHTML = list.map(doc => `
-    <div class="card">
-      <div class="card-body">
-        <h3>Dr ${doc.prenom} ${doc.nom}</h3>
-        <p>${doc.specialite}</p>
-      </div>
+  container.innerHTML = list.map(doc => {
+    const initial = (doc.prenom?.charAt(0) || "D").toUpperCase();
 
-      <div class="card-footer">
-        <button class="btn-savoir" onclick="openModal(${doc.id})">
-          Voir le profil →
-        </button>
+    return `
+      <div class="card">
+        <div class="card-body">
+
+          <div class="doctor-avatar">
+            ${initial}
+          </div>
+
+          <h3>Dr ${doc.prenom} ${doc.nom}</h3>
+          <p>${doc.specialite}</p>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn-savoir" onclick="openModal(${doc.id})">
+            Voir le profil →
+          </button>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 }
 
 // MODAL
@@ -59,7 +68,10 @@ function openModal(id) {
   document.getElementById("whatsappLink").href = "https://wa.me/" + doc.telephone;
 
   document.getElementById("modal").classList.add("open");
+  const avatar = document.getElementById("modal-avatar");
 
+avatar.textContent =
+  (doc.prenom?.charAt(0) || "D").toUpperCase();
 }
 
 // DOM READY ──────────────────────
@@ -120,7 +132,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   searchInput.addEventListener("input", filterDoctors);
   specialitySelect.addEventListener("change", filterDoctors);
-
-  // INIT
-  loadDoctors();
 });
