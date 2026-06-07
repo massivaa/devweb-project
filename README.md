@@ -9,6 +9,7 @@ Parmis les fonctionnalités principales :
   * Consultation du dossier médical.
   * Recherche et consultation de médicaments.
   * Section FAQ et pages d’informations: CGU, confidentialité, mentions légales (toutes dans footer).
+  * Contact en bas de la page (footer) interactif (sur  instagram, ou facebook, ou twitter, ou tiktok ou sur e-mail!).
 hébergement du site: 
 * Frontend : Vercel
 * Backend & base de données : AlwaysData
